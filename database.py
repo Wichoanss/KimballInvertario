@@ -7,6 +7,8 @@ logger = setup_logger("SmartRackDatabase")
 def get_db_connection():
     conn = sqlite3.connect(config.DB_NAME, check_same_thread=False)
     conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA synchronous=NORMAL")
     return conn
 
 def init_db():

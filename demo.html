@@ -673,6 +673,43 @@
         }
         .dtab:hover { color: var(--text-main); background: var(--surface2); }
         .dtab.active { color: var(--primary); background: var(--primary-glow); }
+        
+        /* ===== AUTH MODAL ===== */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+            display: none; align-items: center; justify-content: center; z-index: 9000;
+            padding: 20px;
+        }
+        .modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+        .modal {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+            width: 100%; max-width: 360px; padding: 24px; position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; background: transparent; border: none;
+            color: var(--text-soft); cursor: pointer; padding: 4px; border-radius: 4px;
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.05); color: var(--text-main); }
+        .modal-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+        .mod-err { color: var(--danger); font-size: 0.8rem; margin-top: 10px; display: none; }
+        
+        /* ===== AUTOCOMPLETE ===== */
+        .autocomplete-wrap { position: relative; }
+        .autocomplete-list {
+            position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+            max-height: 200px; overflow-y: auto;
+            background: var(--surface2); border: 1px solid var(--border-bright);
+            border-radius: var(--radius-sm); box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+            z-index: 1000; display: none;
+        }
+        .autocomplete-item {
+            padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .autocomplete-item:last-child { border-bottom: none; }
+        .autocomplete-item:hover { background: rgba(255,255,255,0.05); }
+        .ac-itemcode { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+        .ac-meta { font-size: 0.72rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -693,7 +730,7 @@
             <span id="d-sched-badge" style="background:var(--danger);color:white;border-radius:10px;padding:1px 6px;font-size:0.65rem;display:none;">0</span>
         </button>
         <button class="dtab" onclick="switchTab('inv', this)">📦 Inventario</button>
-        <button class="dtab" onclick="switchTab('cfg', this)">⚙️ Config</button>
+        <button class="dtab" onclick="switchTab('cfg', this)">⚙️ Config 🔒</button>
     </div>
 
     <div class="nav-right">
@@ -729,9 +766,10 @@
                             <option value="5">L4-L</option>
                         </select>
                     </div>
-                    <div class="field">
+                    <div class="field autocomplete-wrap">
                         <div class="label">Número de Parte / Item Code</div>
-                        <input type="text" id="op-itemcode" placeholder="Ej. 12345-ABC" autocomplete="off" autocorrect="off" spellcheck="false">
+                        <input type="text" id="op-itemcode" placeholder="Ej. 12345-ABC" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">
+                        <div class="autocomplete-list" id="ac-list"></div>
                     </div>
                     <button class="btn btn-primary btn-block" id="btn-search" onclick="demoSearch()">
                         🔍 Buscar Reel
@@ -812,7 +850,10 @@
 
     <!-- ====== PANEL INVENTARIO ====== -->
     <div id="panel-inv" class="panel">
-        <div class="page-title">📦 Inventario Local</div>
+        <div class="page-title" style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="display:flex; align-items:center; gap:8px;">📦 Inventario Local</span>
+            <button class="btn btn-ghost btn-sm" onclick="demoExportCSV()">⬇️ Exportar CSV</button>
+        </div>
         <div class="search-bar">
             <span class="search-icon">🔍</span>
             <input type="text" placeholder="Buscar por código o itemcode..." id="inv-search" oninput="filterTable()">
@@ -827,6 +868,7 @@
                         <th>Rack</th>
                         <th>Posición</th>
                         <th>Actualización</th>
+                        <th>Copiar PN</th>
                     </tr>
                 </thead>
                 <tbody id="inv-tbody">
@@ -879,9 +921,31 @@
         <span class="icon">📦</span>Inventario
     </button>
     <button class="btab" id="btab-cfg" onclick="switchTab('cfg', null, 'cfg')">
-        <span class="icon">⚙️</span>Config
+        <span class="icon">⚙️</span>Config 🔒
     </button>
 </nav>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="auth-modal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeAuthModal()">✕</button>
+        <div class="modal-title">
+            <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Acceso a Configuración
+        </div>
+        <div class="field" style="margin-bottom:16px;">
+            <label class="label">Usuario</label>
+            <input type="text" id="auth-user" placeholder="Ej. admin" onkeydown="if(event.key==='Enter') submitAuth()">
+        </div>
+        <div class="field" style="margin-bottom: 24px;">
+            <label class="label">Contraseña</label>
+            <input type="password" id="auth-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') submitAuth()">
+        </div>
+        <button class="btn btn-primary btn-block" onclick="submitAuth()">Entrar</button>
+        <div class="mod-err" id="auth-err"></div>
+        <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 15px;">Nota: la sesión expirará al cerrar el navegador.<br>Credenciales demo: <b>admin</b> / <b>admin1234</b></div>
+    </div>
+</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
@@ -913,7 +977,23 @@ let buffer = [];
 let demoLines = [...DEMO_LINES];
 
 // ===== NAV =====
+let pendingTabIds = null;
+
 function switchTab(tabId, desktopBtn, mobileId) {
+    if (tabId === 'cfg') {
+        const token = sessionStorage.getItem('cfg_token');
+        if (token) {
+            _doSwitch('cfg', desktopBtn, mobileId);
+        } else {
+            pendingTabIds = {tabId, desktopBtn, mobileId};
+            openAuthModal();
+        }
+        return;
+    }
+    _doSwitch(tabId, desktopBtn, mobileId);
+}
+
+function _doSwitch(tabId, desktopBtn, mobileId) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + tabId).classList.add('active');
 
@@ -1003,16 +1083,64 @@ function demoSearch() {
 
 // Eventos para búsqueda (Enter e Input automático)
 document.getElementById('op-itemcode').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') demoSearch();
+    if (e.key === 'Enter') {
+        document.getElementById('ac-list').style.display = 'none';
+        demoSearch();
+    }
 });
 
+// Autocomplete and auto-scan logic
 document.getElementById('op-itemcode').addEventListener('input', (e) => {
-    const v = e.currentTarget.value.trim().toUpperCase();
-    if (v.startsWith('D;')) {
-        const parts = v.split(';');
+    const val = e.currentTarget.value.trim().toUpperCase();
+    const acList = document.getElementById('ac-list');
+
+    if (val.startsWith('D;')) {
+        acList.style.display = 'none';
+        const parts = val.split(';');
         if (parts.length >= 5) {
             demoSearch();
         }
+        return;
+    }
+
+    if (!val) {
+        acList.style.display = 'none';
+        return;
+    }
+
+    // Process autocomplete
+    const map = new Map();
+    DEMO_REELS.forEach(r => {
+        if (r.itemcode.toUpperCase().includes(val)) {
+            if (!map.has(r.itemcode)) { map.set(r.itemcode, { itemcode: r.itemcode, qty: 0 }); }
+            map.get(r.itemcode).qty += parseInt(r.qty) || 0;
+        }
+    });
+
+    const matches = Array.from(map.values()).slice(0, 6); // Max 6 results
+    if (matches.length > 0) {
+        acList.innerHTML = matches.map(m => `
+            <div class="autocomplete-item" onclick="selectAutocomplete('${m.itemcode}')">
+                <span class="ac-itemcode">${m.itemcode}</span>
+                <span class="ac-meta">${m.qty.toLocaleString()} uds totales</span>
+            </div>
+        `).join('');
+        acList.style.display = 'block';
+    } else {
+        acList.style.display = 'none';
+    }
+});
+
+function selectAutocomplete(itemcode) {
+    document.getElementById('op-itemcode').value = itemcode;
+    document.getElementById('ac-list').style.display = 'none';
+    demoSearch();
+}
+
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.autocomplete-wrap')) {
+        const acList = document.getElementById('ac-list');
+        if (acList) acList.style.display = 'none';
     }
 });
 
@@ -1120,6 +1248,11 @@ function renderInventory() {
           <td><span class="rack-badge">SMARTRACK ${r.rack}</span></td>
           <td><span class="cell-badge">${r.stockcell}</span></td>
           <td style="font-size:0.78rem; color:var(--text-muted);">${r.last_updated}</td>
+          <td>
+            <button class="btn btn-ghost btn-sm" style="padding:4px 8px" onclick="copyPN(this, '${r.itemcode}')">
+              📋
+            </button>
+          </td>
         </tr>
     `).join('');
     document.getElementById('inv-count').textContent = `${filtered.length} de ${DEMO_REELS.length} registros`;
@@ -1179,6 +1312,81 @@ function shakeEl(id) {
 document.getElementById('op-itemcode').addEventListener('keydown', e => {
     if (e.key === 'Enter') demoSearch();
 });
+
+// ===== AUTH / COPY / CSV ACTIONS =====
+function openAuthModal() {
+    document.getElementById('auth-modal').classList.add('show');
+    document.getElementById('auth-err').style.display = 'none';
+    document.getElementById('auth-pass').value = '';
+    setTimeout(() => document.getElementById('auth-user').focus(), 100);
+}
+
+function closeAuthModal() {
+    document.getElementById('auth-modal').classList.remove('show');
+}
+
+function submitAuth() {
+    const user = document.getElementById('auth-user').value.trim();
+    const pass = document.getElementById('auth-pass').value.trim();
+    const errObj = document.getElementById('auth-err');
+    errObj.style.display = 'none';
+    
+    if (user === 'admin' && pass === 'admin1234') {
+        sessionStorage.setItem('cfg_token', 'demo-token');
+        closeAuthModal();
+        if (pendingTabIds) {
+            _doSwitch(pendingTabIds.tabId, pendingTabIds.desktopBtn, pendingTabIds.mobileId);
+            pendingTabIds = null;
+        }
+    } else {
+        errObj.textContent = 'Credenciales incorrectas (Usa: admin / admin1234)';
+        errObj.style.display = 'block';
+        shakeEl('auth-modal');
+    }
+}
+
+function copyPN(btn, text) {
+    const successHTML = '✅';
+    const showSuccess = () => {
+        const oldContent = btn.innerHTML;
+        btn.innerHTML = successHTML;
+        setTimeout(() => { btn.innerHTML = oldContent; }, 1500);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(showSuccess).catch(e => console.error("Clipboard API error", e));
+    } else {
+        // Fallback for file:/// protocol (Demo without server)
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand("copy");
+            showSuccess();
+        } catch (err) {
+            console.error("Error Fallback Copy: ", err);
+        }
+        textArea.remove();
+    }
+}
+
+function demoExportCSV() {
+    let csv = "Rack,Code,ItemCode,Qty,Stockcell,Last_Updated\n";
+    DEMO_REELS.forEach(r => {
+        csv += `${r.rack},${r.code},${r.itemcode},${r.qty},${r.stockcell},${r.last_updated}\n`;
+    });
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'inventario_smartrack_demo.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+}
 
 // Init
 renderInventory();

@@ -22,6 +22,20 @@ if not exist "%EXE_PATH%" (
 
 echo.
 echo Creando Tarea Programada...
+schtasks /query /tn "SmartRackServer" >nul 2>&1
+if %errorlevel% equ 0 (
+    echo.
+    echo ADVERTENCIA: La tarea SmartRackServer ya existe.
+    set /p RESP=Deseas reemplazarla? (S/N): 
+    if /i "%RESP%"=="S" (
+        schtasks /delete /tn "SmartRackServer" /f
+        echo Tarea anterior eliminada. Creando nueva...
+    ) else (
+        echo Instalacion cancelada por el usuario.
+        pause
+        exit /b
+    )
+)
 schtasks /create /tn "SmartRackServer" /tr "\"%EXE_PATH%\"" /sc onlogon /rl highest /f
 
 if %errorlevel% equ 0 (

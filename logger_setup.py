@@ -4,7 +4,7 @@ import config
 
 def setup_logger(name):
     logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(getattr(logging, config.LOG_LEVEL, logging.INFO))
 
     if not logger.handlers:
         # File Handler - con ruta absoluta desde config
@@ -17,6 +17,7 @@ def setup_logger(name):
         # Console output
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(formatter)
+        stream_handler.setLevel(logging.WARNING)
 
         logger.addHandler(file_handler)
         logger.addHandler(stream_handler)

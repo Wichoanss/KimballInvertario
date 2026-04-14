@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --name main --add-data "templates;templates" main.py

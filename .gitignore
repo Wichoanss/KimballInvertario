@@ -1,0 +1,33 @@
+# Entornos Virtuales
+venv/
+.venv/
+env/
+env.bak/
+ENV/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compilados de PyInstaller
+build/
+dist/
+*.spec
+*.exe
+
+# Base de Datos (Muy importante no subir esto a Git)
+smartrack.db
+smartrack.db-shm
+smartrack.db-wal
+
+# Variables de Entorno (Contraseñas)
+.env
+
+# Configuración del Editor / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+.gemini/

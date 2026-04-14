@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,9 @@
             --surface: #1a1d24;
             --surface2: #22262f;
             --primary: #3b82f6;
-            --primary-dim: rgba(59,130,246,0.15);
+            --primary-dim: rgba(59, 130, 246, 0.15);
             --success: #10b981;
-            --success-dim: rgba(16,185,129,0.12);
+            --success-dim: rgba(16, 185, 129, 0.12);
             --danger: #ef4444;
             --warning: #f59e0b;
             --text: #f1f5f9;
@@ -29,13 +30,27 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%       { opacity: 0.4; transform: scale(0.85); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg);
@@ -74,10 +89,13 @@
         }
 
         .logo-mark {
-            width: 28px; height: 28px;
+            width: 28px;
+            height: 28px;
             background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
             border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 0.8rem;
             font-weight: 800;
             color: white;
@@ -108,7 +126,9 @@
             white-space: nowrap;
         }
 
-        .dtab:hover { color: var(--text); }
+        .dtab:hover {
+            color: var(--text);
+        }
 
         .dtab.active {
             color: var(--primary);
@@ -117,7 +137,9 @@
         .dtab.active::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 0; right: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: var(--primary);
             border-radius: 2px 2px 0 0;
@@ -137,7 +159,8 @@
 
         /* SVG icons inline - no external dependency */
         .icon {
-            width: 15px; height: 15px;
+            width: 15px;
+            height: 15px;
             fill: none;
             stroke: currentColor;
             stroke-width: 2;
@@ -161,11 +184,21 @@
             display: none;
         }
 
-        .panel.active { display: block; animation: fadeIn 0.2s ease; }
+        .panel.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ===== MOBILE BOTTOM NAV ===== */
@@ -201,13 +234,21 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .bnav-btn .icon { width: 18px; height: 18px; }
-        .bnav-btn.active { color: var(--primary); }
+        .bnav-btn .icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .bnav-btn.active {
+            color: var(--primary);
+        }
 
         .bnav-btn.active::before {
             content: '';
             position: absolute;
-            top: 0; left: 20%; right: 20%;
+            top: 0;
+            left: 20%;
+            right: 20%;
             height: 2px;
             background: var(--primary);
             border-radius: 0 0 3px 3px;
@@ -215,7 +256,8 @@
 
         .bnav-badge {
             position: absolute;
-            top: 5px; right: calc(50% - 20px);
+            top: 5px;
+            right: calc(50% - 20px);
             background: var(--danger);
             color: white;
             font-size: 0.55rem;
@@ -243,9 +285,12 @@
         }
 
         /* ===== FORMS ===== */
-        .field { margin-bottom: 16px; }
+        .field {
+            margin-bottom: 16px;
+        }
 
-        label, .label {
+        label,
+        .label {
             display: block;
             font-size: 0.72rem;
             font-weight: 600;
@@ -255,7 +300,8 @@
             margin-bottom: 6px;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
             background: var(--bg);
             border: 1px solid var(--border2);
@@ -269,7 +315,8 @@
             -webkit-appearance: none;
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px var(--primary-dim);
         }
@@ -292,23 +339,65 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .btn:active { transform: scale(0.97); }
-        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-        .btn:disabled:active { transform: none; }
+        .btn:active {
+            transform: scale(0.97);
+        }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover:not(:disabled) { filter: brightness(1.1); }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
 
-        .btn-success { background: var(--success); color: white; }
-        .btn-success:hover:not(:disabled) { filter: brightness(1.1); box-shadow: 0 0 12px var(--success-dim); }
+        .btn:disabled:active {
+            transform: none;
+        }
 
-        .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 5px 10px; font-size: 0.78rem; }
-        .btn-danger:hover:not(:disabled) { background: var(--danger); color: white; }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
 
-        .btn-ghost { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border2); }
+        .btn-primary:hover:not(:disabled) {
+            filter: brightness(1.1);
+        }
 
-        .btn-sm { padding: 6px 12px; font-size: 0.78rem; }
-        .btn-block { width: 100%; }
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover:not(:disabled) {
+            filter: brightness(1.1);
+            box-shadow: 0 0 12px var(--success-dim);
+        }
+
+        .btn-danger {
+            background: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 5px 10px;
+            font-size: 0.78rem;
+        }
+
+        .btn-danger:hover:not(:disabled) {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-ghost {
+            background: var(--surface2);
+            color: var(--text-soft);
+            border: 1px solid var(--border2);
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.78rem;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
 
         /* ===== OPERATOR PANEL LAYOUT ===== */
         .op-grid {
@@ -426,13 +515,37 @@
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to   { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .bi-info { flex: 1; min-width: 0; }
-        .bi-itemcode { font-weight: 700; color: var(--primary); font-size: 0.95rem; }
-        .bi-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; font-family: monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .bi-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bi-itemcode {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .bi-meta {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            font-family: monospace;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
 
         /* ===== TABLE ===== */
         .table-box {
@@ -442,13 +555,28 @@
             overflow: auto;
         }
 
-        table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
-        tr:last-child td { border-bottom: none; }
-        tr:hover td { background: rgba(255,255,255,0.02); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
 
         th {
-            background: rgba(0,0,0,0.25);
+            background: rgba(0, 0, 0, 0.25);
             font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -461,18 +589,43 @@
             z-index: 1;
         }
 
-        td { font-size: 0.84rem; }
+        td {
+            font-size: 0.84rem;
+        }
 
-        .qty-badge { background: var(--success-dim); color: var(--success); padding: 3px 8px; border-radius: 5px; font-weight: 700; font-size: 0.78rem; }
-        .rack-badge { background: var(--primary-dim); color: var(--primary); padding: 3px 8px; border-radius: 5px; font-size: 0.78rem; font-weight: 600; }
-        .cell-badge { background: rgba(255,255,255,0.04); color: var(--text-soft); padding: 3px 8px; border-radius: 5px; font-size: 0.78rem; font-family: monospace; }
+        .qty-badge {
+            background: var(--success-dim);
+            color: var(--success);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.78rem;
+        }
+
+        .rack-badge {
+            background: var(--primary-dim);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .cell-badge {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-soft);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.78rem;
+            font-family: monospace;
+        }
 
         .countdown-badge {
             font-family: monospace;
             font-size: 1rem;
             font-weight: 700;
             color: var(--success);
-            background: rgba(16,185,129,0.08);
+            background: rgba(16, 185, 129, 0.08);
             padding: 4px 12px;
             border-radius: 6px;
             letter-spacing: 1px;
@@ -485,7 +638,9 @@
             margin-bottom: 16px;
         }
 
-        .search-wrap input { padding-left: 36px; }
+        .search-wrap input {
+            padding-left: 36px;
+        }
 
         .search-icon {
             position: absolute;
@@ -511,11 +666,24 @@
             flex-shrink: 0;
         }
 
-        .cfg-form h3 { font-size: 0.95rem; margin-bottom: 18px; color: var(--text-soft); }
+        .cfg-form h3 {
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            color: var(--text-soft);
+        }
 
-        .cfg-list { flex: 1; }
+        .cfg-list {
+            flex: 1;
+        }
 
-        .cfg-list h3 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 12px; }
+        .cfg-list h3 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
 
         .line-item {
             background: var(--surface);
@@ -528,8 +696,16 @@
             margin-bottom: 8px;
         }
 
-        .line-name { font-weight: 600; font-size: 0.95rem; }
-        .line-racks { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; }
+        .line-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .line-racks {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
 
         /* ===== SCHEDULED ===== */
         .sched-layout {
@@ -560,35 +736,163 @@
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 9999;
             max-width: 300px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .toast.show { transform: translateY(0); opacity: 1; }
-        .toast.error   { background: #7f1d1d; border: 1px solid var(--danger); }
-        .toast.success { background: #064e3b; border: 1px solid var(--success); }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: #7f1d1d;
+            border: 1px solid var(--danger);
+        }
+
+        .toast.success {
+            background: #064e3b;
+            border: 1px solid var(--success);
+        }
 
         /* ===== SHAKE ===== */
-        .shake { animation: shake 0.35s ease both; }
+        .shake {
+            animation: shake 0.35s ease both;
+        }
+
         @keyframes shake {
-            0%,100% { transform: translateX(0); }
-            20%,60%  { transform: translateX(-5px); }
-            40%,80%  { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-5px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(5px);
+            }
         }
 
         /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 3px;
+        }
+
+        /* ===== AUTH MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9000;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 360px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-soft);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mod-err {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* ===== AUTOCOMPLETE ===== */
+        .autocomplete-wrap { position: relative; }
+        .autocomplete-list {
+            position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+            max-height: 200px; overflow-y: auto;
+            background: var(--surface2); border: 1px solid var(--border-bright);
+            border-radius: var(--radius-sm); box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+            z-index: 1000; display: none;
+        }
+        .autocomplete-item {
+            padding: 10px 14px; cursor: pointer; border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .autocomplete-item:last-child { border-bottom: none; }
+        .autocomplete-item:hover { background: rgba(255,255,255,0.05); }
+        .ac-itemcode { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+        .ac-meta { font-size: 0.72rem; color: var(--text-muted); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 800px) {
-            .desktop-tabs { display: none; }
-            .bottom-nav { display: flex; }
-            .panels { bottom: var(--bottom-h); }
+            .desktop-tabs {
+                display: none;
+            }
 
-            .panel { padding: 16px; }
+            .bottom-nav {
+                display: flex;
+            }
 
-            .page-title { font-size: 1.1rem; margin-bottom: 14px; }
+            .panels {
+                bottom: var(--bottom-h);
+            }
+
+            .panel {
+                padding: 16px;
+            }
+
+            .page-title {
+                font-size: 1.1rem;
+                margin-bottom: 14px;
+            }
 
             .op-grid {
                 grid-template-columns: 1fr;
@@ -596,18 +900,37 @@
                 gap: 14px;
             }
 
-            .op-left { min-height: auto; }
+            .op-left {
+                min-height: auto;
+            }
 
-            .buffer-wrap { min-height: 240px; }
-            .buffer-head { gap: 8px; }
-            .buffer-actions { flex-wrap: wrap; }
+            .buffer-wrap {
+                min-height: 240px;
+            }
 
-            .search-wrap { max-width: 100%; }
+            .buffer-head {
+                gap: 8px;
+            }
 
-            .cfg-layout { flex-direction: column; }
-            .cfg-form { width: 100%; }
+            .buffer-actions {
+                flex-wrap: wrap;
+            }
 
-            table { min-width: 520px; }
+            .search-wrap {
+                max-width: 100%;
+            }
+
+            .cfg-layout {
+                flex-direction: column;
+            }
+
+            .cfg-form {
+                width: 100%;
+            }
+
+            table {
+                min-width: 520px;
+            }
 
             .toast {
                 bottom: calc(var(--bottom-h) + 12px);
@@ -619,296 +942,392 @@
         }
     </style>
 </head>
+
 <body>
-<div class="app">
+    <div class="app">
 
-    <!-- TOP NAV -->
-    <nav class="topnav">
-        <div class="logo">
-            <div class="logo-mark">SR</div>
-            SmartRack
-        </div>
+        <!-- TOP NAV -->
+        <nav class="topnav">
+            <div class="logo">
+                <div class="logo-mark">SR</div>
+                SmartRack
+            </div>
 
-        <div class="desktop-tabs">
-            <button class="dtab active" id="dtab-op" onclick="switchTab('op')">
-                <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                Panel Operador
-            </button>
-            <button class="dtab" id="dtab-scheduled" onclick="switchTab('scheduled')">
-                <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Programadas
-                <span class="tab-badge" id="dtab-badge">0</span>
-            </button>
-            <button class="dtab" id="dtab-inv" onclick="switchTab('inv')">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                Inventario DB
-            </button>
-            <button class="dtab" id="dtab-cfg" onclick="switchTab('cfg')">
-                <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                Config. Lineas
-            </button>
-        </div>
-    </nav>
+            <div class="desktop-tabs">
+                <button class="dtab active" id="dtab-op" onclick="switchTab('op')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <path d="M8 21h8M12 17v4" />
+                    </svg>
+                    Panel Operador
+                </button>
+                <button class="dtab" id="dtab-scheduled" onclick="switchTab('scheduled')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Programadas
+                    <span class="tab-badge" id="dtab-badge">0</span>
+                </button>
+                <button class="dtab" id="dtab-inv" onclick="switchTab('inv')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                    Inventario DB
+                </button>
+                <button class="dtab" id="dtab-cfg" onclick="switchTab('cfg')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    Config. Lineas 🔒
+                </button>
+            </div>
+        </nav>
 
-    <!-- PANELS -->
-    <div class="panels">
+        <!-- PANELS -->
+        <div class="panels">
 
-        <!-- OPERADOR -->
-        <div class="panel active" id="panel-op">
-            <div class="page-title">Panel de Extraccion</div>
-            <div class="op-grid">
+            <!-- OPERADOR -->
+            <div class="panel active" id="panel-op">
+                <div class="page-title">Panel de Extraccion</div>
+                <div class="op-grid">
 
-                <!-- Left: controls -->
-                <div class="op-left">
-                    <div class="field">
-                        <label>Linea de Produccion</label>
-                        <select id="op-line-select"><option value="">Cargando...</option></select>
-                    </div>
-                    <div class="field">
-                        <label>Numero de Parte (Enter para buscar)</label>
-                        <input
-                            type="text"
-                            id="op-itemcode"
-                            placeholder="Ej. 12345-ABC"
-                            autocomplete="off"
-                            autocorrect="off"
-                            autocapitalize="characters"
-                            spellcheck="false"
-                        >
-                    </div>
-                </div>
-
-                <!-- Right: buffer -->
-                <div class="buffer-wrap">
-                    <div class="buffer-head">
-                        <div class="buffer-title">
-                            Buffer de Extraccion
-                            <span class="buf-count" id="buf-count">0</span>
-                        </div>
-                        <div class="buffer-actions">
-                            <select class="delay-select" id="extract-delay" onchange="updateExtractBtn()">
-                                <option value="0">Inmediata</option>
-                                <option value="5">En 5 min</option>
-                                <option value="10">En 10 min</option>
-                                <option value="15">En 15 min</option>
-                                <option value="30">En 30 min</option>
-                                <option value="60">En 1 hora</option>
+                    <!-- Left: controls -->
+                    <div class="op-left">
+                        <div class="field">
+                            <label>Linea de Produccion</label>
+                            <select id="op-line-select">
+                                <option value="">Cargando...</option>
                             </select>
-                            <button class="btn btn-success" id="btn-extract" disabled onclick="extractBuffer()">Extraer Ahora</button>
+                        </div>
+                        <div class="field autocomplete-wrap">
+                            <label>Numero de Parte (Enter para buscar)</label>
+                            <input type="text" id="op-itemcode" placeholder="Ej. 12345-ABC" autocomplete="off"
+                                autocorrect="off" autocapitalize="characters" spellcheck="false">
+                            <div class="autocomplete-list" id="ac-list"></div>
                         </div>
                     </div>
-                    <div class="buffer-body" id="buffer-body">
-                        <div class="empty-state" id="buf-empty">
-                            <svg class="icon" style="width:28px;height:28px;opacity:0.25" viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 3H8a2 2 0 0 0-2 2v2h12V5a2 2 0 0 0-2-2z"/></svg>
-                            Buffer vacio. Escanea o escribe un numero de parte.
+
+                    <!-- Right: buffer -->
+                    <div class="buffer-wrap">
+                        <div class="buffer-head">
+                            <div class="buffer-title">
+                                Buffer de Extraccion
+                                <span class="buf-count" id="buf-count">0</span>
+                            </div>
+                            <div class="buffer-actions">
+                                <select class="delay-select" id="extract-delay" onchange="updateExtractBtn()">
+                                    <option value="0">Inmediata</option>
+                                    <option value="5">En 5 min</option>
+                                    <option value="10">En 10 min</option>
+                                    <option value="15">En 15 min</option>
+                                    <option value="30">En 30 min</option>
+                                    <option value="60">En 1 hora</option>
+                                </select>
+                                <button class="btn btn-success" id="btn-extract" disabled
+                                    onclick="extractBuffer()">Extraer Ahora</button>
+                            </div>
                         </div>
-                        <div id="buffer-items"></div>
+                        <div class="buffer-body" id="buffer-body">
+                            <div class="empty-state" id="buf-empty">
+                                <svg class="icon" style="width:28px;height:28px;opacity:0.25" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                                    <path d="M16 3H8a2 2 0 0 0-2 2v2h12V5a2 2 0 0 0-2-2z" />
+                                </svg>
+                                Buffer vacio. Escanea o escribe un numero de parte.
+                            </div>
+                            <div id="buffer-items"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- PROGRAMADAS -->
-        <div class="panel" id="panel-scheduled">
-            <div class="sched-header">
-                <div class="page-title" style="margin-bottom:0">Extracciones Programadas</div>
-                <button class="btn btn-ghost btn-sm" onclick="loadScheduledData()">Actualizar</button>
-            </div>
-            <div class="table-box">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nombre API</th>
-                            <th>Hora de Ejecucion</th>
-                            <th>Tiempo Restante</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sched-tbody"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- INVENTARIO -->
-        <div class="panel" id="panel-inv">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
-                <div class="page-title" style="margin-bottom:0">Inventario Local (Reels)</div>
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <span id="inv-live-dot" style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:var(--success);">
-                        <span style="width:7px;height:7px;border-radius:50%;background:var(--success);display:inline-block;animation:pulse 2s infinite;"></span>
-                        En vivo
-                    </span>
-                    <span id="inv-last-update" style="font-size:0.72rem; color:var(--text-muted);">Actualizando...</span>
+            <!-- PROGRAMADAS -->
+            <div class="panel" id="panel-scheduled">
+                <div class="sched-header">
+                    <div class="page-title" style="margin-bottom:0">Extracciones Programadas</div>
+                    <button class="btn btn-ghost btn-sm" onclick="loadScheduledData()">Actualizar</button>
+                </div>
+                <div class="table-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre API</th>
+                                <th>Hora de Ejecucion</th>
+                                <th>Tiempo Restante</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sched-tbody"></tbody>
+                    </table>
                 </div>
             </div>
-            <div class="search-wrap">
-                <svg class="search-icon icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="db-search" placeholder="Buscar por codigo o itemcode..." oninput="renderReelsTable()">
-            </div>
-            <div class="table-box">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Code</th>
-                            <th>Item Code</th>
-                            <th>Cantidad</th>
-                            <th>Rack</th>
-                            <th>Posicion (Celda)</th>
-                            <th>Ultima Actualizacion</th>
-                        </tr>
-                    </thead>
-                    <tbody id="db-tbody"></tbody>
-                </table>
-            </div>
-        </div>
 
-        <!-- CONFIG LINEAS -->
-        <div class="panel" id="panel-cfg">
-            <div class="page-title">Configuracion de Lineas</div>
-            <div class="cfg-layout">
-                <div class="cfg-form">
-                    <h3>Crear / Editar Linea</h3>
-                    <div class="field">
-                        <label>Nombre de Linea</label>
-                        <input type="text" id="conf-line-name" placeholder="Ej. L5">
+            <!-- INVENTARIO -->
+            <div class="panel" id="panel-inv">
+                <div
+                    style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                        <div class="page-title" style="margin-bottom:0">Inventario Local (Reels)</div>
+                        <button class="btn btn-ghost btn-sm" onclick="window.location.href = '/api/reels/export/csv'">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            Exportar CSV
+                        </button>
                     </div>
-                    <div class="field">
-                        <label>IDs de SmartRacks (separados por coma)</label>
-                        <input type="text" id="conf-line-racks" placeholder="Ej. 1, 2, 3">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span id="inv-live-dot"
+                            style="display:inline-flex; align-items:center; gap:5px; font-size:0.75rem; color:var(--success);">
+                            <span
+                                style="width:7px;height:7px;border-radius:50%;background:var(--success);display:inline-block;animation:pulse 2s infinite;"></span>
+                            En vivo
+                        </span>
+                        <span id="inv-last-update"
+                            style="font-size:0.72rem; color:var(--text-muted);">Actualizando...</span>
                     </div>
-                    <button class="btn btn-primary btn-block" onclick="saveLine()">Guardar Linea</button>
                 </div>
-
-                <div class="cfg-list">
-                    <h3>Lineas Configuradas</h3>
-                    <div id="lines-list"></div>
+                <div class="search-wrap">
+                    <svg class="search-icon icon" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" id="db-search" placeholder="Buscar por codigo o itemcode..."
+                        oninput="renderReelsTable()">
+                </div>
+                <div class="table-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Item Code</th>
+                                <th>Cantidad</th>
+                                <th>Rack</th>
+                                <th>Posicion (Celda)</th>
+                                <th>Ultima Actualizacion</th>
+                                <th>Copiar PN</th>
+                            </tr>
+                        </thead>
+                        <tbody id="db-tbody"></tbody>
+                    </table>
                 </div>
             </div>
+
+            <!-- CONFIG LINEAS -->
+            <div class="panel" id="panel-cfg">
+                <div class="page-title">Configuracion de Lineas</div>
+                <div class="cfg-layout">
+                    <div class="cfg-form">
+                        <h3>Crear / Editar Linea</h3>
+                        <div class="field">
+                            <label>Nombre de Linea</label>
+                            <input type="text" id="conf-line-name" placeholder="Ej. L5">
+                        </div>
+                        <div class="field">
+                            <label>IDs de SmartRacks (separados por coma)</label>
+                            <input type="text" id="conf-line-racks" placeholder="Ej. 1, 2, 3">
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="saveLine()">Guardar Linea</button>
+                    </div>
+
+                    <div class="cfg-list">
+                        <h3>Lineas Configuradas</h3>
+                        <div id="lines-list"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /panels -->
+
+        <!-- BOTTOM NAV (mobile only) -->
+        <nav class="bottom-nav">
+            <div class="bnav-inner">
+                <button class="bnav-btn active" id="bnav-op" onclick="switchTab('op')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <path d="M8 21h8M12 17v4" />
+                    </svg>
+                    Operador
+                </button>
+                <button class="bnav-btn" id="bnav-scheduled" onclick="switchTab('scheduled')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    Prog.
+                    <span class="bnav-badge" id="bnav-badge">0</span>
+                </button>
+                <button class="bnav-btn" id="bnav-inv" onclick="switchTab('inv')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    </svg>
+                    Inventario
+                </button>
+                <button class="bnav-btn" id="bnav-cfg" onclick="switchTab('cfg')">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    Config 🔒
+                </button>
+            </div>
+        </nav>
+
+    </div><!-- /app -->
+
+    <!-- AUTH MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeAuthModal()">✕</button>
+            <div class="modal-title">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                Acceso a Configuración
+            </div>
+            <div class="field">
+                <label>Usuario</label>
+                <input type="text" id="auth-user" placeholder="Ej. admin"
+                    onkeydown="if(event.key==='Enter') submitAuth()">
+            </div>
+            <div class="field" style="margin-bottom: 24px;">
+                <label>Contraseña</label>
+                <input type="password" id="auth-pass" placeholder="••••••••"
+                    onkeydown="if(event.key==='Enter') submitAuth()">
+            </div>
+            <button class="btn btn-primary btn-block" onclick="submitAuth()">Entrar</button>
+            <div class="mod-err" id="auth-err"></div>
+            <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 15px;">Nota: la
+                sesión expirará al cerrar el navegador o reiniciar el servidor.</div>
         </div>
+    </div>
 
-    </div><!-- /panels -->
+    <div class="toast" id="toast"></div>
 
-    <!-- BOTTOM NAV (mobile only) -->
-    <nav class="bottom-nav">
-        <div class="bnav-inner">
-            <button class="bnav-btn active" id="bnav-op" onclick="switchTab('op')">
-                <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                Operador
-            </button>
-            <button class="bnav-btn" id="bnav-scheduled" onclick="switchTab('scheduled')">
-                <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Prog.
-                <span class="bnav-badge" id="bnav-badge">0</span>
-            </button>
-            <button class="bnav-btn" id="bnav-inv" onclick="switchTab('inv')">
-                <svg class="icon" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                Inventario
-            </button>
-            <button class="bnav-btn" id="bnav-cfg" onclick="switchTab('cfg')">
-                <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                Config
-            </button>
-        </div>
-    </nav>
+    <script>
+        // ===== STATE =====
+        let reelsData = [];
+        let linesData = [];
+        let buffer = [];
+        let activeTab = 'op';
+        let invInterval = null;
 
-</div><!-- /app -->
-
-<div class="toast" id="toast"></div>
-
-<script>
-// ===== STATE =====
-let reelsData  = [];
-let linesData  = [];
-let buffer     = [];
-let activeTab  = 'op';
-let invInterval = null;
-
-// ===== NAV =====
-function switchTab(tabId) {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.bnav-btn').forEach(t => t.classList.remove('active'));
-
-    document.getElementById('panel-' + tabId).classList.add('active');
-
-    const dt = document.getElementById('dtab-' + tabId);
-    if (dt) dt.classList.add('active');
-
-    const bt = document.getElementById('bnav-' + tabId);
-    if (bt) bt.classList.add('active');
-
-    activeTab = tabId;
-
-    // Start/stop live polling on inventory tab
-    if (tabId === 'inv') {
-        loadReels();
-        if (!invInterval) invInterval = setInterval(loadReels, 5000);
-    } else {
-        clearInterval(invInterval);
-        invInterval = null;
-    }
-
-    if (tabId === 'cfg')       loadLines();
-    if (tabId === 'scheduled') loadScheduledData();
-    if (tabId === 'op') {
-        loadLines();
-        setTimeout(() => document.getElementById('op-itemcode').focus(), 100);
-    }
-}
-
-// ===== DATA LOADING =====
-async function loadReels() {
-    try {
-        const res = await fetch('/api/reels');
-        reelsData = await res.json();
-        renderReelsTable();
-        // Update timestamp
-        const ts = document.getElementById('inv-last-update');
-        if (ts) ts.textContent = 'Actualizado: ' + new Date().toLocaleTimeString();
-    } catch (e) { console.error('loadReels:', e); }
-}
-
-async function loadLines() {
-    try {
-        const res = await fetch('/api/lines');
-        linesData = await res.json();
-        renderLinesTable();
-
-        // Update operator select
-        const sel = document.getElementById('op-line-select');
-        const prev = sel.value;
-        sel.innerHTML = linesData.map(l => `<option value="${l.id}">${l.name}</option>`).join('');
-        if (prev && linesData.find(l => String(l.id) === prev)) sel.value = prev;
-    } catch (e) { console.error('loadLines:', e); }
-}
-
-async function loadScheduledData() {
-    try {
-        const res  = await fetch('/api/scheduled');
-        const jobs = await res.json();
-
-        const filtered = jobs.filter(j => j.name !== 'fetch_and_update_reels');
-        const cnt = filtered.length;
-
-        // Badges
-        const db = document.getElementById('dtab-badge');
-        if (db) { db.textContent = cnt; db.style.display = cnt > 0 ? 'inline' : 'none'; }
-
-        const mb = document.getElementById('bnav-badge');
-        if (mb) { mb.textContent = cnt; mb.style.display = cnt > 0 ? 'inline' : 'none'; }
-
-        const tbody = document.getElementById('sched-tbody');
-        if (cnt === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:40px">No hay extracciones programadas.</td></tr>';
-            return;
+        // ===== NAV =====
+        async function switchTab(tabId) {
+            if (tabId === 'cfg') {
+                const token = sessionStorage.getItem('cfg_token');
+                if (token) {
+                    try {
+                        const res = await fetch('/api/auth/config/verify', { headers: { 'Authorization': 'Bearer ' + token } });
+                        const data = await res.json();
+                        if (data.valid) {
+                            _doSwitch('cfg');
+                            return;
+                        }
+                    } catch (e) { }
+                }
+                openAuthModal();
+                return;
+            }
+            _doSwitch(tabId);
         }
 
-        tbody.innerHTML = filtered.map(j => {
-            const runDate = new Date(j.next_run_time.replace(' ', 'T'));
-            const secsLeft = Math.max(0, Math.round((runDate - Date.now()) / 1000));
-            const mm = String(Math.floor(secsLeft / 60)).padStart(2,'0');
-            const ss = String(secsLeft % 60).padStart(2,'0');
-            return `
+        function _doSwitch(tabId) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.bnav-btn').forEach(t => t.classList.remove('active'));
+
+            document.getElementById('panel-' + tabId).classList.add('active');
+
+            const dt = document.getElementById('dtab-' + tabId);
+            if (dt) dt.classList.add('active');
+
+            const bt = document.getElementById('bnav-' + tabId);
+            if (bt) bt.classList.add('active');
+
+            activeTab = tabId;
+
+            // Start/stop live polling on inventory tab
+            if (tabId === 'inv') {
+                loadReels();
+                if (!invInterval) invInterval = setInterval(loadReels, 5000);
+            } else {
+                clearInterval(invInterval);
+                invInterval = null;
+            }
+
+            if (tabId === 'cfg') loadLines();
+            if (tabId === 'scheduled') loadScheduledData();
+            if (tabId === 'op') {
+                loadLines();
+                setTimeout(() => document.getElementById('op-itemcode').focus(), 100);
+            }
+        }
+
+        // ===== DATA LOADING =====
+        async function loadReels() {
+            try {
+                const res = await fetch('/api/reels');
+                reelsData = await res.json();
+                renderReelsTable();
+                // Update timestamp
+                const ts = document.getElementById('inv-last-update');
+                if (ts) ts.textContent = 'Actualizado: ' + new Date().toLocaleTimeString();
+            } catch (e) { console.error('loadReels:', e); }
+        }
+
+        async function loadLines() {
+            try {
+                const res = await fetch('/api/lines');
+                linesData = await res.json();
+                renderLinesTable();
+
+                // Update operator select
+                const sel = document.getElementById('op-line-select');
+                const prev = sel.value;
+                sel.innerHTML = linesData.map(l => `<option value="${l.id}">${l.name}</option>`).join('');
+                if (prev && linesData.find(l => String(l.id) === prev)) sel.value = prev;
+            } catch (e) { console.error('loadLines:', e); }
+        }
+
+        async function loadScheduledData() {
+            try {
+                const res = await fetch('/api/scheduled');
+                const jobs = await res.json();
+
+                const filtered = jobs.filter(j => !['fetch_and_update_reels', 'poller_init'].includes(j.name));
+                const cnt = filtered.length;
+
+                // Badges
+                const db = document.getElementById('dtab-badge');
+                if (db) { db.textContent = cnt; db.style.display = cnt > 0 ? 'inline' : 'none'; }
+
+                const mb = document.getElementById('bnav-badge');
+                if (mb) { mb.textContent = cnt; mb.style.display = cnt > 0 ? 'inline' : 'none'; }
+
+                const tbody = document.getElementById('sched-tbody');
+                if (cnt === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:40px">No hay extracciones programadas.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = filtered.map(j => {
+                    const runDate = new Date(j.next_run_time.replace(' ', 'T'));
+                    const secsLeft = Math.max(0, Math.round((runDate - Date.now()) / 1000));
+                    const mm = String(Math.floor(secsLeft / 60)).padStart(2, '0');
+                    const ss = String(secsLeft % 60).padStart(2, '0');
+                    return `
             <tr>
                 <td style="font-weight:600;color:var(--primary);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.name}</td>
                 <td style="color:var(--text-soft);font-size:0.82rem">${j.next_run_time}</td>
@@ -917,36 +1336,41 @@ async function loadScheduledData() {
                 </td>
                 <td><button class="btn btn-danger btn-sm" onclick="cancelScheduled('${j.id}')">Cancelar</button></td>
             </tr>`;
-        }).join('');
+                }).join('');
 
-        startCountdowns();
-    } catch (e) { console.error('loadScheduledData:', e); }
-}
+                startCountdowns();
+            } catch (e) { console.error('loadScheduledData:', e); }
+        }
 
-async function cancelScheduled(jobId) {
-    if (!confirm('Seguro que deseas cancelar esta extraccion programada?')) return;
-    try {
-        const res = await fetch('/api/scheduled/' + jobId, { method: 'DELETE' });
-        if (res.ok) { showToast('Extraccion cancelada.', 'success'); loadScheduledData(); }
-        else showToast('Error al cancelar.', 'error');
-    } catch { showToast('Error de red.', 'error'); }
-}
+        async function cancelScheduled(jobId) {
+            if (!confirm('Seguro que deseas cancelar esta extraccion programada?')) return;
+            try {
+                const res = await fetch('/api/scheduled/' + jobId, { method: 'DELETE' });
+                if (res.ok) {
+                    showToast('Extraccion cancelada.', 'success');
+                    loadScheduledData();
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showToast(err.detail || 'Error al cancelar.', 'error');
+                }
+            } catch { showToast('Error de red.', 'error'); }
+        }
 
-// ===== RENDER TABLES =====
-function renderReelsTable() {
-    const q     = (document.getElementById('db-search').value || '').toLowerCase();
-    const tbody = document.getElementById('db-tbody');
+        // ===== RENDER TABLES =====
+        function renderReelsTable() {
+            const q = (document.getElementById('db-search').value || '').toLowerCase();
+            const tbody = document.getElementById('db-tbody');
 
-    const filtered = q
-        ? reelsData.filter(r => r.code.toLowerCase().includes(q) || r.itemcode.toLowerCase().includes(q))
-        : reelsData;
+            const filtered = q
+                ? reelsData.filter(r => r.code.toLowerCase().includes(q) || r.itemcode.toLowerCase().includes(q))
+                : reelsData;
 
-    if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">Sin resultados.</td></tr>';
-        return;
-    }
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Sin resultados.</td></tr>';
+                return;
+            }
 
-    tbody.innerHTML = filtered.map(r => `
+            tbody.innerHTML = filtered.map(r => `
         <tr>
             <td style="font-family:monospace;color:var(--text-soft)">${r.code}</td>
             <td style="font-weight:600;color:var(--primary)">${r.itemcode}</td>
@@ -954,16 +1378,21 @@ function renderReelsTable() {
             <td><span class="rack-badge">SMARTRACK ${r.rack}</span></td>
             <td><span class="cell-badge">${r.stockcell || '—'}</span></td>
             <td style="color:var(--text-muted);font-size:0.78rem">${r.last_updated}</td>
+            <td>
+                <button class="btn btn-ghost btn-sm" onclick="copyPN(this, '${r.itemcode.replace(/'/g, "\\'")}')">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                </button>
+            </td>
         </tr>`).join('');
-}
+        }
 
-function renderLinesTable() {
-    const list = document.getElementById('lines-list');
-    if (!linesData.length) {
-        list.innerHTML = '<p style="color:var(--text-muted);font-size:0.875rem">No hay lineas configuradas.</p>';
-        return;
-    }
-    list.innerHTML = linesData.map(l => `
+        function renderLinesTable() {
+            const list = document.getElementById('lines-list');
+            if (!linesData.length) {
+                list.innerHTML = '<p style="color:var(--text-muted);font-size:0.875rem">No hay lineas configuradas.</p>';
+                return;
+            }
+            list.innerHTML = linesData.map(l => `
         <div class="line-item">
             <div>
                 <div class="line-name">${l.name}</div>
@@ -971,148 +1400,193 @@ function renderLinesTable() {
             </div>
             <button class="btn btn-danger btn-sm" onclick="deleteLine(${l.id})">Eliminar</button>
         </div>`).join('');
-}
-
-// ===== CONFIG =====
-async function saveLine() {
-    const name  = document.getElementById('conf-line-name').value.trim();
-    const racks = document.getElementById('conf-line-racks').value.trim();
-    if (!name || !racks) { showToast('Completa todos los campos', 'error'); return; }
-
-    try {
-        const res = await fetch('/api/lines', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, rack_ids: racks })
-        });
-        if (res.ok) {
-            document.getElementById('conf-line-name').value = '';
-            document.getElementById('conf-line-racks').value = '';
-            loadLines();
-            showToast(`Linea "${name}" guardada`, 'success');
-        } else showToast('Error al guardar', 'error');
-    } catch { showToast('Error de red', 'error'); }
-}
-
-async function deleteLine(id) {
-    if (!confirm('Eliminar esta linea?')) return;
-    try {
-        const res = await fetch('/api/lines/' + id, { method: 'DELETE' });
-        if (res.ok) { loadLines(); showToast('Linea eliminada', 'success'); }
-        else showToast('Error al eliminar', 'error');
-    } catch { showToast('Error de red', 'error'); }
-}
-
-// ===== OPERATOR - SEARCH =====
-
-/** Parse input: either a plain PN or a Matdoc scan string
- *  Scan format: D;<batch>;<PN>;<info>;<info>;
- *  Returns the Part Number string in UPPERCASE.
- */
-function parseScanInput(raw) {
-    let t = (raw || "").trim().toUpperCase();
-    if (!t) return "";
-
-    // Matdoc scan format: D;BATCH;PN;INFO;INFO;
-    if (t.startsWith('D;')) {
-        const parts = t.split(';');
-        // segment index 2 is usually the Part Number
-        if (parts.length >= 3 && parts[2]) {
-            return parts[2].trim();
         }
-    }
-    return t; // return as is but uppercase
-}
 
-async function searchItemcode(rawInput) {
-    const itemcode = parseScanInput(rawInput);
-    if (!itemcode) return;
+        // ===== CONFIG =====
+        async function saveLine() {
+            const name = document.getElementById('conf-line-name').value.trim();
+            const racks = document.getElementById('conf-line-racks').value.trim();
+            if (!name || !racks) { showToast('Completa todos los campos', 'error'); return; }
 
-    const lineSelect = document.getElementById('op-line-select');
-    const lineId     = lineSelect.value;
-    if (!lineId) { showToast('Selecciona una linea primero', 'error'); return; }
+            try {
+                const res = await fetch('/api/lines', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, rack_ids: racks })
+                });
+                if (res.ok) {
+                    document.getElementById('conf-line-name').value = '';
+                    document.getElementById('conf-line-racks').value = '';
+                    loadLines();
+                    showToast(`Linea "${name}" guardada`, 'success');
+                } else showToast('Error al guardar', 'error');
+            } catch { showToast('Error de red', 'error'); }
+        }
 
-    const input = document.getElementById('op-itemcode');
-    input.disabled = true;
+        async function deleteLine(id) {
+            if (!confirm('Eliminar esta linea?')) return;
+            try {
+                const res = await fetch('/api/lines/' + id, { method: 'DELETE' });
+                if (res.ok) { loadLines(); showToast('Linea eliminada', 'success'); }
+                else showToast('Error al eliminar', 'error');
+            } catch { showToast('Error de red', 'error'); }
+        }
 
-    // List of physical codes already in buffer to exclude from next search
-    const exclude_codes = buffer.map(b => b.code);
+        // ===== OPERATOR - SEARCH =====
 
-    try {
-        const res  = await fetch('/api/check_reel', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ itemcode, line_id: parseInt(lineId), exclude_codes })
-        });
-        const data = await res.json();
+        /** Parse input: either a plain PN or a Matdoc scan string
+         *  Scan format: D;<batch>;<PN>;<info>;<info>;
+         *  Returns the Part Number string in UPPERCASE.
+         */
+        function parseScanInput(raw) {
+            let t = (raw || "").trim().toUpperCase();
+            if (!t) return "";
 
-        if (data.found) {
-            if (buffer.find(b => b.code === data.reel.code)) {
-                showToast('El rollo ya esta en el buffer', 'error');
-                shake(input);
-            } else {
-                // Marcar si no es de esta linea para el renderizado
-                data.reel.isOtherRack = !data.exact;
-                buffer.push(data.reel);
-                renderBuffer();
-                
-                if (data.exact) {
-                    showToast(`✅ Añadido: ${data.reel.itemcode} — ${data.reel.stockcell}`, 'success');
-                } else {
-                    // Alerta persistente y llamativa para error de rack
-                    showToast(`⚠️ OTRO RACK: El rollo está en SMARTRACK ${data.reel.rack} (${data.reel.stockcell})`, 'error');
+            // Matdoc scan format: D;BATCH;PN;INFO;INFO;
+            if (t.startsWith('D;')) {
+                const parts = t.split(';');
+                // segment index 2 is usually the Part Number
+                if (parts.length >= 3 && parts[2]) {
+                    return parts[2].trim();
                 }
             }
-        } else {
-            showToast(data.message || 'Rollo no encontrado', 'error');
-            shake(input);
+            return t; // return as is but uppercase
         }
-    } catch { showToast('Error de red', 'error'); }
-    finally {
-        input.disabled = false;
-        input.value = '';
-        input.focus();
-    }
-}
 
-document.getElementById('op-itemcode').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') searchItemcode(e.currentTarget.value);
-});
+        async function searchItemcode(rawInput) {
+            const itemcode = parseScanInput(rawInput);
+            if (!itemcode) return;
 
-// Also handle automatic trigger from scanners
-document.getElementById('op-itemcode').addEventListener('input', (e) => {
-    const v = e.currentTarget.value.trim().toUpperCase();
-    // Auto-trigger if it matches Matdoc pattern (D;...;...;...;...;)
-    if (v.startsWith('D;')) {
-        const parts = v.split(';');
-        // usually 5 segments D;BATCH;PN;INFO;INFO; (length 5 or 6 if trailing ;)
-        if (parts.length >= 5) {
-            // Only trigger if we haven't just cleared or are processing
-            if (!e.currentTarget.disabled && v.length > 10) {
-                searchItemcode(v);
+            const lineSelect = document.getElementById('op-line-select');
+            const lineId = lineSelect.value;
+            if (!lineId) { showToast('Selecciona una linea primero', 'error'); return; }
+
+            const input = document.getElementById('op-itemcode');
+            input.disabled = true;
+
+            // List of physical codes already in buffer to exclude from next search
+            const exclude_codes = buffer.map(b => b.code);
+
+            try {
+                const res = await fetch('/api/check_reel', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ itemcode, line_id: parseInt(lineId), exclude_codes })
+                });
+                const data = await res.json();
+
+                if (data.found) {
+                    if (buffer.find(b => b.code === data.reel.code)) {
+                        showToast('El rollo ya esta en el buffer', 'error');
+                        shake(input);
+                    } else {
+                        // Marcar si no es de esta linea para el renderizado
+                        data.reel.isOtherRack = !data.exact;
+                        buffer.push(data.reel);
+                        renderBuffer();
+
+                        if (data.exact) {
+                            showToast(`✅ Añadido: ${data.reel.itemcode} — ${data.reel.stockcell}`, 'success');
+                        } else {
+                            // Alerta persistente y llamativa para error de rack
+                            showToast(`⚠️ OTRO RACK: El rollo está en SMARTRACK ${data.reel.rack} (${data.reel.stockcell})`, 'error');
+                        }
+                    }
+                } else {
+                    showToast(data.message || 'Rollo no encontrado', 'error');
+                    shake(input);
+                }
+            } catch { showToast('Error de red', 'error'); }
+            finally {
+                input.disabled = false;
+                input.value = '';
+                input.focus();
             }
         }
-    }
-});
 
-// ===== BUFFER =====
-function renderBuffer() {
-    const items = document.getElementById('buffer-items');
-    const empty = document.getElementById('buf-empty');
-    const count = document.getElementById('buf-count');
-    const btn   = document.getElementById('btn-extract');
+        document.getElementById('op-itemcode').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('ac-list').style.display = 'none';
+                searchItemcode(e.currentTarget.value);
+            }
+        });
 
-    count.textContent = buffer.length;
-    btn.disabled      = buffer.length === 0;
+        // Autocomplete and auto-scan logic
+        document.getElementById('op-itemcode').addEventListener('input', (e) => {
+            const v = e.currentTarget.value.trim().toUpperCase();
+            const acList = document.getElementById('ac-list');
+            
+            // Auto-trigger if it matches Matdoc pattern (D;...;...;...;...;)
+            if (v.startsWith('D;')) {
+                acList.style.display = 'none';
+                const parts = v.split(';');
+                if (parts.length >= 5) {
+                    if (!e.currentTarget.disabled && v.length > 10) {
+                        searchItemcode(v);
+                    }
+                }
+                return;
+            }
 
-    if (buffer.length === 0) {
-        items.innerHTML = '';
-        empty.style.display = '';
-        return;
-    }
+            if (!v) {
+                acList.style.display = 'none';
+                return;
+            }
 
-    empty.style.display = 'none';
-    items.innerHTML = buffer.map((item, i) => `
+            // Process autocomplete based on reelsData
+            const map = new Map();
+            reelsData.forEach(r => {
+                if (r.itemcode.toUpperCase().includes(v)) {
+                    if (!map.has(r.itemcode)) { map.set(r.itemcode, { itemcode: r.itemcode, qty: 0 }); }
+                    map.get(r.itemcode).qty += parseInt(r.qty) || 0;
+                }
+            });
+
+            const matches = Array.from(map.values()).slice(0, 6); // Max 6 results
+            if (matches.length > 0) {
+                acList.innerHTML = matches.map(m => `
+                    <div class="autocomplete-item" onclick="selectAutocomplete('${m.itemcode}')">
+                        <span class="ac-itemcode">${m.itemcode}</span>
+                        <span class="ac-meta">${m.qty.toLocaleString()} uds totales</span>
+                    </div>
+                `).join('');
+                acList.style.display = 'block';
+            } else {
+                acList.style.display = 'none';
+            }
+        });
+
+        function selectAutocomplete(itemcode) {
+            document.getElementById('op-itemcode').value = itemcode;
+            document.getElementById('ac-list').style.display = 'none';
+            searchItemcode(itemcode);
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.autocomplete-wrap')) {
+                const acList = document.getElementById('ac-list');
+                if (acList) acList.style.display = 'none';
+            }
+        });
+
+        // ===== BUFFER =====
+        function renderBuffer() {
+            const items = document.getElementById('buffer-items');
+            const empty = document.getElementById('buf-empty');
+            const count = document.getElementById('buf-count');
+            const btn = document.getElementById('btn-extract');
+
+            count.textContent = buffer.length;
+            btn.disabled = buffer.length === 0;
+
+            if (buffer.length === 0) {
+                items.innerHTML = '';
+                empty.style.display = '';
+                return;
+            }
+
+            empty.style.display = 'none';
+            items.innerHTML = buffer.map((item, i) => `
         <div class="buffer-item ${item.isOtherRack ? 'other-rack' : ''}">
             <div class="bi-left">
                 ${item.isOtherRack ? '<span class="other-rack-label">⚠️ Fuera de Linea</span>' : ''}
@@ -1123,118 +1597,187 @@ function renderBuffer() {
                 ✕
             </button>
         </div>`).join('');
-}
-
-function removeFromBuffer(i) {
-    buffer.splice(i, 1);
-    renderBuffer();
-}
-
-function updateExtractBtn() {
-    const btn = document.getElementById('btn-extract');
-    const val = document.getElementById('extract-delay').value;
-    if (buffer.length === 0) return;
-    btn.textContent = val === '0' ? 'Extraer Ahora' : 'Programar Extraccion';
-}
-
-async function extractBuffer() {
-    if (!buffer.length) return;
-
-    const lineSelect  = document.getElementById('op-line-select');
-    const lineName    = lineSelect.options[lineSelect.selectedIndex].text;
-    const delayMins   = parseInt(document.getElementById('extract-delay').value) || 0;
-
-    const payload = {
-        line_name:      lineName,
-        item_codes:     buffer.map(b => b.itemcode),
-        reel_codes:     buffer.map(b => b.code),
-        delay_minutes:  delayMins
-    };
-
-    const btn = document.getElementById('btn-extract');
-    btn.disabled = true;
-    btn.textContent = 'Procesando...';
-
-    // Clear buffer immediately
-    buffer = [];
-    renderBuffer();
-
-    // Reset delay selector to Inmediata
-    document.getElementById('extract-delay').value = '0';
-    document.getElementById('btn-extract').textContent = 'Extraer Ahora';
-
-    try {
-        const res = await fetch('/api/extract', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        if (res.ok) {
-            const data = await res.json();
-            showToast(data.message || 'Extraccion lanzada!', 'success');
-            loadScheduledData();
-        } else {
-            const err = await res.json();
-            showToast(err.detail || 'Error en extraccion', 'error');
         }
-    } catch { showToast('Error de red', 'error'); }
-    finally {
-        btn.disabled = false;
-        document.getElementById('op-itemcode').focus();
-    }
-}
 
-// ===== COUNTDOWN TICKER =====
-let cdInterval = null;
-
-function startCountdowns() {
-    if (cdInterval) clearInterval(cdInterval);
-    cdInterval = setInterval(() => {
-        const badges = document.querySelectorAll('.countdown-badge');
-        if (badges.length === 0) { clearInterval(cdInterval); cdInterval = null; return; }
-        badges.forEach(badge => {
-            const target = parseInt(badge.dataset.target);
-            const secsLeft = Math.max(0, Math.round((target - Date.now()) / 1000));
-            const mm = String(Math.floor(secsLeft / 60)).padStart(2,'0');
-            const ss = String(secsLeft % 60).padStart(2,'0');
-            badge.textContent = mm + ':' + ss;
-            if (secsLeft <= 0) badge.style.color = 'var(--danger)';
-            else if (secsLeft <= 60) badge.style.color = 'var(--warning)';
-            else badge.style.color = 'var(--success)';
-        });
-    }, 1000);
-}
-
-// ===== SCHEDULED PANEL TABLE HEADER UPDATE =====
-// Add 4th column header
-document.querySelector('#sched-tbody')?.closest('table')?.querySelector('thead tr') &&
-    (() => {
-        const tr = document.querySelector('#panel-scheduled thead tr');
-        if (tr && tr.children.length < 4) {
-            const th = document.createElement('th');
-            th.textContent = 'Tiempo Restante';
-            tr.insertBefore(th, tr.children[2]);
+        function removeFromBuffer(i) {
+            buffer.splice(i, 1);
+            renderBuffer();
         }
-    })();
 
-// ===== UTILS =====
-function showToast(msg, type = 'success') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `toast show ${type}`;
-    setTimeout(() => t.className = 'toast', 4000);
-}
+        function updateExtractBtn() {
+            const btn = document.getElementById('btn-extract');
+            const val = document.getElementById('extract-delay').value;
+            if (buffer.length === 0) return;
+            btn.textContent = val === '0' ? 'Extraer Ahora' : 'Programar Extraccion';
+        }
 
-function shake(el) {
-    el.classList.remove('shake');
-    void el.offsetWidth;
-    el.classList.add('shake');
-}
+        async function extractBuffer() {
+            if (!buffer.length) return;
 
-// ===== INIT =====
-setInterval(loadScheduledData, 30000);
-loadLines();
-loadScheduledData();
-</script>
+            const lineSelect = document.getElementById('op-line-select');
+            const lineName = lineSelect.options[lineSelect.selectedIndex].text;
+            const delayMins = parseInt(document.getElementById('extract-delay').value) || 0;
+
+            const payload = {
+                line_name: lineName,
+                item_codes: buffer.map(b => b.itemcode),
+                reel_codes: buffer.map(b => b.code),
+                delay_minutes: delayMins
+            };
+
+            const btn = document.getElementById('btn-extract');
+            btn.disabled = true;
+            btn.textContent = 'Procesando...';
+
+            // Clear buffer immediately
+            buffer = [];
+            renderBuffer();
+
+            // Reset delay selector to Inmediata
+            document.getElementById('extract-delay').value = '0';
+            document.getElementById('btn-extract').textContent = 'Extraer Ahora';
+
+            try {
+                const res = await fetch('/api/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    showToast(data.message || 'Extraccion lanzada!', 'success');
+                    loadScheduledData();
+                } else {
+                    const err = await res.json();
+                    showToast(err.detail || 'Error en extraccion', 'error');
+                }
+            } catch { showToast('Error de red', 'error'); }
+            finally {
+                btn.disabled = false;
+                document.getElementById('op-itemcode').focus();
+            }
+        }
+
+        // ===== COUNTDOWN TICKER =====
+        let cdInterval = null;
+
+        function startCountdowns() {
+            if (cdInterval) clearInterval(cdInterval);
+            cdInterval = setInterval(() => {
+                const badges = document.querySelectorAll('.countdown-badge');
+                if (badges.length === 0) { clearInterval(cdInterval); cdInterval = null; return; }
+                badges.forEach(badge => {
+                    const target = parseInt(badge.dataset.target);
+                    const secsLeft = Math.max(0, Math.round((target - Date.now()) / 1000));
+                    const mm = String(Math.floor(secsLeft / 60)).padStart(2, '0');
+                    const ss = String(secsLeft % 60).padStart(2, '0');
+                    badge.textContent = mm + ':' + ss;
+                    if (secsLeft <= 0) badge.style.color = 'var(--danger)';
+                    else if (secsLeft <= 60) badge.style.color = 'var(--warning)';
+                    else badge.style.color = 'var(--success)';
+                });
+            }, 1000);
+        }
+
+        // ===== SCHEDULED PANEL TABLE HEADER UPDATE =====
+        // Add 4th column header
+        document.querySelector('#sched-tbody')?.closest('table')?.querySelector('thead tr') &&
+            (() => {
+                const tr = document.querySelector('#panel-scheduled thead tr');
+                if (tr && tr.children.length < 4) {
+                    const th = document.createElement('th');
+                    th.textContent = 'Tiempo Restante';
+                    tr.insertBefore(th, tr.children[2]);
+                }
+            })();
+
+        // ===== UTILS =====
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = `toast show ${type}`;
+            setTimeout(() => t.className = 'toast', 4000);
+        }
+
+        function shake(el) {
+            el.classList.remove('shake');
+            void el.offsetWidth;
+            el.classList.add('shake');
+        }
+
+        // ===== AUTH / COPY ACTION =====
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.add('show');
+            document.getElementById('auth-err').style.display = 'none';
+            document.getElementById('auth-pass').value = '';
+            setTimeout(() => document.getElementById('auth-user').focus(), 100);
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.remove('show');
+        }
+
+        async function submitAuth() {
+            const user = document.getElementById('auth-user').value.trim();
+            const pass = document.getElementById('auth-pass').value.trim();
+            const errObj = document.getElementById('auth-err');
+            errObj.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/auth/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    sessionStorage.setItem('cfg_token', data.token);
+                    closeAuthModal();
+                    _doSwitch('cfg');
+                } else {
+                    errObj.textContent = 'Credenciales incorrectas';
+                    errObj.style.display = 'block';
+                    shake(document.querySelector('.modal'));
+                }
+            } catch (e) {
+                errObj.textContent = 'Error de conexión';
+                errObj.style.display = 'block';
+            }
+        }
+
+        function copyPN(btn, text) {
+            const successHTML = '<svg class="icon" style="color:var(--success)" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';
+            const showSuccess = () => {
+                const oldContent = btn.innerHTML;
+                btn.innerHTML = successHTML;
+                setTimeout(() => { btn.innerHTML = oldContent; }, 1500);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(showSuccess).catch(e => console.error("Clipboard err", e));
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand("copy");
+                    showSuccess();
+                } catch (err) {
+                    console.error("Fallback Copy err: ", err);
+                }
+                textArea.remove();
+            }
+        }
+
+        // ===== INIT =====
+        setInterval(loadScheduledData, 30000);
+        loadLines();
+        loadScheduledData();
+    </script>
 </body>
+
 </html>

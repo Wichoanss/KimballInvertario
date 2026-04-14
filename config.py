@@ -1,27 +1,72 @@
 import os
 import sys
 
-# Detect if running as PyInstaller bundle or script
+# ---------------------------------------------------------------------------
+# BASE_DIR — carpeta del .exe en produccion, carpeta del script en desarrollo
+# ---------------------------------------------------------------------------
 if getattr(sys, 'frozen', False):
-    # Running as compiled .exe - use the directory of the .exe
     BASE_DIR = os.path.dirname(sys.executable)
 else:
-    # Running as a .py script - use the directory of this file
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# API Server Configuration
+
+# ---------------------------------------------------------------------------
+# Lector de .env manual (stdlib pura, sin dependencias externas)
+# Busca el archivo .env junto al .exe o junto a config.py
+# Formato soportado:
+#   CLAVE=valor
+#   CLAVE="valor con espacios"
+#   # esto es un comentario
+#   CLAVE=           <- valor vacio valido
+# Las variables ya definidas en el entorno del sistema NO se sobreescriben,
+# asi el operador de IT puede forzar valores via variables de entorno si lo necesita.
+# ---------------------------------------------------------------------------
+def _load_env(path: str) -> None:
+    try:
+        with open(path, encoding="utf-8") as f:
+            for raw_line in f:
+                line = raw_line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, _, val = line.partition("=")
+                key = key.strip()
+                val = val.strip().strip('"').strip("'")
+                if key and key not in os.environ:
+                    os.environ[key] = val
+    except FileNotFoundError:
+        pass  # .env opcional — si no existe, se usan los defaults
+
+
+_load_env(os.path.join(BASE_DIR, ".env"))
+
+
+# ---------------------------------------------------------------------------
+# Configuracion — cada valor puede sobreescribirse en el .env
+# ---------------------------------------------------------------------------
+
+# URL del servidor SmartRack
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8081")
 
-# SmartRack Authentication
-API_USERNAME = "USER"
-API_PASSWORD = "AUTOSMD"
+# Credenciales SmartRack
+API_USERNAME = os.getenv("API_USERNAME", "USER")
+API_PASSWORD = os.getenv("API_PASSWORD", "AUTOSMD")
 
-# Polling Settings
-POLL_INTERVAL_SECONDS = 5
-LOGIN_INTERVAL_SECONDS = 86400  # Token re-fetch (24 hours or on error)
+# Intervalo de polling en segundos
+POLL_INTERVAL_SECONDS = int(os.getenv("POLL_INTERVAL_SECONDS", 5))
 
-# Database - always next to the .exe or main.py
-DB_NAME = os.path.join(BASE_DIR, "inventory.db")
+# Intervalo de re-login en segundos (default 24 horas)
+LOGIN_INTERVAL_SECONDS = int(os.getenv("LOGIN_INTERVAL_SECONDS", 86400))
 
-# Log file - always next to the .exe or main.py
-LOG_FILE = os.path.join(BASE_DIR, "smartrack.log")
+# Puerto del servidor FastAPI
+SERVER_PORT = int(os.getenv("SERVER_PORT", 4500))
+
+# Nivel de log: DEBUG, INFO, WARNING, ERROR
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
+
+# Rutas de archivos — siempre junto al .exe o main.py
+DB_NAME  = os.path.join(BASE_DIR, os.getenv("DB_NAME",  "inventory.db"))
+LOG_FILE = os.path.join(BASE_DIR, os.getenv("LOG_FILE", "smartrack.log"))
+
+# Acceso a Configuracion de Lineas
+CONFIG_USERNAME = os.getenv("CONFIG_USERNAME", "admin")
+CONFIG_PASSWORD = os.getenv("CONFIG_PASSWORD", "admin1234")
