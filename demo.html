@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SmartRack System — Demo</title>
+    <meta name="description" content="SmartRack Inventory System - Demo Interface for operator management and reel extraction.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0c10;
+            --surface: #13161d;
+            --surface2: #1b1f28;
+            --surface-hover: #22273300;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59,130,246,0.2);
+            --primary-hover: #2563eb;
+            --success: #10b981;
+            --success-glow: rgba(16,185,129,0.15);
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --text-main: #f1f5f9;
+            --text-muted: #64748b;
+            --text-soft: #94a3b8;
+            --border: #1e2530;
+            --border-bright: #2d3748;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --nav-h: 64px;
+            --tab-h: 52px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            height: var(--nav-h);
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--primary), #6366f1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 0 16px var(--primary-glow);
+        }
+
+        .demo-badge {
+            background: linear-gradient(135deg, var(--warning), #d97706);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            display: flex; align-items: center; gap: 6px;
+            font-size: 0.75rem; color: var(--text-muted);
+        }
+
+        .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 6px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        .dot.offline { background: var(--danger); box-shadow: 0 0 6px var(--danger); animation: none; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ===== BOTTOM TABS (mobile-first) ===== */
+        .bottom-tabs {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: var(--tab-h);
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            z-index: 100;
+        }
+
+        .btab {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+            border: none;
+            background: transparent;
+        }
+
+        .btab .icon { font-size: 1.2rem; line-height: 1; }
+
+        .btab.active {
+            color: var(--primary);
+        }
+
+        .btab.active::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 20%; right: 20%;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .badge-num {
+            position: absolute;
+            top: 6px; right: calc(50% - 22px);
+            background: var(--danger);
+            color: white;
+            border-radius: 10px;
+            font-size: 0.55rem;
+            padding: 1px 5px;
+            font-weight: 700;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* ===== DESKTOP SIDE NAV (hide on mobile) ===== */
+        @media (min-width: 768px) {
+            .bottom-tabs { display: none; }
+            nav { padding: 0 28px; }
+
+            .desktop-tabs {
+                display: flex;
+                gap: 4px;
+            }
+
+            .dtab {
+                padding: 6px 14px;
+                border-radius: var(--radius-sm);
+                color: var(--text-muted);
+                cursor: pointer;
+                font-size: 0.875rem;
+                font-weight: 500;
+                transition: all 0.2s;
+                border: none;
+                background: transparent;
+                position: relative;
+            }
+
+            .dtab:hover { color: var(--text-main); background: var(--surface2); }
+            .dtab.active { color: var(--primary); background: var(--primary-glow); }
+        }
+
+        /* ===== CONTENT AREA ===== */
+        .content-wrap {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: var(--tab-h); /* space for bottom tabs */
+        }
+
+        @media (min-width: 768px) {
+            .content-wrap { padding-bottom: 0; }
+        }
+
+        .panel {
+            display: none;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px 16px;
+            animation: fadeUp 0.25s ease;
+        }
+
+        .panel.active { display: block; }
+
+        @media (min-width: 768px) {
+            .panel { padding: 28px 32px; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .card-body { padding: 20px; }
+
+        /* ===== OPERATOR PANEL ===== */
+        .op-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 100%;
+        }
+
+        @media (min-width: 900px) {
+            .op-grid {
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 24px;
+            }
+        }
+
+        .label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .field { margin-bottom: 16px; }
+
+        input, select {
+            width: 100%;
+            background: var(--bg);
+            border: 1px solid var(--border-bright);
+            color: var(--text-main);
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn:active { transform: scale(0.97); }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-hover); box-shadow: 0 0 16px var(--primary-glow); }
+        .btn-success { background: var(--success); color: white; }
+        .btn-success:hover { background: #059669; box-shadow: 0 0 16px var(--success-glow); }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-ghost { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border-bright); }
+        .btn-ghost:hover { color: var(--text-main); }
+        .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+        .btn-block { width: 100%; }
+        .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+        .btn:disabled:active { transform: none; }
+
+        /* ===== BUFFER ===== */
+        .buffer-wrap {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            min-height: 250px;
+        }
+
+        @media (min-width: 900px) {
+            .buffer-wrap { height: 100%; }
+        }
+
+        .buffer-head {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .buffer-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .buffer-count-badge {
+            background: var(--primary-glow);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .buffer-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delay-select {
+            padding: 8px 10px;
+            font-size: 0.8rem;
+            border-radius: 6px;
+            width: auto;
+        }
+
+        .buffer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .buffer-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .buffer-empty .icon { font-size: 2.5rem; opacity: 0.3; }
+
+        .buffer-item {
+            background: var(--bg);
+            border: 1px solid var(--border-bright);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            animation: slideIn 0.2s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-12px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        .bi-left { flex: 1; min-width: 0; }
+        .bi-itemcode { font-weight: 700; color: var(--primary); font-size: 1rem; }
+        .bi-meta { font-size: 0.75rem; color: var(--text-muted); font-family: monospace; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .buffer-item.other-rack {
+            border-color: var(--danger);
+            background: rgba(220, 38, 38, 0.08);
+        }
+        .other-rack-label {
+            color: var(--danger);
+            font-weight: 700;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+            display: block;
+        }
+
+        /* ===== TABLE ===== */
+        .table-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: auto;
+            position: relative;
+        }
+
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+
+        th {
+            background: rgba(0,0,0,0.3);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(8px);
+            white-space: nowrap;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+
+        .qty-badge {
+            background: var(--success-glow);
+            color: var(--success);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .rack-badge {
+            background: var(--primary-glow);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .cell-badge {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-soft);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-family: monospace;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        .search-bar {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-bar input { padding-left: 38px; }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        /* ===== SCHEDULED PANEL ===== */
+        .sched-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .sched-empty .icon { font-size: 3rem; opacity: 0.2; display: block; margin-bottom: 12px; }
+
+        .sched-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            animation: slideIn 0.2s ease;
+        }
+
+        .sched-info h4 { font-size: 0.9rem; font-weight: 600; color: var(--primary); }
+        .sched-info p  { font-size: 0.78rem; color: var(--text-muted); margin-top: 3px; }
+
+        .countdown {
+            background: var(--warning);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* ===== CONFIG PANEL ===== */
+        .cfg-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .cfg-grid {
+                flex-direction: row;
+                gap: 28px;
+            }
+
+            .cfg-form { max-width: 400px; flex-shrink: 0; }
+        }
+
+        .line-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .line-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .line-name { font-weight: 600; }
+        .line-racks { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: calc(var(--tab-h) + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(120px);
+            background: var(--surface2);
+            border: 1px solid var(--border-bright);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+            z-index: 999;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { background: #064e3b; border-color: var(--success); }
+        .toast.error   { background: #450a0a; border-color: var(--danger); }
+
+        @media (min-width: 768px) {
+            .toast {
+                bottom: 24px;
+                left: auto;
+                right: 24px;
+                transform: translateX(0) translateY(120px);
+            }
+            .toast.show {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        /* ===== PAGE TITLE ===== */
+        .page-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .page-title { font-size: 1.5rem; margin-bottom: 24px; }
+        }
+
+        /* ===== SHAKE ===== */
+        .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(3px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-5px, 0, 0); }
+            40%, 60% { transform: translate3d(5px, 0, 0); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+
+        /* Desktop only nav tabs */
+        .desktop-tabs { display: none; }
+        @media (min-width: 768px) { .desktop-tabs { display: flex; gap: 4px; } }
+
+        .dtab {
+            padding: 7px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dtab:hover { color: var(--text-main); background: var(--surface2); }
+        .dtab.active { color: var(--primary); background: var(--primary-glow); }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">
+        <div class="logo-icon">⚡</div>
+        SmartRack
+        <span class="demo-badge">DEMO</span>
+    </div>
+
+    <!-- Desktop tabs -->
+    <div class="desktop-tabs" id="desktop-tabs">
+        <button class="dtab active" onclick="switchTab('op', this)">🎮 Operador</button>
+        <button class="dtab" onclick="switchTab('scheduled', this)">
+            🕐 Programadas
+            <span id="d-sched-badge" style="background:var(--danger);color:white;border-radius:10px;padding:1px 6px;font-size:0.65rem;display:none;">0</span>
+        </button>
+        <button class="dtab" onclick="switchTab('inv', this)">📦 Inventario</button>
+        <button class="dtab" onclick="switchTab('cfg', this)">⚙️ Config</button>
+    </div>
+
+    <div class="nav-right">
+        <div class="status-dot">
+            <div class="dot offline"></div>
+            <span style="display:none" class="hide-mobile">Demo</span>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+    <!-- ====== PANEL OPERADOR ====== -->
+    <div id="panel-op" class="panel active">
+        <div class="page-title">🎮 Panel de Extracción</div>
+        <div class="op-grid">
+
+            <!-- Controls -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Búsqueda de Reel</span>
+                    <span class="status-dot"><div class="dot offline"></div> <span style="font-size:0.75rem;color:var(--text-muted)">Sin conexión</span></span>
+                </div>
+                <div class="card-body">
+                    <div class="field">
+                        <div class="label">Línea de Producción</div>
+                        <select id="op-line-select">
+                            <option value="1">L1</option>
+                            <option value="2">L2</option>
+                            <option value="3">L3</option>
+                            <option value="4">L4-R</option>
+                            <option value="5">L4-L</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div class="label">Número de Parte / Item Code</div>
+                        <input type="text" id="op-itemcode" placeholder="Ej. 12345-ABC" autocomplete="off" autocorrect="off" spellcheck="false">
+                    </div>
+                    <button class="btn btn-primary btn-block" id="btn-search" onclick="demoSearch()">
+                        🔍 Buscar Reel
+                    </button>
+
+                    <div id="search-result" style="margin-top:14px; display:none;">
+                        <div style="background:var(--bg); border:1px solid var(--border-bright); border-radius:var(--radius-sm); padding:14px;">
+                            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase; font-weight:600;">Resultado</div>
+                            <div id="result-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buffer -->
+            <div class="buffer-wrap">
+                <div class="buffer-head">
+                    <div class="buffer-title">
+                        Buffer de Extracción
+                        <span class="buffer-count-badge" id="buffer-count">0</span>
+                    </div>
+                    <div class="buffer-actions">
+                        <select class="delay-select" id="extract-delay" onchange="updateExtractBtn()">
+                            <option value="0">Inmediata</option>
+                            <option value="5">5 min</option>
+                            <option value="10">10 min</option>
+                            <option value="15">15 min</option>
+                            <option value="30">30 min</option>
+                            <option value="60">1 hora</option>
+                        </select>
+                        <button class="btn btn-success btn-sm" id="btn-extract" disabled onclick="demoExtract()">
+                            Extraer Ahora
+                        </button>
+                    </div>
+                </div>
+                <div class="buffer-body" id="buffer-body">
+                    <div class="buffer-empty">
+                        <span class="icon">📭</span>
+                        Buffer vacío. Busca un reel para añadirlo.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== PANEL PROGRAMADAS ====== -->
+    <div id="panel-scheduled" class="panel">
+        <div class="page-title">🕐 Extracciones Programadas</div>
+
+        <div id="sched-list">
+            <!-- Demo items -->
+            <div class="sched-item">
+                <div class="sched-info">
+                    <h4>Multi_L2_Apr/09/2026-14:30</h4>
+                    <p>3 rollos • L2 • Programada</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+                    <span class="countdown" id="cd1">28:42</span>
+                    <button class="btn btn-danger btn-sm" onclick="demoCancel(this)">✕ Cancelar</button>
+                </div>
+            </div>
+            <div class="sched-item">
+                <div class="sched-info">
+                    <h4>C12345_L3_Apr/09/2026-15:00</h4>
+                    <p>1 rollo • L3 • Programada</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+                    <span class="countdown" id="cd2">58:12</span>
+                    <button class="btn btn-danger btn-sm" onclick="demoCancel(this)">✕ Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:16px; color:var(--text-muted); font-size:0.78rem; text-align:center; padding:10px;">
+            ⚠️ Modo Demo — Los datos son simulados y no se conectan al backend
+        </div>
+    </div>
+
+    <!-- ====== PANEL INVENTARIO ====== -->
+    <div id="panel-inv" class="panel">
+        <div class="page-title">📦 Inventario Local</div>
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Buscar por código o itemcode..." id="inv-search" oninput="filterTable()">
+        </div>
+        <div class="table-wrap" style="max-height: calc(100vh - 240px);">
+            <table id="inv-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Item Code</th>
+                        <th>Cantidad</th>
+                        <th>Rack</th>
+                        <th>Posición</th>
+                        <th>Actualización</th>
+                    </tr>
+                </thead>
+                <tbody id="inv-tbody">
+                    <!-- Demo rows -->
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top:10px; font-size:0.75rem; color:var(--text-muted); text-align:right;" id="inv-count"></div>
+    </div>
+
+    <!-- ====== PANEL CONFIGURACION ====== -->
+    <div id="panel-cfg" class="panel">
+        <div class="page-title">⚙️ Configuración de Líneas</div>
+        <div class="cfg-grid">
+            <div class="cfg-form card">
+                <div class="card-header"><span class="card-title">Nueva Línea</span></div>
+                <div class="card-body">
+                    <div class="field">
+                        <div class="label">Nombre de Línea</div>
+                        <input type="text" placeholder="Ej. L6" id="cfg-name">
+                    </div>
+                    <div class="field">
+                        <div class="label">IDs de SmartRacks (separados por coma)</div>
+                        <input type="text" placeholder="Ej. 1,2,3" id="cfg-racks">
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="demoSaveLine()">💾 Guardar Línea</button>
+                </div>
+            </div>
+
+            <div style="flex:1;">
+                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">Líneas Configuradas</div>
+                <div class="line-list" id="line-list">
+                    <!-- filled by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BOTTOM TABS (mobile) -->
+<nav class="bottom-tabs">
+    <button class="btab active" id="btab-op" onclick="switchTab('op', null, 'op')">
+        <span class="icon">🎮</span>Operador
+    </button>
+    <button class="btab" id="btab-scheduled" onclick="switchTab('scheduled', null, 'scheduled')">
+        <span class="icon">🕐</span>Prog.
+        <span class="badge-num" id="sched-badge" style="display:none;">2</span>
+    </button>
+    <button class="btab" id="btab-inv" onclick="switchTab('inv', null, 'inv')">
+        <span class="icon">📦</span>Inventario
+    </button>
+    <button class="btab" id="btab-cfg" onclick="switchTab('cfg', null, 'cfg')">
+        <span class="icon">⚙️</span>Config
+    </button>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DEMO DATA =====
+const DEMO_LINES = [
+    { id:1, name:'L1', rack_ids:'1' },
+    { id:2, name:'L2', rack_ids:'2' },
+    { id:3, name:'L3', rack_ids:'3' },
+    { id:4, name:'L4-R', rack_ids:'4' },
+    { id:5, name:'L4-L', rack_ids:'5' },
+];
+
+const DEMO_REELS = [
+    { code:'RL-00192', itemcode:'C0402C104K5RACTU', qty:3000, rack:'1', stockcell:'Right A/01', last_updated:'2026-04-09 13:45:22' },
+    { code:'RL-00847', itemcode:'RC0603FR-07100RL', qty:5000, rack:'1', stockcell:'Right B/03', last_updated:'2026-04-09 13:45:22' },
+    { code:'RL-01203', itemcode:'GRM188R61A106KE6', qty:2500, rack:'2', stockcell:'Left A/07', last_updated:'2026-04-09 13:44:10' },
+    { code:'RL-01845', itemcode:'CC0402KRX5R8BB47', qty:10000, rack:'2', stockcell:'Left C/12', last_updated:'2026-04-09 13:44:10' },
+    { code:'RL-02001', itemcode:'CRCW0402100RFKED', qty:8000, rack:'3', stockcell:'Right D/05', last_updated:'2026-04-09 13:43:55' },
+    { code:'RL-02234', itemcode:'ERJ-2GEJ0R00X',   qty:6000, rack:'3', stockcell:'Right E/09', last_updated:'2026-04-09 13:43:55' },
+    { code:'RL-03001', itemcode:'C0402C104K5RACTU', qty:4500, rack:'1', stockcell:'Right A/02', last_updated:'2026-04-09 13:45:22' },
+    { code:'RL-03212', itemcode:'CL10B104KB8NNNC',  qty:7200, rack:'4', stockcell:'Right F/11', last_updated:'2026-04-09 13:42:01' },
+    { code:'RL-03900', itemcode:'CGA2B2X7R1H104K', qty:3300, rack:'5', stockcell:'Left G/55', last_updated:'2026-04-09 13:41:30' },
+];
+
+// ===== STATE =====
+let buffer = [];
+let demoLines = [...DEMO_LINES];
+
+// ===== NAV =====
+function switchTab(tabId, desktopBtn, mobileId) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + tabId).classList.add('active');
+
+    // Desktop
+    document.querySelectorAll('.dtab').forEach(t => t.classList.remove('active'));
+    if (desktopBtn) desktopBtn.classList.add('active');
+
+    // Mobile
+    document.querySelectorAll('.btab').forEach(t => t.classList.remove('active'));
+    const mob = document.getElementById('btab-' + (mobileId || tabId));
+    if (mob) mob.classList.add('active');
+
+    if (tabId === 'inv') renderInventory();
+    if (tabId === 'cfg') renderLines();
+}
+
+/** Lógica de procesamiento de escaneo (Misma que la versión real) */
+function parseScanInput(raw) {
+    let t = (raw || "").trim().toUpperCase();
+    if (!t) return "";
+
+    // Formato Matdoc: D;BATCH;PN;INFO;INFO;
+    if (t.startsWith('D;')) {
+        const parts = t.split(';');
+        // El PN está en el índice 2
+        if (parts.length >= 3 && parts[2]) {
+            return parts[2].trim();
+        }
+    }
+    return t; 
+}
+
+// ===== DEMO SEARCH =====
+function demoSearch() {
+    const rawVal = document.getElementById('op-itemcode').value;
+    const q = parseScanInput(rawVal);
+    const el = document.getElementById('search-result');
+    const content = document.getElementById('result-content');
+    
+    if (!q) { showToast('Ingresa un número de parte', 'error'); return; }
+
+    // Simular búsqueda (Case insensitive ya que q es UpperCase)
+    const found = DEMO_REELS.filter(r => 
+        r.itemcode.toUpperCase().includes(q) || 
+        r.code.toUpperCase().includes(q)
+    );
+
+    el.style.display = 'block';
+
+    if (found.length === 0) {
+        content.innerHTML = `<div style="color:var(--danger); font-size:0.9rem;">❌ No encontrado: "${q}"</div>`;
+        showToast('Reel no encontrado', 'error');
+        shakeEl('op-itemcode');
+        return;
+    }
+
+    const lineId = parseInt(document.getElementById('op-line-select').value);
+    const line = demoLines.find(l => l.id === lineId);
+    const lineRacks = line ? line.rack_ids.split(',').map(r => r.trim()) : [];
+
+    const exact = found.find(r => lineRacks.includes(String(r.rack)));
+    const reel = exact || found[0];
+    const isExact = !!exact;
+
+    // AGREGAR DIRECTO AL BUFFER (Sin botones extra)
+    if (buffer.find(b => b.code === reel.code)) {
+        showToast('El rollo ya esta en el buffer', 'error');
+        shakeEl('op-itemcode');
+    } else {
+        reel.isOtherRack = !isExact;
+        buffer.push(reel);
+        renderBuffer();
+        
+        if (isExact) {
+            showToast(`✅ Añadido: ${reel.itemcode} (${reel.stockcell})`, 'success');
+        } else {
+            // Alerta visual fuerte para racks ajenos
+            showToast(`⚠️ RACK DIFERENTE: Este rollo está en SMARTRACK ${reel.rack} (${reel.stockcell})`, 'error');
+        }
+    }
+    
+    // Limpiar para el siguiente escaneo
+    document.getElementById('op-itemcode').value = '';
+    document.getElementById('op-itemcode').focus();
+    el.style.display = 'none'; // Ocultar residuos si los hay
+}
+
+// Eventos para búsqueda (Enter e Input automático)
+document.getElementById('op-itemcode').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') demoSearch();
+});
+
+document.getElementById('op-itemcode').addEventListener('input', (e) => {
+    const v = e.currentTarget.value.trim().toUpperCase();
+    if (v.startsWith('D;')) {
+        const parts = v.split(';');
+        if (parts.length >= 5) {
+            demoSearch();
+        }
+    }
+});
+
+function addToBuffer(reel) {
+    if (buffer.find(b => b.code === reel.code)) { showToast('Ya está en el buffer', 'error'); return; }
+    buffer.push(reel);
+    renderBuffer();
+    document.getElementById('op-itemcode').value = '';
+    document.getElementById('search-result').style.display = 'none';
+    showToast(`Añadido: ${reel.itemcode}`, 'success');
+}
+
+function removeFromBuffer(idx) {
+    buffer.splice(idx, 1);
+    renderBuffer();
+}
+
+function renderBuffer() {
+    const body = document.getElementById('buffer-body');
+    const count = document.getElementById('buffer-count');
+    const btn = document.getElementById('btn-extract');
+    count.textContent = buffer.length;
+    btn.disabled = buffer.length === 0;
+
+    if (buffer.length === 0) {
+        body.innerHTML = `<div class="buffer-empty"><span class="icon">📭</span>Buffer vacío. Busca un reel para añadirlo.</div>`;
+        return;
+    }
+
+    body.innerHTML = buffer.map((item, i) => `
+        <div class="buffer-item ${item.isOtherRack ? 'other-rack' : ''}">
+          <div class="bi-left">
+            ${item.isOtherRack ? '<span class="other-rack-label">⚠️ Fuera de Linea</span>' : ''}
+            <div class="bi-itemcode">${item.itemcode}</div>
+            <div class="bi-meta">${item.code} | SMARTRACK ${item.rack} | ${item.stockcell} | ${item.qty} uds</div>
+          </div>
+          <button class="btn btn-danger btn-sm" onclick="removeFromBuffer(${i})" style="border-radius:50%;width:30px;height:30px;padding:0;flex-shrink:0;">✕</button>
+        </div>
+    `).join('');
+}
+
+function updateExtractBtn() {
+    const sel = document.getElementById('extract-delay');
+    const btn = document.getElementById('btn-extract');
+    if (buffer.length === 0) return;
+    btn.textContent = sel.value === '0' ? 'Extraer Ahora' : 'Programar Extracción';
+}
+
+function demoExtract() {
+    if (buffer.length === 0) return;
+    const delay = parseInt(document.getElementById('extract-delay').value) || 0;
+    const line = document.getElementById('op-line-select');
+    const lineName = line.options[line.selectedIndex].text;
+
+    buffer = [];
+    renderBuffer();
+
+    if (delay === 0) {
+        showToast(`✅ Extracción enviada a ${lineName}`, 'success');
+    } else {
+        showToast(`🕐 Extracción programada en ${delay} min para ${lineName}`, 'success');
+        // Update badge
+        const b = document.getElementById('sched-badge');
+        const cnt = (parseInt(b.textContent) || 0) + 1;
+        b.textContent = cnt;
+        b.style.display = 'inline';
+        document.getElementById('d-sched-badge').textContent = cnt;
+        document.getElementById('d-sched-badge').style.display = 'inline';
+    }
+}
+
+// ===== SCHEDULED =====
+function demoCancel(btn) {
+    if (!confirm('¿Cancelar esta extracción programada?')) return;
+    btn.closest('.sched-item').remove();
+    showToast('Extracción cancelada', 'success');
+}
+
+// Countdown
+function tickCountdowns() {
+    document.querySelectorAll('.countdown').forEach(el => {
+        const parts = el.textContent.split(':').map(Number);
+        if (parts.length !== 2) return;
+        let [m, s] = parts;
+        s--;
+        if (s < 0) { s = 59; m--; }
+        if (m < 0) { el.closest('.sched-item')?.remove(); return; }
+        el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    });
+}
+setInterval(tickCountdowns, 1000);
+
+// ===== INVENTORY =====
+function renderInventory() {
+    const tbody = document.getElementById('inv-tbody');
+    const q = document.getElementById('inv-search').value.toLowerCase();
+    const filtered = DEMO_REELS.filter(r =>
+        r.code.toLowerCase().includes(q) || r.itemcode.toLowerCase().includes(q)
+    );
+    tbody.innerHTML = filtered.map(r => `
+        <tr>
+          <td style="font-family:monospace; color:var(--text-soft); font-size:0.85rem;">${r.code}</td>
+          <td style="font-weight:600; color:var(--primary); font-size:0.85rem;">${r.itemcode}</td>
+          <td><span class="qty-badge">${r.qty.toLocaleString()}</span></td>
+          <td><span class="rack-badge">SMARTRACK ${r.rack}</span></td>
+          <td><span class="cell-badge">${r.stockcell}</span></td>
+          <td style="font-size:0.78rem; color:var(--text-muted);">${r.last_updated}</td>
+        </tr>
+    `).join('');
+    document.getElementById('inv-count').textContent = `${filtered.length} de ${DEMO_REELS.length} registros`;
+}
+
+function filterTable() { renderInventory(); }
+
+// ===== CFG =====
+function renderLines() {
+    const list = document.getElementById('line-list');
+    list.innerHTML = demoLines.map(l => `
+        <div class="line-item">
+          <div>
+            <div class="line-name">${l.name}</div>
+            <div class="line-racks">SmartRacks: ${l.rack_ids.split(',').map(r => r.trim()).map(r => `SMARTRACK ${r}`).join(', ')}</div>
+          </div>
+          <button class="btn btn-danger btn-sm" onclick="demoDeleteLine(${l.id})">🗑</button>
+        </div>
+    `).join('');
+}
+
+function demoSaveLine() {
+    const name = document.getElementById('cfg-name').value.trim();
+    const racks = document.getElementById('cfg-racks').value.trim();
+    if (!name || !racks) { showToast('Completa todos los campos', 'error'); return; }
+    const newId = Math.max(...demoLines.map(l => l.id)) + 1;
+    demoLines.push({ id: newId, name, rack_ids: racks });
+    document.getElementById('cfg-name').value = '';
+    document.getElementById('cfg-racks').value = '';
+    renderLines();
+    showToast(`Línea "${name}" guardada`, 'success');
+}
+
+function demoDeleteLine(id) {
+    if (!confirm('¿Eliminar esta línea?')) return;
+    demoLines = demoLines.filter(l => l.id !== id);
+    renderLines();
+    showToast('Línea eliminada', 'success');
+}
+
+// ===== UTILS =====
+function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast show ${type}`;
+    setTimeout(() => t.className = 'toast', 3500);
+}
+
+function shakeEl(id) {
+    const el = document.getElementById(id);
+    el.classList.remove('shake');
+    void el.offsetWidth;
+    el.classList.add('shake');
+}
+
+// Keyboard search
+document.getElementById('op-itemcode').addEventListener('keydown', e => {
+    if (e.key === 'Enter') demoSearch();
+});
+
+// Init
+renderInventory();
+renderLines();
+
+// Update badge initially
+document.getElementById('sched-badge').textContent = '2';
+document.getElementById('sched-badge').style.display = 'inline';
+document.getElementById('d-sched-badge').textContent = '2';
+document.getElementById('d-sched-badge').style.display = 'inline';
+</script>
+
+</body>
+</html>
