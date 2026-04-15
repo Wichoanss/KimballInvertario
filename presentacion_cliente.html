@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRack · Sistema de Inventario Inteligente — Presentación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060810;
+            --surface: #0d1117;
+            --surface2: #161b22;
+            --surface3: #1c2128;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59,130,246,0.25);
+            --accent: #6366f1;
+            --accent-glow: rgba(99,102,241,0.2);
+            --teal: #14b8a6;
+            --teal-glow: rgba(20,184,166,0.2);
+            --gold: #f59e0b;
+            --gold-glow: rgba(245,158,11,0.2);
+            --success: #10b981;
+            --danger: #ef4444;
+            --text: #f0f6fc;
+            --text-soft: #8b949e;
+            --text-muted: #484f58;
+            --border: rgba(255,255,255,0.06);
+            --border2: rgba(255,255,255,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── NOISE TEXTURE ── */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        /* ── SLIDE SYSTEM ── */
+        .deck { position: relative; }
+
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-inner {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── GRADIENT ORBS ── */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── PROGRESS NAV ── */
+        .progress-nav {
+            position: fixed;
+            right: 28px; top: 50%;
+            transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 10px;
+            z-index: 100;
+        }
+
+        .pnav-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pnav-dot.active {
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            transform: scale(1.4);
+        }
+
+        /* ── TOP BAR ── */
+        .topbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 56px;
+            background: rgba(6,8,16,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 99;
+        }
+
+        .topbar-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 1.05rem;
+        }
+
+        .topbar-logo-mark {
+            width: 32px; height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 900; color: white;
+        }
+
+        .topbar-right {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .eyebrow {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 16px;
+        }
+
+        .eyebrow.primary { color: var(--primary); }
+        .eyebrow.accent { color: var(--accent); }
+        .eyebrow.teal { color: var(--teal); }
+        .eyebrow.gold { color: var(--gold); }
+
+        .h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+        }
+
+        .h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-teal {
+            background: linear-gradient(135deg, var(--teal) 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            color: var(--text-soft);
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 680px;
+        }
+
+        /* ── CARDS ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .card-glow-blue::before {
+            content: '';
+            position: absolute;
+            top: -30px; left: -30px;
+            width: 120px; height: 120px;
+            background: var(--primary-glow);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .card-glow-purple::before {
+            content: '';
+            position: absolute;
+            top: -30px; left: -30px;
+            width: 120px; height: 120px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .card-glow-teal::before {
+            content: '';
+            position: absolute;
+            top: -30px; left: -30px;
+            width: 120px; height: 120px;
+            background: var(--teal-glow);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .card-glow-gold::before {
+            content: '';
+            position: absolute;
+            top: -30px; left: -30px;
+            width: 120px; height: 120px;
+            background: var(--gold-glow);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        /* ── GRIDS ── */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+        /* ── STAT BOX ── */
+        .stat-box {
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── FEATURE ROW ── */
+        .feature-row {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .feature-row.reverse { flex-direction: row-reverse; }
+
+        .feature-visual {
+            flex: 0 0 480px;
+            height: 320px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-text { flex: 1; }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent), var(--teal));
+        }
+
+        .tl-item {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -28px; top: 6px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 12px var(--primary);
+        }
+
+        .tl-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .tl-desc { font-size: 0.9rem; color: var(--text-soft); line-height: 1.6; }
+
+        /* ── CHECK LIST ── */
+        .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+        .checklist li {
+            display: flex; gap: 12px; align-items: flex-start;
+            font-size: 1rem;
+            color: var(--text-soft);
+        }
+
+        .checklist li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── BADGE ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-blue { background: var(--primary-glow); color: var(--primary); border: 1px solid rgba(59,130,246,0.3); }
+        .badge-purple { background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(99,102,241,0.3); }
+        .badge-teal { background: var(--teal-glow); color: var(--teal); border: 1px solid rgba(20,184,166,0.3); }
+        .badge-gold { background: var(--gold-glow); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+        .badge-red { background: rgba(239,68,68,0.15); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+
+        /* ── DIVIDER ── */
+        hr.fade { border: none; height: 1px; background: linear-gradient(to right, transparent, var(--border2), transparent); margin: 40px 0; }
+
+        /* ── SCREEN MOCKUP ── */
+        .screen-mock {
+            background: var(--surface);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen-mock-bar {
+            background: var(--surface2);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mock-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+
+        .mock-dot:nth-child(1) { background: #ef4444; }
+        .mock-dot:nth-child(2) { background: #f59e0b; }
+        .mock-dot:nth-child(3) { background: #10b981; }
+
+        .screen-mock-content {
+            padding: 20px;
+            min-height: 220px;
+            font-size: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* ── FLOW DIAGRAM ── */
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flow-step {
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .flow-step-icon { font-size: 2rem; margin-bottom: 8px; }
+        .flow-step-label { font-size: 0.8rem; font-weight: 600; color: var(--text-soft); }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            padding: 0 12px;
+        }
+
+        /* ── ROI TABLE ── */
+        .roi-table { width: 100%; border-collapse: collapse; }
+
+        .roi-table th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-soft);
+            border-bottom: 1px solid var(--border2);
+        }
+
+        .roi-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .roi-table tr:last-child td { border-bottom: none; }
+
+        .roi-table td:first-child { color: var(--text-soft); }
+        .roi-table td:nth-child(2) { color: var(--danger); font-weight: 600; }
+        .roi-table td:nth-child(3) { color: var(--success); font-weight: 600; }
+
+        /* ── BIG QUOTE ── */
+        .big-quote {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text);
+            font-style: italic;
+            border-left: 4px solid var(--primary);
+            padding-left: 28px;
+        }
+
+        /* ── CTA ── */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 36px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(59,130,246,0.4);
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+        @keyframes pulse-ring { 0%{transform:scale(0.95);opacity:1} 100%{transform:scale(1.25);opacity:0} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes glow-pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        /* ── SECTION DIVIDER ── */
+        .slide-divider {
+            text-align: center;
+            padding: 16px 0 8px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+        }
+
+        /* ── HIGHLIGHT BOX ── */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(99,102,241,0.08));
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        /* ── SECTION NUMBERS ── */
+        .section-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 7rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.03);
+            position: absolute;
+            top: -20px;
+            right: 0;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
+            .feature-row, .feature-row.reverse { flex-direction: column; gap: 30px; }
+            .feature-visual { flex: none; width: 100%; height: 220px; }
+            .progress-nav { display: none; }
+            .slide { padding: 80px 20px 60px; }
+        }
+
+        /* ── SCAN VISUAL ── */
+        .scan-line {
+            position: absolute;
+            left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--teal), transparent);
+            animation: scan-move 3s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes scan-move {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+    <div class="topbar-logo">
+        <div class="topbar-logo-mark">SR</div>
+        SmartRack
+    </div>
+    <div class="topbar-right">Sistema de Inventario Inteligente · Presentación Ejecutiva</div>
+</header>
+
+<!-- NAV DOTS -->
+<nav class="progress-nav" id="pnav"></nav>
+
+<div class="deck">
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 1 — HERO
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-1" style="min-height:100vh; background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.15) 0%, transparent 70%);">
+        <div class="orb" style="width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.12),transparent);top:-200px;right:-200px;"></div>
+        <div class="orb" style="width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.1),transparent);bottom:-100px;left:-100px;"></div>
+
+        <div class="slide-inner" style="text-align:center; padding-top: 40px;">
+            <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:100px;padding:8px 20px;margin-bottom:40px;">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--success);display:inline-block;animation:pulse-ring 2s infinite;"></span>
+                <span style="font-size:0.8rem;font-weight:600;color:var(--primary);">Sistema en Producción · 2026</span>
+            </div>
+
+            <div class="h1" style="margin-bottom:24px;">
+                <span class="gradient-text">SmartRack</span><br>
+                <span style="color:var(--text);">Inventario Inteligente</span><br>
+                <span style="color:var(--text-soft);font-size:60%;font-weight:600;">para Planta de Manufactura</span>
+            </div>
+
+            <p class="lead" style="margin: 0 auto 48px; text-align:center;">
+                Una plataforma que transforma la forma en que tu planta administra, visualiza y extrae componentes electrónicos — en tiempo real, desde cualquier dispositivo de la red.
+            </p>
+
+            <div style="display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-bottom:60px;">
+                <div style="text-align:center;">
+                    <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:800;color:var(--primary);">100%</div>
+                    <div style="font-size:0.8rem;color:var(--text-soft);">Sin papel</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:800;color:var(--accent);">&lt;5s</div>
+                    <div style="font-size:0.8rem;color:var(--text-soft);">Actualización de inventario</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:800;color:var(--teal);">24/7</div>
+                    <div style="font-size:0.8rem;color:var(--text-soft);">Disponibilidad de datos</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:800;color:var(--gold);">0</div>
+                    <div style="font-size:0.8rem;color:var(--text-soft);">Errores por datos desactualizados</div>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+                <span class="badge badge-blue">🏭 Manufactura Electrónica</span>
+                <span class="badge badge-purple">📡 Integración SmartRack</span>
+                <span class="badge badge-teal">🏢 Torres JUKI</span>
+                <span class="badge badge-gold">📊 Trazabilidad Total</span>
+            </div>
+        </div>
+
+        <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);text-align:center;color:var(--text-muted);font-size:0.75rem;animation:float 2s ease-in-out infinite;">
+            <div>↓</div>
+            <div>Desplázate para ver</div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 2 — EL PROBLEMA
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-2" style="background:var(--surface);">
+        <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(239,68,68,0.06),transparent);top:0;left:-100px;"></div>
+        <div class="slide-inner">
+            <div class="section-num">02</div>
+            <span class="eyebrow" style="color:var(--danger)">El Problema</span>
+            <h2 class="h2" style="margin-bottom:20px;">¿Qué pasaba <br><span style="color:var(--text-soft);">antes del sistema?</span></h2>
+            <p class="lead" style="margin-bottom:48px;">Cada minuto que un operario busca un componente es productividad perdida. Así se veía el día a día sin SmartRack:</p>
+
+            <div class="grid-2" style="gap:24px;margin-bottom:40px;">
+                <div class="card" style="border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04);">
+                    <span class="card-icon">🔍</span>
+                    <div class="card-title">Búsqueda Manual</div>
+                    <div class="card-desc">El personal tenía que ir físicamente a revisar los racks para saber si había stock disponible del componente que necesitaban. <strong style="color:var(--text);">Minutos o incluso horas perdidas</strong> buscando un rollo en la bodega.</div>
+                </div>
+                <div class="card" style="border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04);">
+                    <span class="card-icon">📋</span>
+                    <div class="card-title">Registros en Papel o Excel</div>
+                    <div class="card-desc">Bitácoras manuales propensas a errores. Si alguien no actualizaba la hoja de cálculo, el inventario quedaba desactualizado. <strong style="color:var(--text);">Datos que no reflejan la realidad</strong> de la planta.</div>
+                </div>
+                <div class="card" style="border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04);">
+                    <span class="card-icon">📞</span>
+                    <div class="card-title">Comunicación por Radio/Teléfono</div>
+                    <div class="card-desc">Operator llama al almacén para preguntar si hay material. El del almacén va a verificar. <strong style="color:var(--text);">Proceso lento, con riesgo de errores</strong> de comunicación y demoras en línea.</div>
+                </div>
+                <div class="card" style="border-color:rgba(239,68,68,0.2);background:rgba(239,68,68,0.04);">
+                    <span class="card-icon">❌</span>
+                    <div class="card-title">Sin Trazabilidad</div>
+                    <div class="card-desc">¿Quién sacó qué material y cuándo? Imposible saberlo con certeza. Auditorías complicadas, <strong style="color:var(--text);">responsabilidades difíciles de rastrear</strong>, mermas difíciles de justificar.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="text-align:center;">
+                <div style="font-size:1.1rem;color:var(--text-soft);margin-bottom:8px;">Costo estimado de ineficiencia por turno</div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-size:2.5rem;font-weight:800;color:var(--danger);">30-90 minutos</div>
+                <div style="font-size:0.85rem;color:var(--text-soft);">en búsquedas manuales, llamadas y registros que podrían eliminarse por completo</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 3 — LA SOLUCIÓN
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-3" style="background:var(--bg);background-image:radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.1) 0%, transparent 60%);">
+        <div class="slide-inner">
+            <div class="section-num">03</div>
+            <span class="eyebrow primary">La Solución</span>
+            <h2 class="h2" style="margin-bottom:16px;">SmartRack conecta<br><span class="gradient-text">hardware y operación</span></h2>
+            <p class="lead" style="margin-bottom:48px;">El sistema lee el estado real de los racks físicos SmartRack y de las torres JUKI automáticamente, mantiene una base de datos local siempre al día, y expone todo a través de una interfaz web que funciona en cualquier PC, tablet o teléfono de la red de la planta.</p>
+
+            <div class="flow" style="margin-bottom:48px;">
+                <div class="flow-step">
+                    <div class="flow-step-icon">🏗️</div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:4px;">Hardware</div>
+                    <div class="flow-step-label">SmartRack &<br>Torres JUKI</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="border-color:var(--primary);background:rgba(59,130,246,0.08);">
+                    <div class="flow-step-icon">🔄</div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--primary);margin-bottom:4px;">Sincronización</div>
+                    <div class="flow-step-label">Cada 5 segundos<br>automática</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-step-icon">💾</div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:4px;">Base de Datos</div>
+                    <div class="flow-step-label">Inventario local<br>siempre al día</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step" style="border-color:var(--teal);background:rgba(20,184,166,0.08);">
+                    <div class="flow-step-icon">🌐</div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--teal);margin-bottom:4px;">Panel Web</div>
+                    <div class="flow-step-label">Cualquier<br>dispositivo</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="flow-step-icon">👤</div>
+                    <div style="font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:4px;">Operador</div>
+                    <div class="flow-step-label">Solicita en<br>segundos</div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div style="text-align:center;padding:24px;background:var(--surface2);border-radius:16px;border:1px solid var(--border2);">
+                    <div style="font-size:2rem;margin-bottom:12px;">📡</div>
+                    <div style="font-weight:700;margin-bottom:8px;">Polling Automático</div>
+                    <div style="font-size:0.85rem;color:var(--text-soft);">El sistema consulta los racks físicos cada 5 segundos sin intervención humana</div>
+                </div>
+                <div style="text-align:center;padding:24px;background:var(--surface2);border-radius:16px;border:1px solid var(--border2);">
+                    <div style="font-size:2rem;margin-bottom:12px;">🔀</div>
+                    <div style="font-weight:700;margin-bottom:8px;">Dos Tipos de Almacén</div>
+                    <div style="font-size:0.85rem;color:var(--text-soft);">Integra SmartRack (estanterías de carrete) y Torres JUKI en una sola vista unificada</div>
+                </div>
+                <div style="text-align:center;padding:24px;background:var(--surface2);border-radius:16px;border:1px solid var(--border2);">
+                    <div style="font-size:2rem;margin-bottom:12px;">⚡</div>
+                    <div style="font-weight:700;margin-bottom:8px;">Sin Instalación</div>
+                    <div style="font-size:0.85rem;color:var(--text-soft);">Se accede desde el navegador. No instalar nada en las computadoras de producción</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 4 — FUNCIONALIDAD 1: PANEL OPERADOR
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-4" style="background:var(--surface);">
+        <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,0.1),transparent);top:-100px;right:-100px;"></div>
+        <div class="slide-inner">
+            <div class="section-num">04</div>
+            <span class="eyebrow teal">Panel de Operador</span>
+            <h2 class="h2" style="margin-bottom:20px;">El operario encuentra<br><span class="gradient-text-teal">cualquier componente en segundos</span></h2>
+
+            <div class="feature-row" style="gap:48px;margin-bottom:48px;">
+                <div class="feature-text">
+                    <ul class="checklist" style="margin-bottom:28px;">
+                        <li><strong>Escanea o escribe</strong> el número de parte (PN) y el sistema localiza inmediatamente en cuál rack y celda está.</li>
+                        <li><strong>Soporte de scanner de barras</strong> — el sistema interpreta el formato Matdoc automáticamente al escanear.</li>
+                        <li><strong>Autocompletado inteligente</strong> — mientras escribes, sugiere los números de parte disponibles en inventario.</li>
+                        <li><strong>Selección de Línea</strong> — indica en qué línea de producción se necesita el material para priorizar los racks correctos.</li>
+                        <li><strong>Buffer de extracción</strong> — agrega múltiples rollos al "carrito" antes de solicitar la extracción de todos de un solo clic.</li>
+                        <li><strong>Detecta rollos fuera de línea</strong> — si el componente está en un rack de otra línea, lo avisa visualmente en rojo.</li>
+                    </ul>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                        <span class="badge badge-teal">🔍 Búsqueda instantánea</span>
+                        <span class="badge badge-blue">📷 Scanner QR/Barras</span>
+                        <span class="badge badge-purple">🛒 Buffer multi-rollo</span>
+                    </div>
+                </div>
+
+                <div class="feature-visual">
+                    <div class="scan-line"></div>
+                    <div style="width:100%;padding:20px;font-family:'Space Grotesk',sans-serif;">
+                        <div style="background:var(--surface3);border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid var(--border2);">
+                            <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;">Número de Parte</div>
+                            <div style="font-size:1.3rem;font-weight:700;color:var(--teal);">0402WGF10R0TCE</div>
+                        </div>
+                        <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:14px;margin-bottom:8px;">
+                            <div style="font-size:0.7rem;color:var(--success);font-weight:700;margin-bottom:4px;">✓ ENCONTRADO EN LÍNEA</div>
+                            <div style="font-size:0.85rem;font-weight:600;">SMARTRACK 2 · Posición Left B/14</div>
+                            <div style="font-size:0.75rem;color:var(--text-muted);">Qty: 4,200 uds · Actualizado hace 3s</div>
+                        </div>
+                        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:10px;padding:14px;font-size:0.75rem;color:var(--danger);">
+                            ⚠️ 1 rollo adicional en SMARTRACK 5 (otra línea)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 5 — FUNCIONALIDAD 2: EXTRACCIÓN
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-5" style="background:var(--bg);">
+        <div class="orb" style="width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.1),transparent);bottom:-100px;left:-100px;"></div>
+        <div class="slide-inner">
+            <div class="section-num">05</div>
+            <span class="eyebrow primary">Extracción de Material</span>
+            <h2 class="h2" style="margin-bottom:20px;">Un clic para extraer —<br><span class="gradient-text">inmediato o programado</span></h2>
+            <p class="lead" style="margin-bottom:40px;">Una vez que el operario tiene el buffer lleno con los rollos que necesita, elige cuándo ejecutar la extracción:</p>
+
+            <div class="grid-2" style="gap:24px;margin-bottom:40px;">
+                <div class="card card-glow-blue">
+                    <span class="card-icon">⚡</span>
+                    <div class="card-title">Extracción Inmediata</div>
+                    <div class="card-desc">El sistema envía la señal al rack físico al instante. El rack libera los carretes seleccionados. El operador solo va a recogerlos — <strong style="color:var(--text);">sin esperas, sin movimientos innecesarios</strong>.</div>
+                </div>
+                <div class="card card-glow-purple">
+                    <span class="card-icon">⏰</span>
+                    <div class="card-title">Extracción Programada</div>
+                    <div class="card-desc">¿Necesitas el material en 30 minutos para el próximo turno? <strong style="color:var(--text);">Programa la extracción</strong> con anticipación. El sistema la ejecuta automáticamente a la hora exacta que definas (5, 10, 15, 30 min o 1 hora).</div>
+                </div>
+                <div class="card card-glow-teal">
+                    <span class="card-icon">🏢</span>
+                    <div class="card-title">Pedidos a Torre JUKI</div>
+                    <div class="card-desc">Si el componente está en la torre JUKI en lugar de un SmartRack, el sistema genera un <strong style="color:var(--text);">ticket de pedido al operador de la torre</strong> con nivel de urgencia configurable (1–5 estrellas).</div>
+                </div>
+                <div class="card card-glow-gold">
+                    <span class="card-icon">🔁</span>
+                    <div class="card-title">Protección Anti-Duplicados</div>
+                    <div class="card-desc">Si el internet falla y el usuario presiona dos veces el botón, el sistema <strong style="color:var(--text);">detecta la solicitud duplicada automáticamente</strong> y retorna el resultado original sin ejecutar dos veces.</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+                    <div style="font-size:2.5rem;">📊</div>
+                    <div>
+                        <div style="font-weight:700;font-size:1.1rem;margin-bottom:4px;">Gestión Visual de Programadas</div>
+                        <div style="color:var(--text-soft);font-size:0.9rem;">Un panel dedicado muestra todas las extracciones pendientes con un <strong style="color:var(--text);">contador regresivo en tiempo real</strong> y la opción de cancelarlas antes de que se ejecuten.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 6 — FUNCIONALIDAD 3: INVENTARIO EN VIVO
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-6" style="background:var(--surface);">
+        <div class="slide-inner">
+            <div class="section-num">06</div>
+            <span class="eyebrow accent">Inventario en Vivo</span>
+            <h2 class="h2" style="margin-bottom:20px;">Visibilidad total del stock<br><span style="color:var(--text-soft);">siempre actualizada</span></h2>
+
+            <div class="feature-row reverse" style="gap:48px;margin-bottom:48px;">
+                <div class="feature-text">
+                    <p style="color:var(--text-soft);line-height:1.8;margin-bottom:24px;">
+                        La pestaña de <strong style="color:var(--text);">Inventario DB</strong> muestra en tiempo real el contenido completo de todos los racks SmartRack y las torres JUKI. Se actualiza automáticamente cada 5 segundos.
+                    </p>
+                    <ul class="checklist">
+                        <li>Todos los rollos con su <strong>código, número de parte, cantidad, posición exacta</strong> y hora de última actualización.</li>
+                        <li><strong>Buscador integrado</strong> para filtrar por código de rollo o número de parte al instante.</li>
+                        <li><strong>Exportación a CSV</strong> con un clic — ordena por rack y cantidad para análisis en Excel.</li>
+                        <li>Indicador de <strong>semáforo verde "En Vivo"</strong> para confirmar que los datos son actuales.</li>
+                        <li>Incluye inventario de <strong>torres JUKI fusionado</strong> en la misma vista.</li>
+                    </ul>
+                </div>
+                <div class="feature-visual" style="flex:0 0 400px;">
+                    <div style="width:100%;padding:16px;font-family:'Space Grotesk',sans-serif;font-size:0.75rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                            <span style="font-weight:700;">Inventario · SmartRack</span>
+                            <span style="display:flex;align-items:center;gap:6px;color:var(--success);font-size:0.7rem;">
+                                <span style="width:6px;height:6px;border-radius:50%;background:var(--success);display:inline-block;"></span>
+                                En vivo · hace 2s
+                            </span>
+                        </div>
+                        <div style="background:var(--surface3);border-radius:8px;overflow:hidden;">
+                            <div style="background:var(--surface2);padding:8px 12px;display:grid;grid-template-columns:1fr 1fr 60px;gap:8px;font-size:0.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;">
+                                <span>Part Number</span><span>Posición</span><span>Qty</span>
+                            </div>
+                            <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr 60px;gap:8px;border-bottom:1px solid var(--border);">
+                                <span style="color:var(--primary);font-weight:600;">0402WGF10R0TCE</span>
+                                <span style="color:var(--text-soft);">SR2 · Left B/14</span>
+                                <span style="color:var(--success);font-weight:700;">4,200</span>
+                            </div>
+                            <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr 60px;gap:8px;border-bottom:1px solid var(--border);">
+                                <span style="color:var(--primary);font-weight:600;">RC0402FR-07100RL</span>
+                                <span style="color:var(--text-soft);">SR1 · Right A/05</span>
+                                <span style="color:var(--success);font-weight:700;">12,000</span>
+                            </div>
+                            <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr 60px;gap:8px;border-bottom:1px solid var(--border);">
+                                <span style="color:var(--primary);font-weight:600;">GRM155R71C104KA88D</span>
+                                <span style="color:var(--text-soft);">JUKI Torre 3</span>
+                                <span style="color:var(--gold);font-weight:700;">850</span>
+                            </div>
+                            <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr 60px;gap:8px;">
+                                <span style="color:var(--primary);font-weight:600;">ERJ-2RKF100X</span>
+                                <span style="color:var(--text-soft);">SR3 · Left C/22</span>
+                                <span style="color:var(--success);font-weight:700;">2,750</span>
+                            </div>
+                        </div>
+                        <div style="margin-top:12px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:6px;padding:8px 12px;display:flex;align-items:center;gap:8px;font-size:0.7rem;color:var(--primary);">
+                            ⬇ Exportar CSV
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 7 — FUNCIONALIDAD 4: JUKI & TRAZABILIDAD
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-7" style="background:var(--bg);background-image:radial-gradient(ellipse at 20% 80%, rgba(245,158,11,0.08) 0%, transparent 60%);">
+        <div class="slide-inner">
+            <div class="section-num">07</div>
+            <span class="eyebrow gold">Control & Trazabilidad</span>
+            <h2 class="h2" style="margin-bottom:16px;">Saber quién sacó qué.<br><span class="gradient-text">Siempre.</span></h2>
+            <p class="lead" style="margin-bottom:48px;">Cada extracción queda registrada con nombre del operador, hora, tipo de solicitud y resultado. Esta es información crítica para auditorías, eficiencia y resolución de problemas.</p>
+
+            <div class="grid-3" style="gap:20px;margin-bottom:40px;">
+                <div class="card card-glow-gold">
+                    <span class="card-icon">🔐</span>
+                    <div class="card-title">Acceso por Número de Empleado</div>
+                    <div class="card-desc">Cada operador se identifica con su número de empleado antes de hacer una extracción. Queda registrado quién solicitó cada movimiento de material.</div>
+                </div>
+                <div class="card card-glow-purple">
+                    <span class="card-icon">📜</span>
+                    <div class="card-title">Auditoría Completa</div>
+                    <div class="card-desc">El panel administrativo muestra el historial de todas las extracciones: operador, endpoint, resultado (éxito/fallo), ID del trabajo y hora exacta.</div>
+                </div>
+                <div class="card card-glow-teal">
+                    <span class="card-icon">🏢</span>
+                    <div class="card-title">Panel Operador JUKI</div>
+                    <div class="card-desc">Los operadores de la torre JUKI tienen su propio panel dedicado donde ven los pedidos entrantes, su urgencia y pueden marcarlos como completados.</div>
+                </div>
+            </div>
+
+            <div class="grid-2" style="gap:24px;">
+                <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:16px;padding:28px;">
+                    <div style="font-size:1.5rem;margin-bottom:12px;">🔑</div>
+                    <div style="font-weight:700;margin-bottom:8px;">Gestión de Usuarios</div>
+                    <div style="color:var(--text-soft);font-size:0.9rem;line-height:1.7;">El administrador puede registrar empleados, asignarles su número de empleado como llave de acceso, revocar permisos o regenerar accesos desde el panel de configuración — todo con autenticación segura.</div>
+                </div>
+                <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:16px;padding:28px;">
+                    <div style="font-size:1.5rem;margin-bottom:12px;">📱</div>
+                    <div style="font-weight:700;margin-bottom:8px;">"Salir de Turno"</div>
+                    <div style="color:var(--text-soft);font-size:0.9rem;line-height:1.7;">Al final de su turno, el operario puede <strong style="color:var(--text);">cerrar su sesión de forma segura</strong> con el botón "Salir de Turno". El siguiente turno requiere identificarse con su propio número de empleado.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 8 — FUNCIONALIDAD 5: PRODUCCIÓN & SEGURIDAD
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-8" style="background:var(--surface);">
+        <div class="orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(99,102,241,0.1),transparent);top:0;right:-100px;"></div>
+        <div class="slide-inner">
+            <div class="section-num">08</div>
+            <span class="eyebrow accent">Listo para Producción</span>
+            <h2 class="h2" style="margin-bottom:20px;">Un sistema construido<br><span class="gradient-text">para resistir la planta</span></h2>
+            <p class="lead" style="margin-bottom:48px;">No es un prototipo. SmartRack fue diseñado y probado para operar en entornos industriales reales, donde la confiabilidad no es opcional.</p>
+
+            <div class="grid-4" style="gap:16px;margin-bottom:40px;">
+                <div class="stat-box">
+                    <div class="stat-number" style="color:var(--primary);">85%</div>
+                    <div class="stat-label">Cobertura de pruebas automáticas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color:var(--success);">130</div>
+                    <div class="stat-label">Tests unitarios y de integración</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color:var(--teal);">24/7</div>
+                    <div class="stat-label">Funcionamiento continuo sin intervención</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color:var(--gold);">1</div>
+                    <div class="stat-label">Archivo .exe — sin instalación compleja</div>
+                </div>
+            </div>
+
+            <div class="grid-2" style="gap:20px;">
+                <div>
+                    <div style="font-weight:700;margin-bottom:16px;color:var(--text-soft);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">Resiliencia y Recuperación</div>
+                    <ul class="checklist">
+                        <li><strong>Circuit Breaker:</strong> Si el SmartRack no responde, el sistema no colapsa. Para automáticamente los reintentos y reanuda cuando el hardware vuelve.</li>
+                        <li><strong>Reconexión automática</strong> al servidor SmartRack si el token de sesión expira durante la operación.</li>
+                        <li><strong>Modo de solo-lectura</strong> si hay problemas de escritura — nunca pierde visibilidad del inventario.</li>
+                        <li><strong>Limpieza automática de BD</strong> — registros viejos se eliminan solos para mantener el rendimiento.</li>
+                    </ul>
+                </div>
+                <div>
+                    <div style="font-weight:700;margin-bottom:16px;color:var(--text-soft);font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;">Seguridad de Despliegue</div>
+                    <ul class="checklist">
+                        <li><strong>Safe Mode:</strong> El sistema se niega a iniciar si detecta contraseñas débiles por defecto (protección anti-errores de configuración).</li>
+                        <li><strong>Múltiples capas de acceso</strong> — operadores usan número de empleado; administradores tienen credenciales separadas.</li>
+                        <li><strong>API Keys revocables</strong> — si un empleado sale de la empresa, su acceso se deshabilita en segundos.</li>
+                        <li><strong>Logs estructurados</strong> con ID de correlación por cada solicitud, para diagnóstico rápido.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 9 — DESPLIEGUE SIMPLE
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-9" style="background:var(--bg);">
+        <div class="slide-inner">
+            <div class="section-num">09</div>
+            <span class="eyebrow teal">Implementación Simple</span>
+            <h2 class="h2" style="margin-bottom:20px;">Funciona desde el primer día<br><span class="gradient-text-teal">sin complicaciones de IT</span></h2>
+            <p class="lead" style="margin-bottom:48px;">No hay servicio en la nube que dependa de terceros. No hay licencias anuales de software. No hay servidores complejos que mantener. Es software que vive en tu planta, bajo tu control.</p>
+
+            <div class="grid-3" style="gap:20px;margin-bottom:40px;">
+                <div class="card card-glow-teal">
+                    <div style="width:48px;height:48px;background:rgba(20,184,166,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;">1</div>
+                    <div class="card-title">Configura el .env</div>
+                    <div class="card-desc">Editas un archivo de texto con la IP del SmartRack y las credenciales. Toma 2 minutos. No se requieren conocimientos técnicos avanzados.</div>
+                </div>
+                <div class="card card-glow-blue">
+                    <div style="width:48px;height:48px;background:rgba(59,130,246,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;">2</div>
+                    <div class="card-title">Ejecutas el .exe</div>
+                    <div class="card-desc">Doble clic en SmartRack.exe. El sistema arranca automáticamente, conecta al hardware y comienza a sincronizar. Sin instaladores, sin permisos especiales.</div>
+                </div>
+                <div class="card card-glow-purple">
+                    <div style="width:48px;height:48px;background:rgba(99,102,241,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;">3</div>
+                    <div class="card-title">Abres el navegador</div>
+                    <div class="card-desc">Cualquier PC, tablet o celular en la misma red puede acceder escribiendo la IP del servidor en el navegador. Listo para usar.</div>
+                </div>
+            </div>
+
+            <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:16px;padding:28px;">
+                <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                    <div style="font-size:2rem;flex-shrink:0;">🔒</div>
+                    <div>
+                        <div style="font-weight:700;margin-bottom:8px;">Completamente On-Premise</div>
+                        <div style="color:var(--text-soft);font-size:0.9rem;line-height:1.7;">
+                            Todos los datos se guardan <strong style="color:var(--text);">en tu propia computadora, en tu red</strong>. No hay datos que salgan a la nube. No dependes de conectividad a internet. No hay suscripciones mensuales. Lo que compras es tuyo completo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 10 — COMPARATIVA / ROI
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-10" style="background:var(--surface);">
+        <div class="slide-inner">
+            <div class="section-num">10</div>
+            <span class="eyebrow gold">Retorno de Inversión</span>
+            <h2 class="h2" style="margin-bottom:20px;">Lo que cambia<br><span class="gradient-text">con SmartRack</span></h2>
+
+            <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:20px;overflow:hidden;margin-bottom:40px;">
+                <table class="roi-table">
+                    <thead>
+                        <tr>
+                            <th>Situación</th>
+                            <th>❌ Sin SmartRack</th>
+                            <th>✅ Con SmartRack</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Localizar un componente</td>
+                            <td>5-20 minutos</td>
+                            <td style="color:var(--success);">&lt;10 segundos</td>
+                        </tr>
+                        <tr>
+                            <td>Exactitud del inventario</td>
+                            <td>Depende de quién anotó</td>
+                            <td style="color:var(--success);">Sincronizado en tiempo real</td>
+                        </tr>
+                        <tr>
+                            <td>Trazabilidad de extracciones</td>
+                            <td>Bitácora manual o ninguna</td>
+                            <td style="color:var(--success);">100% automática con nombre</td>
+                        </tr>
+                        <tr>
+                            <td>Riesgo de doble extracción</td>
+                            <td>Alto</td>
+                            <td style="color:var(--success);">Eliminado por sistema</td>
+                        </tr>
+                        <tr>
+                            <td>Solicitudes urgentes JUKI</td>
+                            <td>Por radio o teléfono</td>
+                            <td style="color:var(--success);">Ticket digital con prioridad</td>
+                        </tr>
+                        <tr>
+                            <td>Extracción programada</td>
+                            <td>No existe</td>
+                            <td style="color:var(--success);">Automática con anticipación</td>
+                        </tr>
+                        <tr>
+                            <td>Reportes de inventario</td>
+                            <td>Horas de trabajo manual</td>
+                            <td style="color:var(--success);">Exportar CSV en 1 clic</td>
+                        </tr>
+                        <tr>
+                            <td>Dependencia de una persona</td>
+                            <td>Alta — "el que sabe dónde está"</td>
+                            <td style="color:var(--success);">Cualquier operador puede buscar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-3" style="gap:16px;">
+                <div class="stat-box" style="border-color:rgba(16,185,129,0.3);">
+                    <div class="stat-number" style="color:var(--success);">-90%</div>
+                    <div class="stat-label">Tiempo en localizar material</div>
+                </div>
+                <div class="stat-box" style="border-color:rgba(59,130,246,0.3);">
+                    <div class="stat-number" style="color:var(--primary);">+100%</div>
+                    <div class="stat-label">Visibilidad del inventario</div>
+                </div>
+                <div class="stat-box" style="border-color:rgba(245,158,11,0.3);">
+                    <div class="stat-number" style="color:var(--gold);">0</div>
+                    <div class="stat-label">Dependencias externas de software</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 11 — RESUMEN EJECUTIVO
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-11" style="background:var(--bg);background-image:radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%);">
+        <div class="orb" style="width:700px;height:700px;background:radial-gradient(circle,rgba(59,130,246,0.08),transparent);bottom:-200px;right:-200px;"></div>
+        <div class="slide-inner">
+            <div class="section-num">11</div>
+            <span class="eyebrow accent">Resumen</span>
+            <h2 class="h2" style="margin-bottom:48px;">Lo que obtiene<br><span class="gradient-text">con este desarrollo</span></h2>
+
+            <div class="grid-2" style="gap:32px;margin-bottom:48px;">
+                <div>
+                    <div class="eyebrow" style="color:var(--teal);margin-bottom:16px;">Para el Operador</div>
+                    <ul class="checklist">
+                        <li>Encuentra cualquier componente en segundos desde su estación</li>
+                        <li>Escanea con lector de barras para búsqueda instantánea</li>
+                        <li>Solicita extracciones inmediatas o programadas con un clic</li>
+                        <li>Ve qué extracciones están pendientes con cuenta regresiva</li>
+                        <li>Cierra sesión segura al final del turno</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="eyebrow" style="color:var(--primary);margin-bottom:16px;">Para el Administrador</div>
+                    <ul class="checklist">
+                        <li>Registra y gestiona el acceso de empleados desde la web</li>
+                        <li>Revisa quién extrajo qué material y cuándo en la auditoría</li>
+                        <li>Configura líneas de producción y sus racks asignados</li>
+                        <li>Exporta inventario completo a Excel con un clic</li>
+                        <li>Sin administración de servidores ni mantenimiento técnico complejo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="big-quote" style="margin-bottom:48px;">
+                "Transformamos el inventario de algo que se manejaba con papel y radio, a un sistema digital, trazable y automatizado — que cualquier operador puede usar desde el primer día."
+            </div>
+
+            <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+                <span class="badge badge-blue">🏭 Manufactura electrónica</span>
+                <span class="badge badge-teal">📡 Integración hardware SmartRack</span>
+                <span class="badge badge-purple">🏢 Torres JUKI</span>
+                <span class="badge badge-gold">📊 Auditoría completa</span>
+                <span class="badge" style="background:rgba(16,185,129,0.1);color:var(--success);border:1px solid rgba(16,185,129,0.3);">✅ 130 tests · Listo producción</span>
+                <span class="badge badge-blue">💾 On-Premise · Sin nube</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SLIDE 12 — CIERRE
+    ═══════════════════════════════════════════ -->
+    <section class="slide" id="slide-12" style="min-height:80vh;background:var(--surface);text-align:center;">
+        <div class="orb" style="width:800px;height:800px;background:radial-gradient(circle,rgba(59,130,246,0.1),transparent);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+        <div class="slide-inner" style="text-align:center;">
+            <div style="width:80px;height:80px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:20px;margin:0 auto 32px;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:900;font-family:'Space Grotesk',sans-serif;animation:float 3s ease-in-out infinite;">SR</div>
+
+            <h2 class="h2" style="margin-bottom:20px;">
+                <span class="gradient-text">SmartRack</span><br>
+                <span style="color:var(--text-soft);font-size:60%;font-weight:500;">Sistema de Inventario Inteligente</span>
+            </h2>
+
+            <p class="lead" style="margin:0 auto 48px;">
+                Un sistema hecho a la medida de su operación, construido con tecnología moderna, pensado para la realidad de su planta manufacturera.
+            </p>
+
+            <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;">
+                <div style="text-align:left;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:20px 28px;">
+                    <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Tecnología</div>
+                    <div style="font-weight:600;">FastAPI · SQLite · Python</div>
+                </div>
+                <div style="text-align:left;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:20px 28px;">
+                    <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Acceso</div>
+                    <div style="font-weight:600;">Web · Cualquier navegador</div>
+                </div>
+                <div style="text-align:left;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:20px 28px;">
+                    <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Hospedaje</div>
+                    <div style="font-weight:600;">On-Premise · En su red local</div>
+                </div>
+                <div style="text-align:left;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:20px 28px;">
+                    <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Calidad</div>
+                    <div style="font-weight:600;">85% cobertura · 130 tests</div>
+                </div>
+            </div>
+
+            <div style="font-size:0.8rem;color:var(--text-muted);">🔒 Todos los datos se almacenan en tu infraestructura local. Sin dependencias externas.</div>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // ── BUILD NAV DOTS ──
+    const slides = document.querySelectorAll('.slide');
+    const pnav = document.getElementById('pnav');
+
+    slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'pnav-dot' + (i === 0 ? ' active' : '');
+        dot.title = `Diapositiva ${i + 1}`;
+        dot.onclick = () => slides[i].scrollIntoView({ behavior: 'smooth' });
+        pnav.appendChild(dot);
+    });
+
+    // ── UPDATE ACTIVE DOT ON SCROLL ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const idx = Array.from(slides).indexOf(e.target);
+                document.querySelectorAll('.pnav-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === idx);
+                });
+            }
+        });
+    }, { threshold: 0.5 });
+
+    slides.forEach(s => observer.observe(s));
+
+    // ── KEYBOARD NAVIGATION ──
+    document.addEventListener('keydown', e => {
+        const active = document.querySelector('.pnav-dot.active');
+        const dots = document.querySelectorAll('.pnav-dot');
+        const idx = Array.from(dots).indexOf(active);
+
+        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+            if (idx < dots.length - 1) slides[idx + 1].scrollIntoView({ behavior: 'smooth' });
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            if (idx > 0) slides[idx - 1].scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+</script>
+
+</body>
+</html>

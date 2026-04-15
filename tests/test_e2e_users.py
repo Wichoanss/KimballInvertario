@@ -10,7 +10,8 @@ def test_full_e2e_user_flow(test_client):
 
     # 1. Administrator creates a new API user
     username = f"machine_x_{uuid.uuid4().hex[:4]}"
-    res_create = test_client.post("/admin/users", json={"username": username}, headers={"X-Master-Key": master_token})
+    api_key_str = f"emp_{uuid.uuid4().hex[:6]}"
+    res_create = test_client.post("/admin/users", json={"username": username, "api_key": api_key_str}, headers={"X-Master-Key": master_token})
     assert res_create.status_code == 200
     api_key = res_create.json()["api_key"]
     

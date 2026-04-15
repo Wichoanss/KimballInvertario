@@ -451,9 +451,8 @@ def cleanup_database(keep_logs_days: int = 30) -> None:
 # =========================================================================
 import secrets
 
-def create_api_user(username: str) -> str:
-    """Crea usuario y retorna la API Key generada en texto plano."""
-    api_key = f"sr_{secrets.token_urlsafe(32)}"
+def create_api_user(username: str, api_key: str) -> str:
+    """Crea usuario con una predefinida clave (ej. Número de empleado)."""
     with get_db_connection() as conn:
         try:
             conn.execute(

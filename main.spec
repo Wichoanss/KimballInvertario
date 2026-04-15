@@ -21,8 +21,7 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[
-        ('templates', 'templates'),   # HTML del panel web
-        ('.env',      '.'),           # Incluir .env solo si existe en dev
+        ('templates', 'templates')    # HTML del panel web
     ],
     hiddenimports=[
         # --- uvicorn (dinámico, PyInstaller no lo detecta solo) ---

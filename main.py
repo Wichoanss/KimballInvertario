@@ -292,13 +292,16 @@ def api_check_reel(req: CodeCheckRequest):
 
 class UserCreateReq(BaseModel):
     username: str
+    api_key: str
 
 @app.post("/admin/users", dependencies=[Depends(verify_master_key)])
 def api_create_user(req: UserCreateReq):
     if not req.username or len(req.username.strip()) < 3:
         raise HTTPException(status_code=400, detail="Username debe tener al menos 3 caracteres")
+    if not req.api_key or len(req.api_key.strip()) < 1:
+        raise HTTPException(status_code=400, detail="Número de empleado (API Key) obligatorio")
     try:
-        api_key = database.create_api_user(req.username.strip())
+        api_key = database.create_api_user(req.username.strip(), req.api_key.strip())
         return {"status": "success", "username": req.username.strip(), "api_key": api_key}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))

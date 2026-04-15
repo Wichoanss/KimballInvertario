@@ -102,6 +102,46 @@
             flex-shrink: 0;
         }
 
+        .btn-logout {
+            margin-left: auto;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: none; /* Hidden by default */
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-logout:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-logout {
+            margin-left: auto;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .btn-logout:hover {
+            background: var(--danger);
+            color: white;
+        }
+
         /* Desktop tab bar */
         .desktop-tabs {
             display: flex;
@@ -1050,6 +1090,11 @@
                     Config. Lineas 🔒
                 </button>
             </div>
+
+            <button class="btn-logout" id="btn-end-shift" onclick="endShift()">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                Salir de Turno
+            </button>
         </nav>
 
         <!-- PANELS -->
@@ -1247,10 +1292,14 @@
                     <div class="cfg-form">
                         <h3>Crear Nuevo Usuario</h3>
                         <div class="field">
-                            <label>Nombre de Usuario</label>
-                            <input type="text" id="conf-user-name" placeholder="Ej. op_maquila_1" autocomplete="off" onkeydown="if(event.key==='Enter') createApiUser()">
+                            <label>Nombre Completo del Empleado</label>
+                            <input type="text" id="conf-user-name" placeholder="Ej. Juan Pérez" autocomplete="off">
                         </div>
-                        <button class="btn btn-success btn-block" onclick="createApiUser()">Generar Llave API</button>
+                        <div class="field">
+                            <label>Número de Empleado (clave de acceso)</label>
+                            <input type="text" id="conf-user-key" placeholder="Ej. 987654" autocomplete="off" onkeydown="if(event.key==='Enter') createApiUser()">
+                        </div>
+                        <button class="btn btn-success btn-block" onclick="createApiUser()">Registrar Empleado</button>
                     </div>
 
                     <div class="cfg-list">
@@ -1269,6 +1318,30 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+                <div class="page-title" style="margin-top: 30px; border-top: 1px solid var(--border); padding-top: 20px;">Auditoría de Extracciones 📜</div>
+                <div class="cfg-list" style="max-width: 100%; width: 100%;">
+                    <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3>Historial de Operaciones</h3>
+                        <button class="btn btn-ghost btn-sm" onclick="loadAuditLogs()">Actualizar Bitácora</button>
+                    </div>
+                    <div class="table-box">
+                        <table style="min-width: 800px;">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Operador</th>
+                                    <th>Evento (API)</th>
+                                    <th>Estatus</th>
+                                    <th>ID Extracción</th>
+                                    <th>Error / Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody id="audit-tbody">
+                                <tr><td colspan="6" style="text-align:center; color: var(--text-muted); padding: 20px;">Cargando auditoría...</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -1400,6 +1473,7 @@
             if (tabId === 'cfg') {
                 loadLines();
                 loadApiUsers();
+                loadAuditLogs();
             }
             if (tabId === 'scheduled') loadScheduledData();
             if (tabId === 'op') {
@@ -1626,6 +1700,32 @@
                 if (res.ok) { loadLines(); showToast('Linea eliminada', 'success'); }
                 else showToast('Error al eliminar', 'error');
             } catch { showToast('Error de red', 'error'); }
+        }
+
+        async function loadAuditLogs() {
+            try {
+                const token = sessionStorage.getItem('cfg_token');
+                const res = await fetch('/admin/audit/extractions?limit=50', {
+                    headers: { 'X-Master-Key': token } // The endpoint requires master key
+                });
+                if (!res.ok) return;
+                const logs = await res.json();
+                const tbody = document.getElementById('audit-tbody');
+                if (logs.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px; color:var(--text-muted);">Sin registros de auditoría.</td></tr>';
+                    return;
+                }
+                tbody.innerHTML = logs.map(l => `
+                    <tr>
+                        <td style="font-size:0.75rem; color:var(--text-muted); white-space:nowrap">${l.created_at}</td>
+                        <td style="font-weight:600">${l.username} <span style="font-size:0.65rem; color:var(--text-muted); font-weight:400">(${l.api_key_partial})</span></td>
+                        <td style="font-family:monospace; font-size:0.75rem">${l.endpoint}</td>
+                        <td>${l.success ? '<span style="color:var(--success)">✅ OK</span>' : '<span style="color:var(--danger)">❌ FALLO</span>'}</td>
+                        <td style="font-family:monospace; font-size:0.75rem">${l.extraction_id || '—'}</td>
+                        <td style="font-size:0.75rem; color:var(--text-soft); max-width:200px; overflow:hidden; text-overflow:ellipsis" title="${l.error_message || ''}">${l.error_message || '—'}</td>
+                    </tr>
+                `).join('');
+            } catch (e) { console.error('loadAuditLogs:', e); }
         }
 
         // ===== OPERATOR - SEARCH =====
@@ -1881,10 +1981,18 @@
 
             const requests = [];
 
+            let opKey = localStorage.getItem('op_api_key');
+            if (!opKey) {
+                opKey = prompt("🔒 Seguridad de Producción:\nPara extraer material necesitas ingresar tu Número de Empleado:");
+                if (!opKey) return;
+                localStorage.setItem('op_api_key', opKey);
+                syncLogoutBtn();
+            }
+
             if (smartReels.length > 0) {
                 requests.push(fetch('/api/extract', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json', 'X-API-Key': opKey },
                     body: JSON.stringify({
                         line_name: lineName,
                         item_codes: smartReels.map(b => b.itemcode),
@@ -1905,9 +2013,10 @@
                 }
                 
                 for (const [cId, reels] of Object.entries(byContainer)) {
+                    let jukiKey = localStorage.getItem('op_api_key'); // Fetch again just to be safe
                     requests.push(fetch('/api/extract', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/json', 'X-API-Key': jukiKey },
                         body: JSON.stringify({
                             line_name: lineName,
                             item_codes: reels.map(b => b.itemcode),
@@ -1932,8 +2041,13 @@
                 for (let res of results) {
                     if (!res.ok) {
                         allOk = false;
-                        const err = await res.json().catch(()=>({}));
-                        errMsg = err.detail || 'Error en extracción';
+                        if (res.status === 401) {
+                            localStorage.removeItem('op_api_key'); // Llave invalida
+                            errMsg = "Llave de operador inválida o revocada. Presiona extraer de nuevo para ingresarla.";
+                        } else {
+                            const err = await res.json().catch(()=>({}));
+                            errMsg = err.detail || 'Error en extracción';
+                        }
                     }
                 }
                 if (allOk) {
@@ -2108,26 +2222,30 @@
 
         async function createApiUser() {
             const uInput = document.getElementById('conf-user-name');
+            const kInput = document.getElementById('conf-user-key');
             const username = uInput.value.trim();
-            if(username.length < 3) return showToast('El usuario debe tener 3+ caracteres', 'error');
+            const api_key = kInput.value.trim();
+
+            if(username.length < 3) return showToast('El nombre debe tener 3+ caracteres', 'error');
+            if(api_key.length < 1) return showToast('El número de empleado es obligatorio', 'error');
+
             const token = sessionStorage.getItem('cfg_token');
             try {
                 const res = await fetch('/admin/users', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-Master-Key': token },
-                    body: JSON.stringify({ username: username })
+                    body: JSON.stringify({ username: username, api_key: api_key })
                 });
                 if(!res.ok) {
                     const err = await res.json();
-                    return showToast(err.detail || 'Error al crear usuario', 'error');
+                    return showToast(err.detail || 'Error al registrar empleado', 'error');
                 }
-                const data = await res.json();
                 uInput.value = '';
-                showToast('Usuario creado', 'success');
-                alert(`IMPORTANTE: Llave generada para ${data.username}.\nGuárdala, no se mostrará de nuevo:\n\n${data.api_key}`);
+                kInput.value = '';
+                showToast('Empleado registrado con éxito', 'success');
                 loadApiUsers();
             } catch(e) {
-                showToast('Error de red al crear usuario', 'error');
+                showToast('Error de red al registrar empleado', 'error');
             }
         }
 
@@ -2148,7 +2266,10 @@
         }
 
         async function regenerateApiKey(username) {
-            if(!confirm(`¿Rotar la llave API de '${username}'? La llave actual dejará de funcionar INMEDIATAMENTE.`)) return;
+            if(!confirm(`¿Rotar el acceso de '${username}'? Se pedirá un nuevo Número de Empleado.`)) return;
+            // Note: with current simplified logic, regenerate just creates a new random key
+            // but the user wants to set it manually. So maybe we should just delete and recreate.
+            // For now, I'll keep the server side as is but it might need a prompt.
             const token = sessionStorage.getItem('cfg_token');
             try {
                 const res = await fetch(`/admin/users/${username}/regenerate`, {
@@ -2157,11 +2278,27 @@
                 });
                 if(!res.ok) throw new Error();
                 const data = await res.json();
-                showToast('Llave rotada existosamente', 'success');
-                alert(`NUEVA llave para ${username}:\n\n${data.api_key}\n\nActualiza los clientes.`);
+                showToast('Acceso rotado existosamente', 'success');
+                alert(`NUEVO acceso temporal para ${username}:\n\n${data.api_key}\n\nSe recomienda eliminar y volver a crear con el # de empleado correcto.`);
                 loadApiUsers();
             } catch(e) {
                 showToast('Error rotando llave', 'error');
+            }
+        }
+
+        function endShift() {
+            if (!confirm('¿Deseas finalizar el turno? Se borrará tu número de empleado de esta sesión.')) return;
+            localStorage.removeItem('op_api_key');
+            syncLogoutBtn();
+            showToast('Turno finalizado. Favor de cerrar la pestaña o entregar al siguiente operador.', 'success');
+        }
+
+        function syncLogoutBtn() {
+            const btn = document.getElementById('btn-end-shift');
+            if (localStorage.getItem('op_api_key')) {
+                btn.style.display = 'inline-flex';
+            } else {
+                btn.style.display = 'none';
             }
         }
 
@@ -2169,6 +2306,7 @@
         setInterval(loadScheduledData, 30000);
         loadLines();
         loadScheduledData();
+        syncLogoutBtn();
     </script>
 </body>
 
