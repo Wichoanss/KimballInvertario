@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartRack Sistema de Inventario - JUKI Towers">
+    <title>JUKI Torres - Panel de Extracción</title>
+    <style>
+        /* Reutilizamos variables del diseño principal */
+        :root {
+            --bg: #0f1115;
+            --surface: #1a1d24;
+            --surface2: #22262f;
+            --primary: #f59e0b;
+            /* Naranja/Amarillo para diferenciar de azul de SmartRack */
+            --primary-dim: rgba(245, 158, 11, 0.15);
+            --success: #10b981;
+            --success-dim: rgba(16, 185, 129, 0.12);
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --text: #f1f5f9;
+            --text-muted: #64748b;
+            --text-soft: #94a3b8;
+            --border: #252a35;
+            --border2: #2e3545;
+            --radius: 10px;
+            --radius-sm: 7px;
+            --nav-h: 58px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ===== TOP NAV ===== */
+        .topnav {
+            height: var(--nav-h);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 32px;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--primary) 0%, #d97706 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .container {
+            padding: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        /* ===== TOWERS GRID ===== */
+        .towers-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .tower-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .tower-card:hover {
+            border-color: var(--primary);
+            background: var(--surface2);
+        }
+
+        .tower-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-dim);
+            background: var(--surface2);
+        }
+
+        .tower-icon {
+            width: 60px;
+            height: 50px;
+            margin-bottom: 15px;
+        }
+
+        .tower-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .tower-badge {
+            background: var(--danger);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .tower-badge.empty {
+            background: var(--border2);
+            color: var(--text-muted);
+        }
+
+        /* Urgency Levels */
+        .urg-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .urg-5 {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        .urg-4 {
+            background: #f97316;
+            color: white;
+        }
+
+        .urg-3 {
+            background: #eab308;
+            color: black;
+        }
+
+        .urg-2 {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .urg-1 {
+            background: var(--border2);
+            color: var(--text-muted);
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* ===== REQUESTS BUFFER ===== */
+        .buffer-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+
+        .countdown-badge {
+            font-weight: 800;
+            font-family: monospace;
+            font-size: 1.1rem;
+            padding: 4px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .buffer-head {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .buffer-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .buffer-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 200px;
+        }
+
+        .req-item {
+            background: var(--bg);
+            border: 1px solid var(--border2);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .req-item:hover {
+            border-color: var(--primary-dim);
+        }
+
+        .req-item.selected {
+            border-color: var(--primary);
+            background: var(--primary-dim);
+        }
+
+        .req-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .req-line {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary);
+        }
+
+        .req-details {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            font-family: monospace;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            filter: brightness(1.1);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 18px;
+            border-radius: var(--radius);
+            color: white;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 9999;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            background: #064e3b;
+            border: 1px solid var(--success);
+        }
+
+        .toast.error {
+            background: #7f1d1d;
+            border: 1px solid var(--danger);
+        }
+
+        .toast.warning {
+            background: #78350f;
+            border: 1px solid var(--warning);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="topnav">
+        <div class="logo">
+            <div class="logo-mark">J</div>
+            JUKI Admin Tower
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-title">Torres JUKI</div>
+        <div class="towers-grid" id="towers-grid">
+            <!-- Rendered by JS -->
+        </div>
+
+        <div class="buffer-wrap">
+            <div class="buffer-head">
+                <div class="buffer-title">
+                    Solicitudes Pendientes
+                    <span id="active-tower-label" style="color:var(--text-muted);font-size:0.9rem;">(Selecciona una
+                        torre)</span>
+                </div>
+                <button class="btn btn-primary" id="btn-extract" disabled onclick="extractSelected()">
+                    Extraer Seleccionados
+                </button>
+            </div>
+            <div class="buffer-body" id="req-list">
+                <div style="color:var(--text-muted); text-align:center; margin-top:40px;">
+                    Selecciona una torre arriba para ver sus solicitudes.
+                </div>
+            </div>
+        </div>
+
+        <div class="buffer-wrap">
+            <div class="buffer-head">
+                <div class="buffer-title">
+                    Inventario Interno <span id="active-inv-label"
+                        style="color:var(--text-muted);font-size:0.9rem; margin-left: 10px;">(Selecciona una
+                        torre)</span>
+                </div>
+                <div class="field" style="margin-bottom:0">
+                    <input type="text" id="inv-search" placeholder="Buscar PN o UID..."
+                        style="padding:6px 12px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg); color:var(--text);"
+                        oninput="renderInventory()">
+                </div>
+            </div>
+            <div class="buffer-body" style="padding:0">
+                <table style="width:100%; border-collapse:collapse; text-align:left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border); background: var(--surface2);">
+                            <th style="padding:12px 20px; color:var(--text-soft);">Item Code</th>
+                            <th style="padding:12px 20px; color:var(--text-soft);">Code (UID)</th>
+                            <th style="padding:12px 20px; color:var(--text-soft);">Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inv-tbody">
+                        <tr>
+                            <td colspan="3" style="text-align:center; padding:30px; color:var(--text-muted);">Selecciona
+                                una torre...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let pendingRequests = [];
+        let jukiReels = [];
+        let selectedTower = null;
+        let selectedReqs = new Set();
+        let cdInterval = null;
+
+        // El SVG en base64 o inyectado directamente para evitar fallos de ruta.
+        // Dado que sabemos que está en templates/icons/tower.svg, lo inyectaremos directamente:
+        const towerSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 85" width="100%" height="100%">
+            <style>.st0{fill:#F2F2F2;stroke:#C7C7C7;stroke-width:0.5;stroke-miterlimit:10}.st1{fill:#0055CC}.st2{fill:#003366}.st3{fill:#B3D9FF}.st4{fill:#E6E6E6}.st5{fill:#FF3333}.st6{fill:#33FF33}</style>
+            <g><rect x="5" y="5" class="st0" width="85" height="75" rx="2" ry="2"/><line x1="42" y1="5" x2="42" y2="80" style="stroke:#C7C7C7;stroke-width:0.25;"/><rect x="8" y="7" class="st6" width="6" height="3" rx="0.5" ry="0.5"/><rect x="10" y="32" class="st0" width="20" height="20" rx="1" ry="1"/><rect x="12" y="34" class="st3" width="16" height="16"/><path class="st1" d="M18,31h4l-2,4.5v1.5h-1v-1.5L20,31H18V31z"/><rect x="10" y="54" class="st4" width="20" height="6" rx="1" ry="1"/><rect x="13" y="56" class="st1" width="14" height="2" rx="0.5" ry="0.5"/><rect x="32" y="32" class="st1" width="5" height="28" rx="0.5" ry="0.5"/><circle class="st0" cx="34.5" cy="35" r="1"/><circle class="st0" cx="34.5" cy="38" r="1"/><circle class="st5" cx="34.5" cy="51" r="1.5"/><circle class="st0" cx="34.5" cy="56" r="1"/><rect x="48" y="25" class="st0" width="22" height="12" rx="1" ry="1"/><rect x="49" y="26" class="st2" width="20" height="10"/><rect x="52" y="39" class="st1" width="14" height="1.5"/><rect x="52" y="41" class="st1" width="10" height="0.8"/><rect x="45" y="52" class="st4" width="40" height="2" rx="0.5" ry="0.5"/><rect x="53" y="51" class="st2" width="16" height="1"/><circle class="st2" cx="72" cy="51" r="0.6"/><path class="st1" d="M88,5v75h2c1.1,0,2-0.9,2-2V7C92,5.9,91.1,5,89,5H88z"/><circle style="fill:#FFFFFF;" cx="90" cy="30" r="1"/><circle style="fill:#FFFFFF;" cx="90" cy="27" r="1"/></g>
+        </svg>`;
+
+        async function loadPending() {
+            try {
+                // Leer Pedidos Pendientes
+                const resPend = await fetch('/api/movements/pending?type=juki');
+                if (!resPend.ok) throw new Error('Error al leer pedidos');
+                pendingRequests = await resPend.json();
+                console.log("JUKI: Pedidos recibidos:", pendingRequests);
+
+                // Leer Inventario Fisico
+                const resReels = await fetch('/api/juki/reels');
+                if (!resReels.ok) throw new Error('Error al leer inventario');
+                jukiReels = await resReels.json();
+                console.log("JUKI: Inventario recibido:", jukiReels);
+
+                renderTowers();
+                if (selectedTower !== null) {
+                    renderRequests(selectedTower);
+                    renderInventory();
+                }
+                startCountdowns();
+            } catch (e) {
+                console.error("Error cargando datos:", e);
+                const list = document.getElementById('req-list');
+                if (list) list.innerHTML = `<div style="color:var(--danger); text-align:center; padding:20px;">
+                                           ❌ Error de conexión con el servidor. Revisar consola (F12).</div>`;
+            }
+        }
+
+        function renderTowers() {
+            const grid = document.getElementById('towers-grid');
+
+            // Generate standard 5 towers (1 to 5)
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                const towerId = String(i);
+
+                // Filtrar solo los requests exactos a esta torre
+                // Utilizamos == para evitar errores si uno es numero y otro string
+                const reqsForTower = pendingRequests.filter(r => r.container_id == towerId);
+                const cnt = reqsForTower.length;
+
+                html += `
+                <div class="tower-card ${selectedTower === towerId ? 'active' : ''}" onclick="selectTower('${towerId}')">
+                    <div class="tower-icon">${towerSVG}</div>
+                    <div class="tower-name">Torre JUKI ${towerId}</div>
+                    <div class="tower-badge ${cnt === 0 ? 'empty' : ''}">${cnt} pedidos</div>
+                </div>`;
+            }
+            grid.innerHTML = html;
+        }
+
+        function selectTower(id) {
+            selectedTower = id;
+            selectedReqs.clear();
+            renderTowers();
+            renderRequests(id);
+            renderInventory(); // Muestra la DB
+            updateBtn();
+        }
+
+        function toggleReq(reqId) {
+            if (selectedReqs.has(reqId)) selectedReqs.delete(reqId);
+            else selectedReqs.add(reqId);
+
+            document.getElementById('req-' + reqId).classList.toggle('selected');
+            updateBtn();
+        }
+
+        function updateBtn() {
+            const btn = document.getElementById('btn-extract');
+            btn.disabled = selectedReqs.size === 0;
+            btn.textContent = `Extraer Seleccionados (${selectedReqs.size})`;
+        }
+
+        function renderRequests(towerId) {
+            const list = document.getElementById('req-list');
+
+            const reqs = pendingRequests
+                .filter(r => r.container_id == towerId)
+                .sort((a, b) => (b.urgency || 1) - (a.urgency || 1) || new Date(a.created_at) - new Date(b.created_at));
+
+            document.getElementById('active-tower-label').textContent = `- Torre ${towerId}`;
+
+            if (reqs.length === 0) {
+                list.innerHTML = `<div style="color:var(--success); text-align:center; margin-top:40px; font-size:1.1rem; font-weight:600;">
+                                  ✅ No hay pedidos pendientes para esta torre.</div>`;
+                return;
+            }
+
+            list.innerHTML = reqs.map(r => {
+                const reels = r.reel_codes.split(',');
+                const urg = r.urgency || 1;
+                const urgText = urg === 5 ? 'URGENTE' : urg === 4 ? '15 MIN' : urg === 3 ? '30 MIN' : urg === 2 ? '45 MIN' : 'SIN PRISA';
+
+                // Countdown target in ms
+                const targetMs = r.due_at ? new Date(r.due_at).getTime() : 0;
+
+                return `
+                <div class="req-item ${selectedReqs.has(r.id) ? 'selected' : ''}" id="req-${r.id}" onclick="toggleReq(${r.id})">
+                    <div class="req-info">
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                            <div class="req-line">Entregar a: ${r.target_line}</div>
+                            <div style="display:flex; gap:10px; align-items:center;">
+                                <div class="countdown-badge" data-target="${targetMs}">--:--</div>
+                                <div class="urg-badge urg-${urg}">${urgText}</div>
+                            </div>
+                        </div>
+                        <div class="req-details">${reels.length} rollos solicitados: ${r.reel_codes}</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted)">Solicitado: ${r.created_at}</div>
+                    </div>
+                    <div style="padding: 10px; border: 1px solid var(--border2); border-radius: 5px; background: var(--bg);">
+                        <input type="checkbox" style="pointer-events:none; width:18px; height:18px;" ${selectedReqs.has(r.id) ? 'checked' : ''}>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function startCountdowns() {
+            if (cdInterval) clearInterval(cdInterval);
+            cdInterval = setInterval(() => {
+                const badges = document.querySelectorAll('.countdown-badge');
+                if (badges.length === 0) return;
+                badges.forEach(badge => {
+                    const target = parseInt(badge.dataset.target);
+                    if (!target) return;
+                    const secsLeft = Math.max(0, Math.round((target - Date.now()) / 1000));
+                    const mm = String(Math.floor(secsLeft / 60)).padStart(2, '0');
+                    const ss = String(secsLeft % 60).padStart(2, '0');
+                    badge.textContent = mm + ':' + ss;
+
+                    if (secsLeft <= 0) badge.style.color = '#ef4444';
+                    else if (secsLeft <= 60) badge.style.color = '#eab308';
+                    else badge.style.color = '#10b981';
+                });
+            }, 1000);
+        }
+
+        function renderInventory() {
+            if (!selectedTower) return;
+            document.getElementById('active-inv-label').textContent = `- Torre ${selectedTower}`;
+
+            const q = (document.getElementById('inv-search').value || '').toLowerCase();
+            const tbody = document.getElementById('inv-tbody');
+
+            let filtered = jukiReels.filter(r => r.container_id == selectedTower);
+
+            if (q) {
+                filtered = filtered.filter(r => r.code.toLowerCase().includes(q) || r.itemcode.toLowerCase().includes(q));
+            }
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding:30px; color:var(--text-muted);">Sin resultados o inventario vacío.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(r => `
+            <tr style="border-bottom: 1px solid var(--border2);">
+                <td style="padding:12px 20px; font-weight:600; color:var(--primary);">${r.itemcode}</td>
+                <td style="padding:12px 20px; font-family:monospace; color:var(--text-soft);">${r.code}</td>
+                <td style="padding:12px 20px;"><span class="tower-badge" style="background:var(--surface2); color:var(--success); border:1px solid var(--success-dim); border-radius:5px;">${r.qty}</span></td>
+            </tr>
+            `).join('');
+        }
+
+        async function extractSelected() {
+            if (selectedReqs.size === 0) return;
+            const btn = document.getElementById('btn-extract');
+            btn.disabled = true;
+            btn.textContent = 'Procesando...';
+
+            const reqsToExtract = pendingRequests.filter(r => selectedReqs.has(r.id));
+
+            // Format Name: [LINE] - [PART_NUMBERS] - [YYYY-MM-DD HH:MM]
+            const lines = new Set(reqsToExtract.map(r => r.target_line).filter(l => !!l));
+            const pns = new Set(reqsToExtract.map(r => r.item_codes).filter(ic => !!ic).flatMap(ic => ic.split(',')));
+            
+            const now = new Date();
+            const dateStr = now.toISOString().slice(0, 10) + " " + now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0');
+
+            let extractName = "";
+            if (lines.size > 1) {
+                extractName = `MULTIPLE - ${dateStr}`;
+            } else {
+                const line = Array.from(lines)[0] || "LINEA_DESCONOCIDA";
+                const parts = Array.from(pns).join(',');
+                extractName = `${line} - ${parts} - ${dateStr}`;
+            }
+
+            let allReels = [];
+            reqsToExtract.forEach(r => {
+                const codes = r.reel_codes.split(',').map(s => s.trim()).filter(s => !!s);
+                allReels = allReels.concat(codes);
+            });
+
+            try {
+                const res = await fetch('/api/juki/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: extractName,
+                        container_id: String(selectedTower),
+                        reel_codes: allReels,
+                        log_ids: Array.from(selectedReqs)
+                    })
+                });
+
+                if (res.ok) {
+                    showToast('Extracción completada. Los pedidos han sido marcados.', 'success');
+                    selectedReqs.clear();
+                    loadPending();
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    showToast(err.detail || 'Error en la torre', 'error');
+                }
+            } catch (e) {
+                showToast('Error de red', 'error');
+            } finally {
+                updateBtn();
+            }
+        }
+
+        function showToast(msg, type = 'success') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = `toast show ${type}`;
+            setTimeout(() => t.className = 'toast', 4000);
+        }
+
+        // Initialize polling
+        loadPending();
+        setInterval(loadPending, 10000);
+    </script>
+</body>
+
+</html>

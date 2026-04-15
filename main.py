@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 
 import config
 import database
-from poller import fetch_and_update_reels, execute_extraction
+from poller import fetch_and_update_reels, execute_extraction, fetch_juki_reels, execute_juki_extraction
 from logger_setup import setup_logger
 
 logger = setup_logger("SmartRackServer")
@@ -34,6 +34,9 @@ class ExtractRequest(BaseModel):
     item_codes: List[str]   # Numeros de parte originales (para el nombre)
     reel_codes: List[str]   # Codigos fisicos del reel a extraer
     delay_minutes: int = 0
+    type: str = "smartrack" # 'smartrack' o 'juki'
+    container_id: str = ""  # Agregado para JUKI
+    urgency: int = 1        # 1-5 scale
 
 
 # ---------------------------------------------------------------------------
@@ -50,7 +53,9 @@ async def lifespan(app: FastAPI):
     logger.info(f"SmartRack arrancando en puerto {config.SERVER_PORT}")
 
     scheduler.add_job(fetch_and_update_reels, 'interval', seconds=config.POLL_INTERVAL_SECONDS, id='poller')
+    scheduler.add_job(fetch_juki_reels, 'interval', seconds=config.POLL_INTERVAL_SECONDS, id='poller_juki')
     scheduler.add_job(fetch_and_update_reels, id='poller_init')   # Disparo inmediato
+    scheduler.add_job(fetch_juki_reels, id='poller_init_juki')
     scheduler.start()
 
     yield
@@ -122,10 +127,21 @@ async def get_index():
     with open(_template_path("index.html"), encoding="utf-8") as f:
         return f.read()
 
+@app.get("/towers.html", response_class=HTMLResponse)
+async def get_towers():
+    with open(_template_path("towers.html"), encoding="utf-8") as f:
+        return f.read()
+
 
 @app.get("/api/reels")
 def api_get_reels():
     return database.get_all_reels()
+
+@app.get("/api/juki/reels")
+def api_get_juki_reels():
+    reels = database.get_all_juki_reels()
+    logger.debug(f"API JUKI: Solicitados reels. Enviando {len(reels)} registros.")
+    return reels
 
 @app.get("/api/reels/export/csv")
 def export_reels_csv():
@@ -181,10 +197,12 @@ def api_check_reel(req: CodeCheckRequest):
     result = database.check_itemcode_availability(req.itemcode, req.line_id, req.exclude_codes)
     status = result.get("status")
     if status == "in_line":
-        return {"found": True,  "exact": True,  "reel": result["reel"]}
+        return {"found": True,  "exact": True,  "reel": result["reel"], "status": status}
     if status == "other_rack":
-        return {"found": True,  "exact": False, "reel": result["reel"]}
-    return {"found": False, "message": "Rollo no está en ningún rack disponible"}
+        return {"found": True,  "exact": False, "reel": result["reel"], "status": status}
+    if status == "juki":
+        return {"found": True,  "exact": False, "reel": result["reel"], "status": status}
+    return {"found": False, "message": "Rollo no está en ningún rack ni torre disponible"}
 
 
 @app.post("/api/extract")
@@ -196,6 +214,16 @@ def api_extract(req: ExtractRequest):
     name = (f"{req.item_codes[0]}_{req.line_name}"
             if len(req.item_codes) == 1
             else f"Multi_{req.line_name}")
+
+    if req.type == "juki":
+        # Para JUKI, solo guardamos el log de movimiento (pedido) para que el operador lo vea
+        database.create_movement_log("juki", req.line_name, req.reel_codes, req.container_id, req.urgency, req.item_codes)
+        logger.info(f"OPERADOR: Pedido a JUKI — {len(req.reel_codes)} rollos, línea {req.line_name}, urgencia {req.urgency}")
+        return {"status": "success", "message": "Pedido encolado en el panel del operador JUKI p/ su extracción"}
+
+    # --- Flujo SmartRack ---
+    # Log movement in DB regardless of extraction type (SmartRack request)
+    database.create_movement_log("smartrack", req.line_name, req.reel_codes, "", 1, req.item_codes)
 
     if req.delay_minutes > 0:
         run_date = datetime.now() + timedelta(minutes=req.delay_minutes)
@@ -218,6 +246,7 @@ def api_extract(req: ExtractRequest):
     success, message = execute_extraction(name, req.reel_codes, True)
     if success:
         logger.info(f"ÉXITO: {name}")
+        # Could update status to 'extracted', left pending until confirmed if needed.
         return {"status": "success", "message": "Extracción inmediata solicitada con éxito"}
 
     logger.error(f"FALLO: {name} — {message}")
@@ -250,11 +279,44 @@ def api_delete_scheduled(job_id: str):
         logger.error(f"Error cancelando job {job_id}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+class JukiExtractRequest(BaseModel):
+    name: str
+    container_id: str
+    reel_codes: List[str]
+    log_ids: List[int] # To mark these logs as extracted
+
+@app.post("/api/juki/extract")
+def api_juki_extract(req: JukiExtractRequest):
+    success, message = execute_juki_extraction(req.name, req.container_id, req.reel_codes)
+    if success:
+        for log_id in req.log_ids:
+            database.update_movement_status(log_id, 'extracted')
+        return {"status": "success"}
+    raise HTTPException(status_code=500, detail=message)
+
+@app.get("/api/movements/pending")
+def api_get_pending_movements(type: str = None):
+    moves = database.get_pending_movements(type)
+    logger.debug(f"API MOVEMENTS: Solicitadas pendientes ({type}). Enviando {len(moves)} registros.")
+    return moves
+
+@app.get("/api/movements/recent")
+def api_get_recent_movements():
+    moves = database.get_recent_movements(25)
+    return moves
+
 
 # ---------------------------------------------------------------------------
 # Entrada principal
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
+    import sys
+    import os
+    if sys.stdout is None:
+        sys.stdout = open(os.devnull, "w")
+    if sys.stderr is None:
+        sys.stderr = open(os.devnull, "w")
+
     import multiprocessing
     multiprocessing.freeze_support()
     uvicorn.run(app, host="0.0.0.0", port=config.SERVER_PORT)

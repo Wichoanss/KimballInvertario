@@ -505,6 +505,11 @@
             background: rgba(220, 38, 38, 0.08);
         }
 
+        .buffer-item.juki-rack {
+            border-color: var(--warning);
+            background: rgba(245, 158, 11, 0.08);
+        }
+
         .other-rack-label {
             color: var(--danger);
             font-weight: 700;
@@ -513,6 +518,60 @@
             margin-bottom: 2px;
             display: block;
         }
+
+        .bi-check {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+        }
+
+        .urgency-wrap {
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            margin-top: auto;
+            border: 1px solid var(--border);
+            display: none;
+        }
+        
+        .urg-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        
+        .urg-options {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .urg-btn {
+            flex: 1;
+            height: 32px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-soft);
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .urg-btn.active {
+            color: white;
+            border-color: transparent;
+        }
+        
+        .urg-1.active { background: #64748b; }
+        .urg-2.active { background: #3b82f6; }
+        .urg-3.active { background: #eab308; }
+        .urg-4.active { background: #f97316; }
+        .urg-5.active { background: #ef4444; box-shadow: 0 0 10px rgba(239,68,68,0.4); }
 
         @keyframes slideIn {
             from {
@@ -724,23 +783,27 @@
         /* ===== TOAST ===== */
         .toast {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 12px 18px;
-            border-radius: var(--radius);
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            padding: 24px 40px;
+            border-radius: 16px;
             color: white;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transform: translateY(80px);
+            font-weight: 800;
+            font-size: 1.8rem;
+            text-align: center;
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 9999;
-            max-width: 300px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 99999;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
         }
 
         .toast.show {
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
 
@@ -1017,6 +1080,7 @@
                     <div class="buffer-wrap">
                         <div class="buffer-head">
                             <div class="buffer-title">
+                                <input type="checkbox" id="select-all-buffer" onchange="toggleSelectAll(this)" style="margin-right:10px; width:18px; height:18px;">
                                 Buffer de Extraccion
                                 <span class="buf-count" id="buf-count">0</span>
                             </div>
@@ -1030,19 +1094,29 @@
                                     <option value="60">En 1 hora</option>
                                 </select>
                                 <button class="btn btn-success" id="btn-extract" disabled
-                                    onclick="extractBuffer()">Extraer Ahora</button>
+                                    onclick="extractBuffer()">Extraer Seleccionados</button>
                             </div>
                         </div>
                         <div class="buffer-body" id="buffer-body">
                             <div class="empty-state" id="buf-empty">
-                                <svg class="icon" style="width:28px;height:28px;opacity:0.25" viewBox="0 0 24 24">
-                                    <path
-                                        d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                    <path d="M16 3H8a2 2 0 0 0-2 2v2h12V5a2 2 0 0 0-2-2z" />
+                                <svg class="icon" viewBox="0 0 24 24" style="width:48px;height:48px;color:var(--border2);margin-bottom:12px;">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                                 </svg>
-                                Buffer vacio. Escanea o escribe un numero de parte.
+                                Escanea un rollo para agregarlo
                             </div>
                             <div id="buffer-items"></div>
+                        </div>
+                        
+                        <!-- Urgencia JUKI -->
+                        <div class="urgency-wrap" id="urgency-container">
+                            <div class="urg-label">Nivel de Urgencia (JUKI)</div>
+                            <div class="urg-options">
+                                <button class="urg-btn urg-1" onclick="setUrgency(1)" data-val="1">1</button>
+                                <button class="urg-btn urg-2" onclick="setUrgency(2)" data-val="2">2</button>
+                                <button class="urg-btn urg-3" onclick="setUrgency(3)" data-val="3">3</button>
+                                <button class="urg-btn urg-4" onclick="setUrgency(4)" data-val="4">4</button>
+                                <button class="urg-btn urg-5" onclick="setUrgency(5)" data-val="5">5</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1065,6 +1139,30 @@
                             </tr>
                         </thead>
                         <tbody id="sched-tbody"></tbody>
+                    </table>
+                </div>
+                
+                <div class="sched-header" style="margin-top:24px; display:flex; justify-content:space-between; align-items:center;">
+                    <div class="page-title" style="margin-bottom:0">Estatus Solicitudes JUKI</div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <span style="font-size:0.85rem; color:var(--text-muted);">Filtrar por Línea:</span>
+                        <select id="line-filter-index" onchange="loadScheduledData()" style="padding:4px 10px; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:0.85rem;">
+                            <option value="ALL">Todas</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-box">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Línea(s) Destino</th>
+                                <th>Rollos</th>
+                                <th>Estado</th>
+                                <th>Fecha/Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pending-tbody"></tbody>
                     </table>
                 </div>
             </div>
@@ -1220,6 +1318,8 @@
         let reelsData = [];
         let linesData = [];
         let buffer = [];
+        let selectedIndices = new Set();
+        let currentUrgency = 1;
         let activeTab = 'op';
         let invInterval = null;
 
@@ -1279,7 +1379,17 @@
         async function loadReels() {
             try {
                 const res = await fetch('/api/reels');
-                reelsData = await res.json();
+                const smartReels = await res.json();
+                
+                const jRes = await fetch('/api/juki/reels');
+                const jukiReels = await jRes.json();
+                for (let r of jukiReels) {
+                    r.isJuki = true;
+                    r.rack = "Torre JUKI " + (r.container_id || '');
+                    r.stockcell = "JUKI";
+                }
+                
+                reelsData = smartReels.concat(jukiReels);
                 renderReelsTable();
                 // Update timestamp
                 const ts = document.getElementById('inv-last-update');
@@ -1303,10 +1413,25 @@
 
         async function loadScheduledData() {
             try {
-                const res = await fetch('/api/scheduled');
-                const jobs = await res.json();
+                // Populate line filter if empty
+                const filter = document.getElementById('line-filter-index');
+                if (filter.options.length === 1) {
+                    const resLines = await fetch('/api/lines');
+                    const lines = await resLines.json();
+                    lines.forEach(l => {
+                        const opt = document.createElement('option');
+                        opt.value = l.name;
+                        opt.textContent = l.name;
+                        filter.appendChild(opt);
+                    });
+                }
 
-                const filtered = jobs.filter(j => !['fetch_and_update_reels', 'poller_init'].includes(j.name));
+                const selectedLine = filter.value;
+
+                const res = await fetch('/api/scheduled');
+                let jobs = await res.json();
+
+                const filtered = jobs.filter(j => !['fetch_and_update_reels', 'poller_init', 'fetch_juki_reels', 'poller_init_juki'].includes(j.name));
                 const cnt = filtered.length;
 
                 // Badges
@@ -1319,27 +1444,62 @@
                 const tbody = document.getElementById('sched-tbody');
                 if (cnt === 0) {
                     tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:40px">No hay extracciones programadas.</td></tr>';
-                    return;
+                } else {
+                    tbody.innerHTML = filtered.map(j => {
+                        const runDate = new Date(j.next_run_time.replace(' ', 'T'));
+                        const secsLeft = Math.max(0, Math.round((runDate - Date.now()) / 1000));
+                        const mm = String(Math.floor(secsLeft / 60)).padStart(2, '0');
+                        const ss = String(secsLeft % 60).padStart(2, '0');
+                        return `
+                <tr>
+                    <td style="font-weight:600;color:var(--primary);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.name}</td>
+                    <td style="color:var(--text-soft);font-size:0.82rem">${j.next_run_time}</td>
+                    <td>
+                        <span class="countdown-badge" data-jobid="${j.id}" data-target="${runDate.getTime()}">${mm}:${ss}</span>
+                    </td>
+                    <td><button class="btn btn-danger btn-sm" onclick="cancelScheduled('${j.id}')">Cancelar</button></td>
+                </tr>`;
+                    }).join('');
+                    startCountdowns();
                 }
+                
+                // Fetch recent movements (last 25)
+                const resMove = await fetch('/api/movements/recent');
+                const movements = await resMove.json();
+                
+                // USER: JUKI status panel - ONLY pending JUKI requests, filtered by line
+                const jukiPending = movements.filter(m => m.type === 'juki' && m.status === 'pending' && (selectedLine === 'ALL' || m.target_line === selectedLine));
 
-                tbody.innerHTML = filtered.map(j => {
-                    const runDate = new Date(j.next_run_time.replace(' ', 'T'));
-                    const secsLeft = Math.max(0, Math.round((runDate - Date.now()) / 1000));
-                    const mm = String(Math.floor(secsLeft / 60)).padStart(2, '0');
-                    const ss = String(secsLeft % 60).padStart(2, '0');
-                    return `
+                const pBody = document.getElementById('pending-tbody');
+                if (jukiPending.length === 0) {
+                    pBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-muted);">No hay pedidos JUKI pendientes.</td></tr>';
+                } else {
+                    pBody.innerHTML = jukiPending.map(p => {
+                        const targetMs = p.due_at ? new Date(p.due_at).getTime() : 0;
+                        const timerHtml = (targetMs > 0) 
+                            ? `<span class="countdown-badge" data-target="${targetMs}" style="font-size:0.75rem; margin-left:8px">--:--</span>`
+                            : '';
+                        
+                        const reels = p.reel_codes.split(',');
+                        const itemsDisplay = p.item_codes ? p.item_codes : `${reels.length} rollos`;
+                        
+                        return `
             <tr>
-                <td style="font-weight:600;color:var(--primary);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.name}</td>
-                <td style="color:var(--text-soft);font-size:0.82rem">${j.next_run_time}</td>
+                <td style="color:var(--primary); font-weight:700">JUKI</td>
+                <td style="color:var(--text-soft)">${p.target_line}</td>
+                <td style="font-size:0.82rem; max-width:220px; overflow:hidden; text-overflow:ellipsis" title="${itemsDisplay}">${itemsDisplay}</td>
                 <td>
-                    <span class="countdown-badge" data-jobid="${j.id}" data-target="${runDate.getTime()}">${mm}:${ss}</span>
+                    <span class="status-badge status-pending">⌛ PENDIENTE</span>
+                    ${timerHtml}
                 </td>
-                <td><button class="btn btn-danger btn-sm" onclick="cancelScheduled('${j.id}')">Cancelar</button></td>
+                <td style="font-size:0.8rem; color:var(--text-muted)">${p.created_at}</td>
             </tr>`;
-                }).join('');
-
+                    }).join('');
+                }
                 startCountdowns();
-            } catch (e) { console.error('loadScheduledData:', e); }
+            } catch (e) {
+                console.error("Error cargando programadas:", e);
+            }
         }
 
         async function cancelScheduled(jobId) {
@@ -1361,9 +1521,12 @@
             const q = (document.getElementById('db-search').value || '').toLowerCase();
             const tbody = document.getElementById('db-tbody');
 
-            const filtered = q
-                ? reelsData.filter(r => r.code.toLowerCase().includes(q) || r.itemcode.toLowerCase().includes(q))
-                : reelsData;
+            // Solo mostrar SmartRacks en esta tabla
+            let filtered = reelsData.filter(r => !r.isJuki);
+
+            if (q) {
+                filtered = filtered.filter(r => r.code.toLowerCase().includes(q) || r.itemcode.toLowerCase().includes(q));
+            }
 
             if (filtered.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Sin resultados.</td></tr>';
@@ -1481,11 +1644,18 @@
                         shake(input);
                     } else {
                         // Marcar si no es de esta linea para el renderizado
-                        data.reel.isOtherRack = !data.exact;
+                        if (data.status === 'juki') {
+                            data.reel.isJuki = true;
+                        } else {
+                            data.reel.isOtherRack = !data.exact;
+                        }
+
                         buffer.push(data.reel);
                         renderBuffer();
 
-                        if (data.exact) {
+                        if (data.status === 'juki') {
+                            showToast(`🏢 TORRE JUKI: El rollo se encuentra en torre JUKI y se realizará el pedido`, 'warning');
+                        } else if (data.exact) {
                             showToast(`✅ Añadido: ${data.reel.itemcode} — ${data.reel.stockcell}`, 'success');
                         } else {
                             // Alerta persistente y llamativa para error de rack
@@ -1570,6 +1740,40 @@
         });
 
         // ===== BUFFER =====
+        function toggleSelectAll(cb) {
+            if (cb.checked) {
+                buffer.forEach((_, i) => selectedIndices.add(i));
+            } else {
+                selectedIndices.clear();
+            }
+            renderBuffer();
+        }
+
+        function toggleBufferItem(i) {
+            if (selectedIndices.has(i)) selectedIndices.delete(i);
+            else selectedIndices.add(i);
+            
+            // Sync "Select All" checkbox
+            const sa = document.getElementById('select-all-buffer');
+            if (sa) sa.checked = (selectedIndices.size === buffer.length && buffer.length > 0);
+            
+            updateUrgencyUI();
+            updateExtractBtn();
+        }
+
+        function setUrgency(val) {
+            currentUrgency = val;
+            document.querySelectorAll('.urg-btn').forEach(b => {
+                b.classList.toggle('active', parseInt(b.getAttribute('data-val')) === val);
+            });
+        }
+
+        function updateUrgencyUI() {
+            const container = document.getElementById('urgency-container');
+            const hasJukiSelected = Array.from(selectedIndices).some(idx => buffer[idx] && buffer[idx].isJuki);
+            container.style.display = hasJukiSelected ? 'block' : 'none';
+        }
+
         function renderBuffer() {
             const items = document.getElementById('buffer-items');
             const empty = document.getElementById('buf-empty');
@@ -1577,84 +1781,148 @@
             const btn = document.getElementById('btn-extract');
 
             count.textContent = buffer.length;
-            btn.disabled = buffer.length === 0;
-
+            
             if (buffer.length === 0) {
+                selectedIndices.clear();
                 items.innerHTML = '';
                 empty.style.display = '';
+                btn.disabled = true;
+                updateUrgencyUI();
                 return;
             }
 
             empty.style.display = 'none';
+            btn.disabled = selectedIndices.size === 0;
+            
             items.innerHTML = buffer.map((item, i) => `
-        <div class="buffer-item ${item.isOtherRack ? 'other-rack' : ''}">
+        <div class="buffer-item ${item.isOtherRack ? 'other-rack' : ''} ${item.isJuki ? 'juki-rack' : ''}">
+            <input type="checkbox" class="bi-check" ${selectedIndices.has(i) ? 'checked' : ''} onchange="toggleBufferItem(${i})">
             <div class="bi-left">
                 ${item.isOtherRack ? '<span class="other-rack-label">⚠️ Fuera de Linea</span>' : ''}
+                ${item.isJuki ? '<span class="other-rack-label" style="color:var(--warning)">🏢 Torre JUKI</span>' : ''}
                 <div class="bi-itemcode">${item.itemcode}</div>
-                <div class="bi-meta">${item.code} | SMARTRACK ${item.rack} | ${item.stockcell || '—'} | Qty: ${item.qty}</div>
+                <div class="bi-meta">${item.code} | ${item.isJuki ? 'Torre JUKI ' + item.container_id : 'SMARTRACK ' + item.rack} | ${item.stockcell || '—'} | Qty: ${item.qty}</div>
             </div>
             <button class="btn btn-danger btn-sm" style="border-radius:50%;width:28px;height:28px;padding:0;flex-shrink:0" onclick="removeFromBuffer(${i})">
                 ✕
             </button>
         </div>`).join('');
+            
+            updateUrgencyUI();
         }
 
         function removeFromBuffer(i) {
             buffer.splice(i, 1);
+            // Re-map selected indices
+            const newSelected = new Set();
+            selectedIndices.forEach(idx => {
+                if (idx < i) newSelected.add(idx);
+                else if (idx > i) newSelected.add(idx - 1);
+            });
+            selectedIndices = newSelected;
             renderBuffer();
         }
 
         function updateExtractBtn() {
             const btn = document.getElementById('btn-extract');
             const val = document.getElementById('extract-delay').value;
-            if (buffer.length === 0) return;
-            btn.textContent = val === '0' ? 'Extraer Ahora' : 'Programar Extraccion';
+            if (selectedIndices.size === 0) {
+                btn.disabled = true;
+                btn.textContent = 'Extraer Seleccionados';
+                return;
+            }
+            btn.disabled = false;
+            btn.textContent = val === '0' ? 'Extraer Seleccionados' : 'Programar Extraccion';
         }
 
         async function extractBuffer() {
-            if (!buffer.length) return;
+            if (selectedIndices.size === 0) return;
 
             const lineSelect = document.getElementById('op-line-select');
             const lineName = lineSelect.options[lineSelect.selectedIndex].text;
             const delayMins = parseInt(document.getElementById('extract-delay').value) || 0;
 
-            const payload = {
-                line_name: lineName,
-                item_codes: buffer.map(b => b.itemcode),
-                reel_codes: buffer.map(b => b.code),
-                delay_minutes: delayMins
-            };
+            const selectedItems = Array.from(selectedIndices).map(idx => buffer[idx]);
+            const jukiReels = selectedItems.filter(b => b.isJuki);
+            const smartReels = selectedItems.filter(b => !b.isJuki);
+
+            const requests = [];
+
+            if (smartReels.length > 0) {
+                requests.push(fetch('/api/extract', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        line_name: lineName,
+                        item_codes: smartReels.map(b => b.itemcode),
+                        reel_codes: smartReels.map(b => b.code),
+                        delay_minutes: delayMins,
+                        type: 'smartrack',
+                        urgency: 1
+                    })
+                }));
+            }
+
+            if (jukiReels.length > 0) {
+                // Group JUKI by container_id
+                const byContainer = {};
+                for (let r of jukiReels) {
+                    if (!byContainer[r.container_id]) byContainer[r.container_id] = [];
+                    byContainer[r.container_id].push(r);
+                }
+                
+                for (const [cId, reels] of Object.entries(byContainer)) {
+                    requests.push(fetch('/api/extract', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            line_name: lineName,
+                            item_codes: reels.map(b => b.itemcode),
+                            reel_codes: reels.map(b => b.code),
+                            delay_minutes: delayMins,
+                            type: 'juki',
+                            container_id: cId,
+                            urgency: currentUrgency
+                        })
+                    }));
+                }
+            }
 
             const btn = document.getElementById('btn-extract');
             btn.disabled = true;
             btn.textContent = 'Procesando...';
 
-            // Clear buffer immediately
-            buffer = [];
-            renderBuffer();
-
-            // Reset delay selector to Inmediata
-            document.getElementById('extract-delay').value = '0';
-            document.getElementById('btn-extract').textContent = 'Extraer Ahora';
-
             try {
-                const res = await fetch('/api/extract', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                if (res.ok) {
-                    const data = await res.json();
-                    showToast(data.message || 'Extraccion lanzada!', 'success');
+                const results = await Promise.all(requests);
+                let allOk = true;
+                let errMsg = "";
+                for (let res of results) {
+                    if (!res.ok) {
+                        allOk = false;
+                        const err = await res.json().catch(()=>({}));
+                        errMsg = err.detail || 'Error en extracción';
+                    }
+                }
+                if (allOk) {
+                    showToast('Extraccion o Pedido lanzado!', 'success');
+                    
+                    // Remove only extracted items from buffer
+                    buffer = buffer.filter((_, idx) => !selectedIndices.has(idx));
+                    selectedIndices.clear();
+                    renderBuffer();
+                    
+                    const sa = document.getElementById('select-all-buffer');
+                    if (sa) sa.checked = false;
+                    
+                    setUrgency(1); // Reset urgency to 1
+                    document.getElementById('extract-delay').value = '0';
                     loadScheduledData();
                 } else {
-                    const err = await res.json();
-                    showToast(err.detail || 'Error en extraccion', 'error');
+                    showToast(errMsg, 'error');
                 }
             } catch { showToast('Error de red', 'error'); }
             finally {
-                btn.disabled = false;
-                document.getElementById('op-itemcode').focus();
+                updateExtractBtn();
             }
         }
 
