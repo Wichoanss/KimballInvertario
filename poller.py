@@ -3,13 +3,36 @@ import time
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from urllib.parse import urlparse, urlencode, parse_qs, urlunparse
 
 import config
 from database import upsert_reels, upsert_juki_reels, get_db_connection
 from logger_setup import setup_logger
+from resilience import smartrack_cb, CircuitBreakerOpenError, retry_with_backoff
+from metrics import metrics
 
 logger = setup_logger("SmartRackPoller")
 auth_token = None
+
+# Params que NUNCA deben aparecer en logs
+_SENSITIVE_PARAMS = frozenset({"tkn", "token", "password", "passwd", "api_key"})
+
+
+def _safe_url(url: str, params: dict | None = None) -> str:
+    """Devuelve la URL con parametros sensibles reemplazados por [REDACTED]."""
+    try:
+        parsed = urlparse(url)
+        qs = parse_qs(parsed.query, keep_blank_values=True)
+        if params:
+            for k, v in params.items():
+                if k not in _SENSITIVE_PARAMS:
+                    qs[k] = [v]
+        sanitized = {k: (v if k not in _SENSITIVE_PARAMS else ["[REDACTED]"]) for k, v in qs.items()}
+        safe = parsed._replace(query=urlencode(sanitized, doseq=True))
+        return urlunparse(safe)
+    except Exception:
+        return "[URL no disponible]"
+
 
 
 # ---------------------------------------------------------------------------
@@ -44,36 +67,42 @@ def parse_stockcell(val: str) -> str:
 # ---------------------------------------------------------------------------
 # Autenticacion
 # ---------------------------------------------------------------------------
-def login() -> str | None:
-    """Obtiene token de autenticacion. Reintenta una vez si falla."""
+@retry_with_backoff(max_attempts=3, base_delay=5.0, max_delay=30.0)
+def _do_login() -> str | None:
+    """Llamada HTTP de login envuelta en circuit breaker. Lanza en fallo."""
     global auth_token
-    for attempt in range(2):
-        try:
-            response = requests.get(
-                f"{config.API_BASE_URL}/",
-                params={"f": "login", "username": config.API_USERNAME, "password": config.API_PASSWORD},
-                timeout=10
-            )
-            response.raise_for_status()
-            root = ET.fromstring(response.content)
+    with smartrack_cb:
+        response = requests.get(
+            f"{config.API_BASE_URL}/",
+            params={"f": "login", "username": config.API_USERNAME, "password": config.API_PASSWORD},
+            timeout=10
+        )
+        response.raise_for_status()
+        root = ET.fromstring(response.content)
 
-            if root.get("err", "1") != "0":
-                logger.warning(f"Login fallido: {root.get('errdesc', 'Error desconocido')} (intento {attempt + 1})")
-            else:
-                token_el = root.find(".//token")
-                if token_el is not None and token_el.text:
-                    auth_token = token_el.text.strip()
-                    logger.info("Token de autenticacion obtenido correctamente.")
-                    return auth_token
-                logger.warning(f"Token no encontrado en respuesta (intento {attempt + 1})")
+        if root.get("err", "1") != "0":
+            raise RuntimeError(f"Login fallido: {root.get('errdesc', 'Error desconocido')}")
 
-        except Exception as e:
-            logger.warning(f"Error durante login: {e} (intento {attempt + 1})")
+        token_el = root.find(".//token")
+        if token_el is None or not token_el.text:
+            raise RuntimeError("Token no encontrado en respuesta")
 
-        if attempt == 0:
-            time.sleep(5)
+        auth_token = token_el.text.strip()
+        return auth_token
 
-    return None
+
+def login() -> str | None:
+    """Intenta autenticar contra la API. Respeta el circuit breaker."""
+    try:
+        token = _do_login()
+        logger.info("Token de autenticacion obtenido correctamente.")
+        return token
+    except CircuitBreakerOpenError as e:
+        logger.warning(f"Login omitido — {e}")
+        return None
+    except Exception as e:
+        logger.error(f"Login fallido tras todos los reintentos: {e}")
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -81,6 +110,7 @@ def login() -> str | None:
 # ---------------------------------------------------------------------------
 def fetch_and_update_reels() -> None:
     """Consulta la API por cada rack y actualiza la base de datos."""
+    metrics.inc_poller_runs()
     global auth_token
     if not auth_token and not login():
         logger.warning("Ciclo de polling omitido — login fallido.")
@@ -99,8 +129,9 @@ def fetch_and_update_reels() -> None:
                 "filter_smartrackidlist": rack_id,
                 "tkn": auth_token
             }
-            response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=10)
-            response.raise_for_status()
+            with smartrack_cb:
+                response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=10)
+                response.raise_for_status()
             root = ET.fromstring(response.content)
 
             # Renovar token si expiro
@@ -111,11 +142,13 @@ def fetch_and_update_reels() -> None:
                     if not login():
                         continue
                     params["tkn"] = auth_token
-                    response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=10)
-                    response.raise_for_status()
+                    with smartrack_cb:
+                        response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=10)
+                        response.raise_for_status()
                     root = ET.fromstring(response.content)
                 else:
                     logger.error(f"Error de API en rack {rack_id}: {errdesc}")
+                    metrics.inc_poller_errors()
                     continue
 
             reels_data = []
@@ -144,11 +177,18 @@ def fetch_and_update_reels() -> None:
 
             upsert_reels(reels_data, rack_id)
 
+        except CircuitBreakerOpenError as e:
+            logger.warning(f"Polling rack {rack_id} omitido — {e}")
+            metrics.inc_poller_errors()
+            break  # Si el CB está abierto, no intentar los demás racks
         except Exception as e:
-            logger.error(f"Error consultando rack {rack_id}: {e}")
+            logger.error(f"Error consultando rack {rack_id}: {e} | URL: {_safe_url(config.API_BASE_URL, {'f': 'V2_reel_getlist', 'filter_smartrackidlist': rack_id})}")
+            metrics.inc_poller_errors()
+
 
 def fetch_juki_reels() -> None:
     """Consulta la API por las torres JUKI y actualiza la base de datos."""
+    metrics.inc_poller_runs()
     global auth_token
     if not auth_token and not login():
         logger.warning("Ciclo de polling JUKI omitido — login fallido.")
@@ -162,8 +202,9 @@ def fetch_juki_reels() -> None:
             "filter_showusable": "true",
             "tkn": auth_token
         }
-        response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=15)
-        response.raise_for_status()
+        with smartrack_cb:
+            response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=15)
+            response.raise_for_status()
         root = ET.fromstring(response.content)
 
         if root.get("err") != "0":
@@ -173,8 +214,9 @@ def fetch_juki_reels() -> None:
                 if not login():
                     return
                 params["tkn"] = auth_token
-                response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=15)
-                response.raise_for_status()
+                with smartrack_cb:
+                    response = requests.get(f"{config.API_BASE_URL}/", params=params, timeout=15)
+                    response.raise_for_status()
                 root = ET.fromstring(response.content)
             else:
                 logger.error(f"Error de API en JUKI: {errdesc}")
@@ -232,8 +274,12 @@ def fetch_juki_reels() -> None:
             # Si no hay nada, podria ser que el XML cambio de estructura
             logger.debug(f"Estructura XML recibida (primeros 500 chars): {response.text[:500]}")
 
+    except CircuitBreakerOpenError as e:
+        logger.warning(f"Polling JUKI omitido — {e}")
+        metrics.inc_poller_errors()
     except Exception as e:
         logger.error(f"Error consultando JUKI: {e}")
+        metrics.inc_poller_errors()  # URL no se loggea — contiene tkn
 
 # ---------------------------------------------------------------------------
 # Extraccion
@@ -248,25 +294,29 @@ def execute_extraction(name: str, reel_codes: list, append_timestamp: bool = Fal
         name = f"{name}_{datetime.now().strftime('%b/%d/%Y-%H:%M')}"
 
     try:
-        response = requests.get(
-            f"{config.API_BASE_URL}/",
-            params={
-                "f":               "V3_extractreels",
-                "name":            name,
-                "reelrequestlist": ",".join(reel_codes),
-                "autostart":       "Y",
-                "force_start":     "Y",
-                "tkn":             auth_token
-            },
-            timeout=15
-        )
-        response.raise_for_status()
-        root = ET.fromstring(response.content)
+        with smartrack_cb:
+            response = requests.get(
+                f"{config.API_BASE_URL}/",
+                params={
+                    "f":               "V3_extractreels",
+                    "name":            name,
+                    "reelrequestlist": ",".join(reel_codes),
+                    "autostart":       "Y",
+                    "force_start":     "Y",
+                    "tkn":             auth_token
+                },
+                timeout=15
+            )
+            response.raise_for_status()
 
+        root = ET.fromstring(response.content)
         if root.get("err", "1") != "0":
             return False, root.get("errdesc", "Unknown Error")
         return True, "Success"
 
+    except CircuitBreakerOpenError as e:
+        logger.warning(f"Extraccion SmartRack rechazada — {e}")
+        return False, f"Servicio SmartRack no disponible. Reintenta en {e.retry_after:.0f}s"
     except Exception as e:
         logger.error(f"Error durante extraccion: {e}")
         return False, str(e)
@@ -278,20 +328,21 @@ def execute_juki_extraction(name: str, container_id: str, reel_codes: list) -> t
         return False, "Auth error"
 
     try:
-        response = requests.get(
-            f"{config.API_BASE_URL}/",
-            params={
-                "f":               "V3_extractreels",
-                "name":            name,
-                "container_id":    container_id,
-                "reelrequestlist": ",".join(reel_codes),
-                "autostart":       "y",
-                "tkn":             auth_token
-            },
-            timeout=15
-        )
-        response.raise_for_status()
-        
+        with smartrack_cb:
+            response = requests.get(
+                f"{config.API_BASE_URL}/",
+                params={
+                    "f":               "V3_extractreels",
+                    "name":            name,
+                    "container_id":    container_id,
+                    "reelrequestlist": ",".join(reel_codes),
+                    "autostart":       "y",
+                    "tkn":             auth_token
+                },
+                timeout=15
+            )
+            response.raise_for_status()
+
         # Parse XML
         try:
             root = ET.fromstring(response.content)
@@ -303,9 +354,12 @@ def execute_juki_extraction(name: str, container_id: str, reel_codes: list) -> t
             err_desc = root.get("errdesc", "Unknown Error")
             logger.error(f"JUKI API Error - Code {root.get('err')}: {err_desc} | Full body: {response.content}")
             return False, err_desc
-            
+
         return True, "Success"
 
+    except CircuitBreakerOpenError as e:
+        logger.warning(f"Extraccion JUKI rechazada — {e}")
+        return False, f"Servicio JUKI no disponible. Reintenta en {e.retry_after:.0f}s"
     except Exception as e:
         logger.error(f"Error durante extraccion JUKI: {e}")
-        return False, str(e)
+        return False, str(e)

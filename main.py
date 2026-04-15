@@ -1,60 +1,56 @@
 import os
 import sys
+import uuid
 import uvicorn
 import csv
 import io
-import uuid
-from fastapi import FastAPI, HTTPException, Header
-from fastapi.responses import HTMLResponse, StreamingResponse
-from pydantic import BaseModel
-from typing import List
+from fastapi import FastAPI, HTTPException, Header, Request
+from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
+from fastapi.exceptions import RequestValidationError
 from contextlib import asynccontextmanager
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.base import JobLookupError
 from datetime import datetime, timedelta
 
+import time
+
 import config
 import database
+from database import check_idempotency, begin_idempotency, complete_idempotency
 from poller import fetch_and_update_reels, execute_extraction, fetch_juki_reels, execute_juki_extraction
-from logger_setup import setup_logger
+from logger_setup import setup_logger, set_request_id
+from resilience import smartrack_cb
+from metrics import metrics
+from schemas import (
+    AuthRequest, CodeCheckRequest, ExtractRequest, JukiExtractRequest, CreateLineRequest,
+    HealthResponse, StatusResponse, CheckReelResponse, ScheduledJobResponse,
+)
 
 logger = setup_logger("SmartRackServer")
-
-
-# ---------------------------------------------------------------------------
-# Modelos
-# ---------------------------------------------------------------------------
-class CodeCheckRequest(BaseModel):
-    itemcode: str
-    line_id: int
-    exclude_codes: List[str] = []
-
-class ExtractRequest(BaseModel):
-    line_name: str
-    item_codes: List[str]   # Numeros de parte originales (para el nombre)
-    reel_codes: List[str]   # Codigos fisicos del reel a extraer
-    delay_minutes: int = 0
-    type: str = "smartrack" # 'smartrack' o 'juki'
-    container_id: str = ""  # Agregado para JUKI
-    urgency: int = 1        # 1-5 scale
 
 
 # ---------------------------------------------------------------------------
 # Scheduler
 # ---------------------------------------------------------------------------
 scheduler = BackgroundScheduler(
-    job_defaults={"misfire_grace_time": 60}   # Si el job se retrasa hasta 60s, igual lo ejecuta
+    job_defaults={"misfire_grace_time": 60}
 )
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # --- Arranque ---
+    config.validate_production_config()  # Validar seguridad SAFE_MODE antes de tocar DB
     database.init_db()
-    logger.info(f"SmartRack arrancando en puerto {config.SERVER_PORT}")
+    database.cleanup_database()  # Ejecutar limpieza al iniciar
+    logger.info(
+        "SmartRack arrancando",
+        extra={"port": config.SERVER_PORT, "log_level": config.LOG_LEVEL, "db": config.DB_NAME}
+    )
 
     scheduler.add_job(fetch_and_update_reels, 'interval', seconds=config.POLL_INTERVAL_SECONDS, id='poller')
     scheduler.add_job(fetch_juki_reels, 'interval', seconds=config.POLL_INTERVAL_SECONDS, id='poller_juki')
-    scheduler.add_job(fetch_and_update_reels, id='poller_init')   # Disparo inmediato
+    scheduler.add_job(database.cleanup_database, 'interval', hours=1, id='db_cleanup')
+    scheduler.add_job(fetch_and_update_reels, id='poller_init')
     scheduler.add_job(fetch_juki_reels, id='poller_init_juki')
     scheduler.start()
 
@@ -72,13 +68,59 @@ app = FastAPI(title="SmartRack Inventario", lifespan=lifespan)
 
 
 # ---------------------------------------------------------------------------
+# Middleware — inyecta request_id en cada peticion HTTP
+# Aparece en TODOS los logs JSON emitidos durante ese request (campo "rid")
+# ---------------------------------------------------------------------------
+@app.middleware("http")
+async def metrics_middleware(request: Request, call_next):
+    start_time = time.perf_counter()
+    try:
+        response = await call_next(request)
+        process_time_ms = (time.perf_counter() - start_time) * 1000
+        is_error = response.status_code >= 400
+        metrics.inc_requests(process_time_ms, is_error)
+        return response
+    except Exception:
+        process_time_ms = (time.perf_counter() - start_time) * 1000
+        metrics.inc_requests(process_time_ms, is_error=True)
+        raise
+
+# ---------------------------------------------------------------------------
+# Middleware — inyecta request_id en cada peticion HTTP
+# Aparece en TODOS los logs JSON emitidos durante ese request (campo "rid")
+# ---------------------------------------------------------------------------
+@app.middleware("http")
+async def request_id_middleware(request: Request, call_next):
+    rid = request.headers.get("X-Request-ID") or str(uuid.uuid4())[:8]
+    set_request_id(rid)
+    response = await call_next(request)
+    response.headers["X-Request-ID"] = rid   # cliente puede correlacionar
+    return response
+
+
+# ---------------------------------------------------------------------------
+# Manejador global de errores de validacion (Pydantic)
+# ---------------------------------------------------------------------------
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    errors = [
+        {"campo": " -> ".join(str(loc) for loc in err["loc"]), "error": err["msg"]}
+        for err in exc.errors()
+    ]
+    logger.warning(
+        f"Validacion fallida en {request.url.path}",
+        extra={"path": request.url.path, "errors": errors, "method": request.method}
+    )
+    return JSONResponse(
+        status_code=422,
+        content={"status": "error", "detail": "Datos de entrada inválidos", "errores": errors},
+    )
+
+
+# ---------------------------------------------------------------------------
 # Auth Config Global State
 # ---------------------------------------------------------------------------
-config_tokens = {} # token (str) -> timestamp (float)
-
-class AuthRequest(BaseModel):
-    username: str
-    password: str
+config_tokens = {}  # token (str) -> timestamp (float)
 
 # ---------------------------------------------------------------------------
 # Utilidad: ruta al template compatible con .exe y .py
@@ -94,7 +136,23 @@ def _template_path(filename: str) -> str:
 # ---------------------------------------------------------------------------
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "timestamp": datetime.now().isoformat()}
+    return {
+        "status": "ok",
+        "timestamp": datetime.now().isoformat(),
+        "circuit_breaker": smartrack_cb.status(),
+    }
+
+
+@app.get("/metrics")
+def api_get_metrics():
+    """Expone métricas internas del sistema para observabilidad."""
+    return metrics.get_metrics_snapshot()
+
+
+@app.get("/api/health/circuit-breaker")
+def api_circuit_breaker_status():
+    """Estado actual del Circuit Breaker para monitoreo por operaciones de IT."""
+    return smartrack_cb.status()
 
 
 @app.post("/api/auth/config")
@@ -177,12 +235,8 @@ def api_get_lines():
 
 
 @app.post("/api/lines")
-def api_create_line(payload: dict):
-    name     = payload.get("name", "").strip()
-    rack_ids = payload.get("rack_ids", "").strip()
-    if not name or not rack_ids:
-        raise HTTPException(status_code=400, detail="Faltan campos: name o rack_ids")
-    database.create_or_update_line(name, rack_ids)
+def api_create_line(req: CreateLineRequest):
+    database.create_or_update_line(req.name, req.rack_ids)
     return {"status": "success"}
 
 
@@ -207,50 +261,80 @@ def api_check_reel(req: CodeCheckRequest):
 
 @app.post("/api/extract")
 def api_extract(req: ExtractRequest):
-    if not req.reel_codes:
-        logger.warning(f"Extracción fallida — buffer vacío. Línea: {req.line_name}")
-        raise HTTPException(status_code=400, detail="No reel codes provided")
+    # --- Idempotencia ---
+    idem_key = req.idempotency_key or str(uuid.uuid4())  # auto si cliente no envía
+    try:
+        cached = check_idempotency(idem_key)
+        if cached is not None:
+            return cached
+    except RuntimeError:
+        raise HTTPException(status_code=409, detail="Operación duplicada en vuelo. Reintenta en unos segundos.")
+
+    begin_idempotency(idem_key, "/api/extract")
 
     name = (f"{req.item_codes[0]}_{req.line_name}"
             if len(req.item_codes) == 1
-            else f"Multi_{req.line_name}")
+            else f"MULTIPLE_{req.line_name}")
 
-    if req.type == "juki":
-        # Para JUKI, solo guardamos el log de movimiento (pedido) para que el operador lo vea
-        database.create_movement_log("juki", req.line_name, req.reel_codes, req.container_id, req.urgency, req.item_codes)
-        logger.info(f"OPERADOR: Pedido a JUKI — {len(req.reel_codes)} rollos, línea {req.line_name}, urgencia {req.urgency}")
-        return {"status": "success", "message": "Pedido encolado en el panel del operador JUKI p/ su extracción"}
+    try:
+        if req.type == "juki":
+            database.create_movement_log("juki", req.line_name, req.reel_codes, req.container_id, req.urgency, req.item_codes)
+            metrics.inc_extractions(len(req.reel_codes))
+            logger.info(
+                "Pedido JUKI encolado",
+                extra={"line": req.line_name, "reels": len(req.reel_codes), "urgency": req.urgency, "idem_key": idem_key[:8]}
+            )
+            result = {"status": "success", "message": "Pedido encolado en el panel del operador JUKI p/ su extracción"}
+            complete_idempotency(idem_key, result)
+            return result
 
-    # --- Flujo SmartRack ---
-    # Log movement in DB regardless of extraction type (SmartRack request)
-    database.create_movement_log("smartrack", req.line_name, req.reel_codes, "", 1, req.item_codes)
+        # --- Flujo SmartRack ---
+        database.create_movement_log("smartrack", req.line_name, req.reel_codes, "", 1, req.item_codes)
 
-    if req.delay_minutes > 0:
-        run_date = datetime.now() + timedelta(minutes=req.delay_minutes)
-        job_id   = f"ext_{int(datetime.now().timestamp())}"
-        scheduler.add_job(
-            execute_extraction,
-            'date',
-            run_date=run_date,
-            args=[name, req.reel_codes, True],
-            id=job_id,
-            name=f"{name}_{run_date.strftime('%b/%d/%Y-%H:%M')}"
+        if req.delay_minutes > 0:
+            run_date = datetime.now() + timedelta(minutes=req.delay_minutes)
+            job_id   = f"ext_{int(datetime.now().timestamp())}"
+            scheduler.add_job(
+                execute_extraction,
+                'date',
+                run_date=run_date,
+                args=[name, req.reel_codes, True],
+                id=job_id,
+                name=f"{name}_{run_date.strftime('%b/%d/%Y-%H:%M')}"
+            )
+            logger.info(
+                "Extraccion programada",
+                extra={"ext_name": name, "reels": len(req.reel_codes), "run_at": run_date.strftime('%H:%M:%S'), "job_id": job_id}
+            )
+            result = {
+                "status": "success",
+                "message": f"Extracción de {len(req.reel_codes)} rollos programada para las {run_date.strftime('%H:%M:%S')}"
+            }
+            complete_idempotency(idem_key, result)
+            return result
+
+        logger.info(
+            "Extraccion inmediata solicitada",
+            extra={"ext_name": name, "reels": len(req.reel_codes), "line": req.line_name}
         )
-        logger.info(f"PROGRAMADA: {name} — ejecucion a las {run_date.strftime('%H:%M:%S')}")
-        return {
-            "status": "success",
-            "message": f"Extracción de {len(req.reel_codes)} rollos programada para las {run_date.strftime('%H:%M:%S')}"
-        }
+        success, message = execute_extraction(name, req.reel_codes, True)
+        if success:
+            metrics.inc_extractions(len(req.reel_codes))
+            logger.info("Extraccion completada con exito", extra={"ext_name": name})
+            result = {"status": "success", "message": "Extracción inmediata solicitada con éxito"}
+            complete_idempotency(idem_key, result)
+            return result
 
-    logger.info(f"OPERADOR: Extracción INMEDIATA — {len(req.reel_codes)} rollos, línea {req.line_name}, nombre: {name}")
-    success, message = execute_extraction(name, req.reel_codes, True)
-    if success:
-        logger.info(f"ÉXITO: {name}")
-        # Could update status to 'extracted', left pending until confirmed if needed.
-        return {"status": "success", "message": "Extracción inmediata solicitada con éxito"}
+        logger.error("Extraccion fallida", extra={"ext_name": name, "reason": message})
+        complete_idempotency(idem_key, {"status": "error", "message": message}, success=False)
+        raise HTTPException(status_code=500, detail=message)
 
-    logger.error(f"FALLO: {name} — {message}")
-    raise HTTPException(status_code=500, detail=message)
+    except HTTPException:
+        raise  # re-lanzar HTTPExceptions sin marcar como 'failed'
+    except Exception as e:
+        complete_idempotency(idem_key, {"status": "error", "message": str(e)}, success=False)
+        logger.error(f"Error inesperado en /api/extract: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/api/scheduled")
@@ -279,20 +363,38 @@ def api_delete_scheduled(job_id: str):
         logger.error(f"Error cancelando job {job_id}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-class JukiExtractRequest(BaseModel):
-    name: str
-    container_id: str
-    reel_codes: List[str]
-    log_ids: List[int] # To mark these logs as extracted
-
 @app.post("/api/juki/extract")
 def api_juki_extract(req: JukiExtractRequest):
-    success, message = execute_juki_extraction(req.name, req.container_id, req.reel_codes)
-    if success:
-        for log_id in req.log_ids:
-            database.update_movement_status(log_id, 'extracted')
-        return {"status": "success"}
-    raise HTTPException(status_code=500, detail=message)
+    # --- Idempotencia ---
+    idem_key = req.idempotency_key or str(uuid.uuid4())
+    try:
+        cached = check_idempotency(idem_key)
+        if cached is not None:
+            return cached
+    except RuntimeError:
+        raise HTTPException(status_code=409, detail="Operación JUKI duplicada en vuelo. Reintenta en unos segundos.")
+
+    begin_idempotency(idem_key, "/api/juki/extract")
+
+    try:
+        success, message = execute_juki_extraction(req.name, req.container_id, req.reel_codes)
+        if success:
+            metrics.inc_extractions(len(req.reel_codes))
+            for log_id in req.log_ids:
+                database.update_movement_status(log_id, 'extracted')
+            result = {"status": "success"}
+            complete_idempotency(idem_key, result)
+            return result
+
+        complete_idempotency(idem_key, {"status": "error", "message": message}, success=False)
+        raise HTTPException(status_code=500, detail=message)
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        complete_idempotency(idem_key, {"status": "error", "message": str(e)}, success=False)
+        logger.error(f"Error inesperado en /api/juki/extract: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/movements/pending")
 def api_get_pending_movements(type: str = None):
@@ -310,13 +412,14 @@ def api_get_recent_movements():
 # Entrada principal
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    import sys
-    import os
+    import multiprocessing
+    multiprocessing.freeze_support()   # MUST be first — necesario para PyInstaller
+
+    # Cuando el .exe se compila con console=False no hay consola:
+    # redirigir stdout/stderr a devnull para evitar errores internos de uvicorn
     if sys.stdout is None:
         sys.stdout = open(os.devnull, "w")
     if sys.stderr is None:
         sys.stderr = open(os.devnull, "w")
 
-    import multiprocessing
-    multiprocessing.freeze_support()
-    uvicorn.run(app, host="0.0.0.0", port=config.SERVER_PORT)
+    uvicorn.run(app, host="0.0.0.0", port=config.SERVER_PORT, log_level="warning")

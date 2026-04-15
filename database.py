@@ -2,6 +2,8 @@ import sqlite3
 import config
 from datetime import datetime, timedelta
 from logger_setup import setup_logger
+from schemas.db import ReelModel, JukiReelModel, LineModel, MovementLogModel
+from pydantic import ValidationError
 
 logger = setup_logger("SmartRackDatabase")
 
@@ -52,6 +54,15 @@ def init_db():
             due_at DATETIME,            -- Target completion time
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         );
+
+        CREATE TABLE IF NOT EXISTS idempotency_keys (
+            idem_key    TEXT PRIMARY KEY,
+            endpoint    TEXT NOT NULL,
+            status      TEXT NOT NULL DEFAULT 'processing',  -- 'processing'|'completed'|'failed'
+            response    TEXT,                                -- JSON serializado de la respuesta
+            created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
+            expires_at  DATETIME NOT NULL
+        );
         """)
         
         # Migration for item_codes if needed
@@ -90,7 +101,73 @@ def init_db():
         if cursor.fetchone()["count"] == 0:
             lines = [("L1", "1"), ("L2", "2"), ("L3", "3"), ("L4-R", "4"), ("L4-L", "5")]
             conn.executemany("INSERT INTO lines (name, rack_ids) VALUES (?, ?)", lines)
-        
+
+        # Limpiar claves de idempotencia expiradas
+        conn.execute("DELETE FROM idempotency_keys WHERE expires_at < CURRENT_TIMESTAMP")
+
+        conn.commit()
+
+
+# ---------------------------------------------------------------------------
+# Idempotencia — evita operaciones duplicadas
+# ---------------------------------------------------------------------------
+_IDEM_TTL_HOURS = 24  # Las claves expiran a las 24 horas
+
+
+def check_idempotency(idem_key: str) -> dict | None:
+    """
+    Retorna el resultado previo si la clave ya existe y está completada.
+    Retorna None si la clave es nueva.
+    Lanza RuntimeError si la clave está en estado 'processing' (request en vuelo).
+    """
+    with get_db_connection() as conn:
+        row = conn.execute(
+            "SELECT status, response FROM idempotency_keys WHERE idem_key = ?",
+            (idem_key,)
+        ).fetchone()
+
+    if row is None:
+        return None  # Clave nueva — continuar operacion
+
+    if row["status"] == "processing":
+        raise RuntimeError("duplicate_in_flight")  # Mismo request en vuelo
+
+    if row["status"] == "completed" and row["response"]:
+        import json
+        logger.info(f"IDEMPOTENCIA: Retornando resultado cacheado para clave [{idem_key[:8]}...]")
+        return json.loads(row["response"])
+
+    return None  # 'failed' u otro — permitir reintento
+
+
+def begin_idempotency(idem_key: str, endpoint: str) -> None:
+    """
+    Registra la clave como 'processing' (INSERT OR IGNORE para ser atómico).
+    Si la clave ya existe, no hace nada (check_idempotency ya manejó ese caso).
+    """
+    expires = (datetime.now() + timedelta(hours=_IDEM_TTL_HOURS)).strftime('%Y-%m-%d %H:%M:%S')
+    with get_db_connection() as conn:
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO idempotency_keys (idem_key, endpoint, status, expires_at)
+            VALUES (?, ?, 'processing', ?)
+            """,
+            (idem_key, endpoint, expires)
+        )
+        conn.commit()
+
+
+def complete_idempotency(idem_key: str, response: dict, success: bool = True) -> None:
+    """
+    Marca la operacion como completada y guarda el response JSON para futuros reintentos.
+    """
+    import json
+    status = "completed" if success else "failed"
+    with get_db_connection() as conn:
+        conn.execute(
+            "UPDATE idempotency_keys SET status = ?, response = ? WHERE idem_key = ?",
+            (status, json.dumps(response, ensure_ascii=False), idem_key)
+        )
         conn.commit()
 
 def upsert_reels(reels_data, rack_id):
@@ -157,15 +234,29 @@ def upsert_juki_reels(reels_data):
         conn.commit()
         logger.info(f"DB JUKI: Upsert de {len(reels_data)} rollos completado.")
 
-def get_all_reels():
+def get_all_reels() -> list[dict]:
     with get_db_connection() as conn:
         cursor = conn.execute("SELECT * FROM reels ORDER BY last_updated DESC")
-        return [dict(r) for r in cursor.fetchall()]
+        rows = [dict(r) for r in cursor.fetchall()]
+    result = []
+    for row in rows:
+        try:
+            result.append(ReelModel.model_validate(row).model_dump())
+        except ValidationError as e:
+            logger.warning(f"Reel inválido descartado [{row.get('code','?')}]: {e.error_count()} errores")
+    return result
 
-def get_all_juki_reels():
+def get_all_juki_reels() -> list[dict]:
     with get_db_connection() as conn:
         cursor = conn.execute("SELECT * FROM juki_reels ORDER BY container_id ASC, last_updated DESC")
-        return [dict(r) for r in cursor.fetchall()]
+        rows = [dict(r) for r in cursor.fetchall()]
+    result = []
+    for row in rows:
+        try:
+            result.append(JukiReelModel.model_validate(row).model_dump())
+        except ValidationError as e:
+            logger.warning(f"JUKI reel inválido descartado [{row.get('code','?')}]: {e.error_count()} errores")
+    return result
 
 def create_movement_log(move_type: str, target_line: str, reel_codes: list, container_id: str = '', urgency: int = 1, item_codes: list = None):
     # Calculate due_at based on urgency
@@ -184,28 +275,49 @@ def create_movement_log(move_type: str, target_line: str, reel_codes: list, cont
         conn.commit()
         return cursor.lastrowid
 
-def get_pending_movements(move_type: str = None):
+def get_pending_movements(move_type: str = None) -> list[dict]:
     with get_db_connection() as conn:
         if move_type:
             cursor = conn.execute("SELECT * FROM movements_log WHERE status = 'pending' AND type = ? ORDER BY created_at ASC", (move_type,))
         else:
             cursor = conn.execute("SELECT * FROM movements_log WHERE status = 'pending' ORDER BY created_at ASC")
-        return [dict(r) for r in cursor.fetchall()]
+        rows = [dict(r) for r in cursor.fetchall()]
+    result = []
+    for row in rows:
+        try:
+            result.append(MovementLogModel.model_validate(row).model_dump())
+        except ValidationError as e:
+            logger.warning(f"Movement inválido descartado [id={row.get('id','?')}]: {e.error_count()} errores")
+    return result
 
-def get_recent_movements(limit: int = 50):
+def get_recent_movements(limit: int = 50) -> list[dict]:
     with get_db_connection() as conn:
         cursor = conn.execute("SELECT * FROM movements_log ORDER BY created_at DESC LIMIT ?", (limit,))
-        return [dict(r) for r in cursor.fetchall()]
+        rows = [dict(r) for r in cursor.fetchall()]
+    result = []
+    for row in rows:
+        try:
+            result.append(MovementLogModel.model_validate(row).model_dump())
+        except ValidationError as e:
+            logger.warning(f"Movement reciente inválido descartado [id={row.get('id','?')}]: {e.error_count()} errores")
+    return result
 
 def update_movement_status(log_id: int, status: str):
     with get_db_connection() as conn:
         conn.execute("UPDATE movements_log SET status = ? WHERE id = ?", (status, log_id))
         conn.commit()
 
-def get_all_lines():
+def get_all_lines() -> list[dict]:
     with get_db_connection() as conn:
         cursor = conn.execute("SELECT * FROM lines ORDER BY name ASC")
-        return [dict(r) for r in cursor.fetchall()]
+        rows = [dict(r) for r in cursor.fetchall()]
+    result = []
+    for row in rows:
+        try:
+            result.append(LineModel.model_validate(row).model_dump())
+        except ValidationError as e:
+            logger.warning(f"Línea inválida descartada [{row.get('name','?')}]: {e.error_count()} errores")
+    return result
 
 def create_or_update_line(name, rack_ids):
     with get_db_connection() as conn:
@@ -291,3 +403,25 @@ def check_itemcode_availability(itemcode: str, line_id: int, exclude_codes: list
             return {"status": "juki", "reel": juki_reels[0]}
 
         return {"status": "not_found"}
+
+def cleanup_database(keep_logs_days: int = 30) -> None:
+    """Elimina registros expirados y logs antiguos para evitar crecimiento infinito."""
+    with get_db_connection() as conn:
+        try:
+            # 1. Limpieza de idempotency_keys
+            cursor = conn.execute("DELETE FROM idempotency_keys WHERE expires_at < CURRENT_TIMESTAMP")
+            idem_deleted = cursor.rowcount
+            
+            # 2. Limpieza de movements_log (basado en SQLite datetime)
+            target_date = (datetime.now() - timedelta(days=keep_logs_days)).strftime('%Y-%m-%d %H:%M:%S')
+            cursor = conn.execute("DELETE FROM movements_log WHERE created_at < ?", (target_date,))
+            logs_deleted = cursor.rowcount
+            
+            conn.commit()
+            if idem_deleted > 0 or logs_deleted > 0:
+                logger.info(
+                    "Limpieza de DB completada",
+                    extra={"idempotency_deleted": idem_deleted, "logs_deleted": logs_deleted}
+                )
+        except Exception as e:
+            logger.error(f"Error en limpieza automatica de DB: {e}")

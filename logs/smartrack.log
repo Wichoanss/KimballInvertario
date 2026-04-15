@@ -1,0 +1,852 @@
+{"ts": "2026-04-15T02:56:53.150Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.155Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.200Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.214Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.246Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.252Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.272Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.276Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.313Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.318Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.344Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.351Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.384Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.388Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.412Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.415Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.450Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.456Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.477Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.490Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.522Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.529Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.551Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.567Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.603Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.609Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "3c1a0c49", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T02:56:53.612Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.634Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.637Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "7e5032fb", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T02:56:53.638Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.672Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.675Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "9cff940a", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T02:56:53.677Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.705Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.719Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "1479cd62", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T02:56:53.735Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "0fb916bb", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:56:53.737Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.776Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.783Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.807Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.810Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "339e4efa", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T02:56:53.811Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:53.841Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:53.865Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "143c7530", "msg": "Error inesperado en /api/extract: \"Attempt to overwrite 'name' in LogRecord\""}
+{"ts": "2026-04-15T02:56:53.968Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.005Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.030Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "085bda2d", "msg": "Error inesperado en /api/extract: \"Attempt to overwrite 'name' in LogRecord\""}
+{"ts": "2026-04-15T02:56:54.033Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.062Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.106Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "29d709ad", "msg": "Error inesperado en /api/extract: \"Attempt to overwrite 'name' in LogRecord\""}
+{"ts": "2026-04-15T02:56:54.118Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.156Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.160Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "e769da70", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T02:56:54.162Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.196Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.199Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "413a9b93", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T02:56:54.201Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.238Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.255Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "0333fb7a", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "fe4b9b6a"}}
+{"ts": "2026-04-15T02:56:54.268Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.300Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.340Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "42ad0436", "msg": "Error inesperado en /api/extract: \"Attempt to overwrite 'name' in LogRecord\""}
+{"ts": "2026-04-15T02:56:54.349Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.380Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.385Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.422Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.433Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.465Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.471Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.492Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.507Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.534Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.540Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.564Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-0\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:56:54.567Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "8d92efd1", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T02:56:54.568Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:56:54.851Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T02:56:54.886Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T02:56:54.896Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T02:56:54.930Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T02:56:54.943Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:56:55.321Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T02:56:55.469Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:56:55.470Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:56:55.471Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:56:55.472Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:56:55.572Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:56:55.574Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:56:55.675Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:56:55.677Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T02:56:55.679Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:56:55.787Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:56:55.794Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:56:55.801Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:56:55.804Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:56:55.817Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.03s..."}
+{"ts": "2026-04-15T02:56:55.847Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:56:55.866Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:56:55.890Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T02:56:55.899Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:56:55.911Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:56:55.934Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.05s..."}
+{"ts": "2026-04-15T02:56:55.985Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T02:58:43.528Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.534Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.574Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.578Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.606Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.610Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.644Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.650Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.673Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.677Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.740Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.750Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.778Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.785Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.819Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.824Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.846Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.860Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.893Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.899Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.920Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.936Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.967Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:43.973Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:43.994Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.010Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "1240c940", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T02:58:44.012Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.045Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.048Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "052be575", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T02:58:44.050Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.080Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.082Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "c2aa5470", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T02:58:44.084Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.117Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.122Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "b6aaef41", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T02:58:44.136Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "d442b6a2", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:58:44.137Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.169Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.186Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.219Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.222Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "89f789fc", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T02:58:44.223Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.247Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.275Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "978fc83f", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:58:44.275Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "978fc83f", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:58:44.290Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.325Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.340Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "57639b6c", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:58:44.340Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "57639b6c", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:58:44.464Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.498Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.514Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "7dbd54b3", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:58:44.514Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "7dbd54b3", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:58:44.534Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "15f1615d", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T02:58:44.536Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.567Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.569Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "94df5a8a", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T02:58:44.571Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.604Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.607Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "183bb581", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T02:58:44.609Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.645Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.674Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "33dcb98d", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "ff3aa6d0"}}
+{"ts": "2026-04-15T02:58:44.685Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.722Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.746Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "3c95a15a", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "22:03:44", "job_id": "ext_1776221924"}}
+{"ts": "2026-04-15T02:58:44.752Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.786Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.791Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.839Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.852Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.882Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.889Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.910Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.925Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:44.968Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:44.974Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:45.004Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-1\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:58:45.006Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "8425dd9b", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T02:58:45.007Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:58:45.372Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T02:58:45.424Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T02:58:45.435Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T02:58:45.481Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T02:58:45.492Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:58:45.950Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T02:58:46.124Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:58:46.125Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:58:46.126Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:58:46.127Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:58:46.228Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:58:46.230Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:58:46.330Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:58:46.331Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T02:58:46.332Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:58:46.433Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:58:46.434Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:58:46.439Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:58:46.440Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:58:46.453Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:58:46.480Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:58:46.496Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:58:46.523Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T02:58:46.525Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:58:46.538Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:58:46.563Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.04s..."}
+{"ts": "2026-04-15T02:58:46.606Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T02:59:25.948Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:25.956Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.010Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.015Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.037Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.040Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.068Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.073Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.093Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.097Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.127Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.133Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.154Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.158Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.184Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.189Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.213Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.225Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.256Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.262Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.284Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.299Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.327Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.333Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.356Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.368Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "7c341ca4", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T02:59:26.370Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.402Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.405Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "16ebc531", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:26.406Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.434Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.436Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "94ad2a88", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:26.437Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.490Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.498Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "060c0e05", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T02:59:26.512Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "1f3563c7", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:59:26.514Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.550Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.568Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.601Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.604Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "00b33a97", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:26.605Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.625Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.649Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "d8c723a9", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:59:26.650Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "d8c723a9", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:59:26.662Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.696Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.714Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e516af9c", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:59:26.715Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "e516af9c", "msg": "Extraccion fallida", "extra": {"ext_name": "ABC123_L1", "reason": "API Error"}}
+{"ts": "2026-04-15T02:59:26.730Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.766Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.800Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "89508317", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:59:26.800Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "89508317", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:59:26.829Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "e6543387", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T02:59:26.832Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.871Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.881Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "e72f601a", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:26.884Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.917Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.921Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "1a049cb4", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:26.922Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:26.941Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:26.965Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "52929267", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "2dc0087b"}}
+{"ts": "2026-04-15T02:59:26.974Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.004Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.017Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "909bfaad", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "22:04:27", "job_id": "ext_1776221967"}}
+{"ts": "2026-04-15T02:59:27.028Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.068Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.073Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.103Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.108Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.126Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.138Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.168Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.174Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.198Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.210Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.238Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-2\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:27.242Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "2baf7ace", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:27.244Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:27.515Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T02:59:27.547Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T02:59:27.557Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T02:59:27.588Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T02:59:27.598Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:59:27.986Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T02:59:28.118Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:28.120Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:28.120Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:59:28.121Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:28.222Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:59:28.226Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:28.326Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:59:28.327Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T02:59:28.330Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:28.438Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:59:28.440Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:28.455Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:59:28.458Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:59:28.470Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:59:28.497Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:59:28.509Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:59:28.531Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T02:59:28.540Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:59:28.555Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:59:28.578Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.05s..."}
+{"ts": "2026-04-15T02:59:28.628Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T02:59:41.726Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:41.741Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:41.820Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:41.827Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:41.862Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:41.871Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:41.910Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:41.918Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:41.953Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:41.960Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:41.993Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.004Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.064Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.069Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.105Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.113Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.186Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.194Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.240Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.251Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.311Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.321Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.359Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.367Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.400Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.407Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "ebd4c869", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T02:59:42.409Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.449Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.453Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "8c688815", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:42.455Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.512Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.516Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "5ce2ed91", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:42.519Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.557Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.562Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "0323aac4", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T02:59:42.578Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "b5542eeb", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:59:42.580Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.630Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.642Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.677Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.682Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "2faa3888", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:42.684Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.718Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.736Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "a87303f4", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:59:42.737Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "a87303f4", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:59:42.749Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.795Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.813Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "8d781857", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:59:42.813Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "8d781857", "msg": "Extraccion fallida", "extra": {"ext_name": "ABC123_L1", "reason": "API Error"}}
+{"ts": "2026-04-15T02:59:42.824Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.865Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.880Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "c0ff668c", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T02:59:42.881Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "c0ff668c", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T02:59:42.906Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "66f3b6ae", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T02:59:42.909Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:42.951Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:42.956Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "28792431", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:42.958Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.020Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.025Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "750d1ed3", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:43.027Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.068Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.086Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "388bbbac", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "2499ea70"}}
+{"ts": "2026-04-15T02:59:43.098Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.145Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.160Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "3131a80d", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "22:04:43", "job_id": "ext_1776221983"}}
+{"ts": "2026-04-15T02:59:43.171Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.221Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.227Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.257Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.264Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.299Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.306Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.336Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.344Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.375Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.383Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.416Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-3\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T02:59:43.420Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "0bb7a2e5", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T02:59:43.422Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T02:59:43.714Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T02:59:43.752Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T02:59:43.762Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T02:59:43.807Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T02:59:43.816Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T02:59:44.353Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T02:59:44.497Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:44.502Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:44.503Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:59:44.504Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:44.605Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:59:44.611Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:44.712Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:59:44.713Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T02:59:44.718Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:44.820Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T02:59:44.821Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T02:59:44.831Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T02:59:44.837Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:59:44.849Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:59:44.878Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:59:44.892Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:59:44.918Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T02:59:44.934Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T02:59:44.947Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T02:59:44.972Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.04s..."}
+{"ts": "2026-04-15T02:59:45.016Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T03:00:33.656Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.665Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.693Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.698Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.713Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.717Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.746Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.753Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.769Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.774Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.812Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.819Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.838Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.842Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.871Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.875Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.892Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.906Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.934Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.941Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:33.959Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:33.974Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.005Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.012Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.031Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.048Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "1ca8f72a", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T03:00:34.052Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.091Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.097Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "4df648f5", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T03:00:34.099Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.123Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.127Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "2a9c055b", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T03:00:34.129Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.162Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.167Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "58c44078", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T03:00:34.180Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "740c5026", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:00:34.182Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.204Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.219Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.244Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.250Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "a996f0dd", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T03:00:34.252Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.284Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.312Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "63827bad", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:00:34.313Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "63827bad", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:00:34.324Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.353Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.368Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "3446a181", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:00:34.368Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "3446a181", "msg": "Extraccion fallida", "extra": {"ext_name": "ABC123_L1", "reason": "API Error"}}
+{"ts": "2026-04-15T03:00:34.376Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.400Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.411Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "ef94e17f", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:00:34.412Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "ef94e17f", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:00:34.426Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "475e6d72", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T03:00:34.427Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.446Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.449Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "27d431af", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T03:00:34.451Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.472Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.476Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "2e72cfae", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T03:00:34.477Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.496Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.513Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "71cef05c", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "f2fc136b"}}
+{"ts": "2026-04-15T03:00:34.523Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.546Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.568Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e96f0105", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "22:05:34", "job_id": "ext_1776222034"}}
+{"ts": "2026-04-15T03:00:34.577Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.602Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.606Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.621Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.625Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.651Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.658Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.674Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.685Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.709Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.714Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.730Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-4\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:00:34.732Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "20b5737b", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T03:00:34.734Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:00:34.960Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T03:00:34.988Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T03:00:34.995Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T03:00:35.023Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T03:00:35.031Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:00:35.316Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T03:00:35.428Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:00:35.430Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:00:35.431Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:00:35.432Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:00:35.533Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:00:35.535Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:00:35.636Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:00:35.637Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T03:00:35.639Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:00:35.740Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:00:35.740Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:00:35.744Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:00:35.745Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:00:35.757Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:00:35.784Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:00:35.795Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:00:35.820Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T03:00:35.823Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:00:35.836Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:00:35.861Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.04s..."}
+{"ts": "2026-04-15T03:00:35.905Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T03:08:14.610Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:14.620Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:14.689Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:14.698Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:14.756Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:14.765Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:14.825Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:14.835Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:14.891Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:14.899Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:14.950Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:14.961Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.013Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.020Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.078Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.087Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.136Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.158Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.210Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.219Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.263Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.292Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.357Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.367Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.416Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.443Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "69fa61aa", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T03:08:15.448Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.500Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.506Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "700bb4f0", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T03:08:15.508Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.547Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.552Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "870328e6", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T03:08:15.555Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.603Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.611Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "fbc38570", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T03:08:15.632Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "d64ccecb", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:08:15.635Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.690Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.718Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.785Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.791Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "a87ddbcb", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T03:08:15.794Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.848Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.896Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e6d8b12c", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:08:15.897Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e6d8b12c", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:08:15.913Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:15.971Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:15.992Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e57b7cb9", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:08:15.992Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "e57b7cb9", "msg": "Extraccion fallida", "extra": {"ext_name": "ABC123_L1", "reason": "API Error"}}
+{"ts": "2026-04-15T03:08:16.006Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.043Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.063Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "97e49f09", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:08:16.064Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "97e49f09", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:08:16.080Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "e3aa0dcd", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T03:08:16.082Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.125Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.128Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "58217896", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T03:08:16.129Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.160Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.163Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "aa4add26", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T03:08:16.165Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.189Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.224Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "6329f21a", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "2076c7e2"}}
+{"ts": "2026-04-15T03:08:16.239Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.280Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.307Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "28e4268b", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "22:13:16", "job_id": "ext_1776222496"}}
+{"ts": "2026-04-15T03:08:16.325Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.370Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.374Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.405Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.412Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.436Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.452Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.488Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.496Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.528Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.548Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.596Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-5\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:08:16.600Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "8c90cab1", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T03:08:16.602Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:08:16.951Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T03:08:16.994Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T03:08:17.005Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T03:08:17.063Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T03:08:17.073Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:08:17.767Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T03:08:18.017Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:08:18.020Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:08:18.022Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:08:18.023Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:08:18.124Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:08:18.128Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:08:18.230Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:08:18.231Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T03:08:18.233Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:08:18.334Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:08:18.337Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:08:18.343Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:08:18.345Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:08:18.358Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.03s..."}
+{"ts": "2026-04-15T03:08:18.390Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:08:18.403Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:08:18.426Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T03:08:18.430Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:08:18.445Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.03s..."}
+{"ts": "2026-04-15T03:08:18.472Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.04s..."}
+{"ts": "2026-04-15T03:08:18.517Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T03:39:54.193Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.204Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.270Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.288Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.340Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.351Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.391Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.401Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.460Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.470Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.521Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.532Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.582Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.591Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.640Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.649Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.714Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.727Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.788Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.816Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.874Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.890Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:54.946Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:54.977Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.039Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.052Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "2aafdf88", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T03:39:55.058Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.124Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.129Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "5297ba38", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T03:39:55.133Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.176Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.180Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "58efb8e5", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T03:39:55.182Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.207Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.222Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "c343e076", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T03:39:55.238Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "4e5a36c7", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:39:55.240Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.271Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.290Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.325Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.330Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "25c34fc4", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T03:39:55.332Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.353Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.377Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e06ee051", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:39:55.378Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "e06ee051", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:39:55.390Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.425Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.441Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "c5782ef8", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:39:55.441Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "c5782ef8", "msg": "Extraccion fallida", "extra": {"ext_name": "ABC123_L1", "reason": "API Error"}}
+{"ts": "2026-04-15T03:39:55.454Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.491Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.528Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "70bc1dad", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:39:55.529Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "70bc1dad", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:39:55.561Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "a09316f3", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T03:39:55.564Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.607Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.620Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "4ccfc3ff", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T03:39:55.622Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.663Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.667Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "8c584ffb", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T03:39:55.669Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.692Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.722Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "19162a21", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "7f39042e"}}
+{"ts": "2026-04-15T03:39:55.734Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.765Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.786Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "fd886016", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "22:44:55", "job_id": "ext_1776224395"}}
+{"ts": "2026-04-15T03:39:55.800Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.836Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.840Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:55.969Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:55.975Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:56.005Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:56.019Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:56.052Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:56.058Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:56.082Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:56.097Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:56.128Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-6\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:39:56.133Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "4460b592", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T03:39:56.135Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:39:56.572Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T03:39:56.610Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T03:39:56.618Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T03:39:56.673Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T03:39:56.686Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:39:57.147Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T03:39:57.340Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:39:57.343Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:39:57.345Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:39:57.347Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:39:57.448Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:39:57.452Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:39:57.554Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:39:57.555Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T03:39:57.558Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:39:57.660Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:39:57.661Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:39:57.667Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:39:57.670Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:39:57.684Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:39:57.710Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:39:57.724Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:39:57.749Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T03:39:57.755Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:39:57.768Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.03s..."}
+{"ts": "2026-04-15T03:39:57.794Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.05s..."}
+{"ts": "2026-04-15T03:39:57.842Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}
+{"ts": "2026-04-15T03:56:35.976Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_health_ok0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:35.982Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.012Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_health_returns_request_id0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.022Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.050Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_circuit_breaker_status_en0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.055Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.083Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_valid_credentials_returns0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.087Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.129Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_invalid_credentials_retur0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.136Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.167Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_verify_valid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.175Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.207Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_verify_invalid_token0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.212Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.241Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_verify_no_header_returns_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.246Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.280Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_get_all_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.284Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.311Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_get_juki_reels_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.317Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.347Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_export_csv0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.353Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.380Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_get_lines0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.386Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.419Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_create_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.423Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "f4e8393c", "msg": "Línea configurada/actualizada: TEST-API -> Racks: 10,11"}
+{"ts": "2026-04-15T03:56:36.425Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.454Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_create_line_invalid_rack_0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.457Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "9c2df797", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> rack_ids", "error": "Value error, rack_id inválido: 'abc' — debe ser número entero"}], "method": "POST"}}
+{"ts": "2026-04-15T03:56:36.458Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.490Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_create_line_missing_field0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.494Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "d7445e4b", "msg": "Validacion fallida en /api/lines", "extra": {"path": "/api/lines", "errors": [{"campo": "body -> name", "error": "String should have at least 1 character"}, {"campo": "body -> rack_ids", "error": "Field required"}], "method": "POST"}}
+{"ts": "2026-04-15T03:56:36.496Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.526Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_delete_line0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.533Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "0e1d29b3", "msg": "Línea configurada/actualizada: DEL-TEST -> Racks: 99"}
+{"ts": "2026-04-15T03:56:36.545Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "025b2fa1", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:56:36.548Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.576Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_reel_not_found0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.599Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.633Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_invalid_line_id_fails0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.637Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "3a67a691", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> line_id", "error": "Input should be greater than or equal to 1"}], "method": "POST"}}
+{"ts": "2026-04-15T03:56:36.638Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.666Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_immediate_extraction_succ0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.683Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "8a837a5d", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:56:36.683Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "8a837a5d", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:56:36.694Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.725Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_extraction_failure_return0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.741Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "2816ce9f", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:56:36.741Z", "lvl": "ERROR", "mod": "SmartRackServer", "rid": "2816ce9f", "msg": "Extraccion fallida", "extra": {"ext_name": "ABC123_L1", "reason": "API Error"}}
+{"ts": "2026-04-15T03:56:36.761Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.791Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_idempotency_same_key_retu0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.803Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "b4fc608d", "msg": "Extraccion inmediata solicitada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "line": "L1"}}
+{"ts": "2026-04-15T03:56:36.804Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "b4fc608d", "msg": "Extraccion completada con exito", "extra": {"ext_name": "ABC123_L1"}}
+{"ts": "2026-04-15T03:56:36.859Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "f3116cdb", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [idem-tes...]"}
+{"ts": "2026-04-15T03:56:36.861Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.901Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_empty_reel_codes_fails_va0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.904Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "cfa160b2", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> reel_codes", "error": "Value error, La lista no puede estar vacía o contener solo espacios"}], "method": "POST"}}
+{"ts": "2026-04-15T03:56:36.905Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.936Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_invalid_urgency_fails_val0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.944Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "29e6947e", "msg": "Validacion fallida en /api/extract", "extra": {"path": "/api/extract", "errors": [{"campo": "body -> urgency", "error": "Input should be less than or equal to 5"}], "method": "POST"}}
+{"ts": "2026-04-15T03:56:36.945Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:36.968Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_juki_request_enqueued0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:36.981Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "fe30b204", "msg": "Pedido JUKI encolado", "extra": {"line": "L1", "reels": 1, "urgency": 1, "idem_key": "5647a24c"}}
+{"ts": "2026-04-15T03:56:36.991Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.019Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_scheduled_extraction0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.041Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "468c88e6", "msg": "Extraccion programada", "extra": {"ext_name": "ABC123_L1", "reels": 1, "run_at": "23:01:37", "job_id": "ext_1776225397"}}
+{"ts": "2026-04-15T03:56:37.052Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.100Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_get_scheduled_empty0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.105Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.140Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_delete_nonexistent_job0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.146Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.175Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_get_pending_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.180Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.207Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_get_recent_movements0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.213Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.247Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_pending_filtered_by_type0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.253Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.288Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack arrancando", "extra": {"port": 4500, "log_level": "INFO", "db": "C:\\Users\\sopor\\AppData\\Local\\Temp\\pytest-of-sopor\\pytest-7\\test_returns_structured_error0\\test_inventory.db"}}
+{"ts": "2026-04-15T03:56:37.291Z", "lvl": "WARNING", "mod": "SmartRackServer", "rid": "aa31cf87", "msg": "Validacion fallida en /api/check_reel", "extra": {"path": "/api/check_reel", "errors": [{"campo": "body -> itemcode", "error": "Field required"}, {"campo": "body -> line_id", "error": "Input should be a valid integer, unable to parse string as an integer"}], "method": "POST"}}
+{"ts": "2026-04-15T03:56:37.293Z", "lvl": "INFO", "mod": "SmartRackServer", "rid": "-", "msg": "SmartRack detenido."}
+{"ts": "2026-04-15T03:56:37.577Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11"}
+{"ts": "2026-04-15T03:56:37.609Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10"}
+{"ts": "2026-04-15T03:56:37.617Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: TEST-L -> Racks: 10,11,12"}
+{"ts": "2026-04-15T03:56:37.695Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea configurada/actualizada: DEL-L -> Racks: 99"}
+{"ts": "2026-04-15T03:56:37.704Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "Línea con ID [6] fue eliminada del sistema."}
+{"ts": "2026-04-15T03:56:38.079Z", "lvl": "INFO", "mod": "SmartRackDatabase", "rid": "-", "msg": "IDEMPOTENCIA: Retornando resultado cacheado para clave [key-done...]"}
+{"ts": "2026-04-15T03:56:38.264Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (3 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:56:38.266Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:56:38.267Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:56:38.268Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:56:38.369Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:56:38.372Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:56:38.472Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:56:38.473Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] HALF_OPEN → CLOSED — servicio recuperado ✓"}
+{"ts": "2026-04-15T03:56:38.476Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:56:38.577Z", "lvl": "INFO", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] OPEN → HALF_OPEN — probando recuperación..."}
+{"ts": "2026-04-15T03:56:38.577Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.HALF_OPEN → OPEN (2 fallos). Reintento en 0.05s"}
+{"ts": "2026-04-15T03:56:38.583Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "CIRCUIT BREAKER [test] CBState.CLOSED → OPEN (1 fallos). Reintento en 60.0s"}
+{"ts": "2026-04-15T03:56:38.586Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: timeout. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:56:38.599Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: timeout. Reintentando en 0.03s..."}
+{"ts": "2026-04-15T03:56:38.630Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/3 fallido: siempre falla. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:56:38.642Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/3 fallido: siempre falla. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:56:38.668Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 3 intentos agotados. Último error: siempre falla"}
+{"ts": "2026-04-15T03:56:38.677Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 1/4 fallido: x. Reintentando en 0.01s..."}
+{"ts": "2026-04-15T03:56:38.691Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 2/4 fallido: x. Reintentando en 0.02s..."}
+{"ts": "2026-04-15T03:56:38.713Z", "lvl": "WARNING", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Intento 3/4 fallido: x. Reintentando en 0.04s..."}
+{"ts": "2026-04-15T03:56:38.756Z", "lvl": "ERROR", "mod": "Resilience", "rid": "test-rid-99", "msg": "[fn] Todos los 4 intentos agotados. Último error: x"}

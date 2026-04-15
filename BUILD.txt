@@ -1,1 +1,50 @@
-pyinstaller --onefile --noconsole --name main --add-data "templates;templates" main.py
+============================================================
+ SmartRack — Instrucciones de compilacion (PyInstaller)
+============================================================
+
+COMANDO (usar siempre el .spec, no flags sueltos):
+  pyinstaller --clean main.spec
+
+SALIDA:
+  dist\SmartRack.exe
+
+ESTRUCTURA QUE GENERA EL .EXE EN PRODUCCION:
+  SmartRack.exe
+  .env                  <- copiar manualmente con configuracion correcta
+  inventory.db          <- se crea automaticamente al primer arranque
+  logs\
+      smartrack.log     <- se crea automaticamente (JSON, rotacion 5 MB x 3)
+  data\                 <- reservado para uso futuro
+
+NOTAS:
+- No requiere Python instalado en la maquina destino
+- No requiere configuracion previa (carpetas se crean solas)
+- console=True en el spec: la ventana de consola es intencional
+  (uvicorn necesita stdout). Para ocultarla usar un acceso
+  directo con "Ejecutar: minimizada".
+- Si el AV bloquea el .exe, agregar exclusion por carpeta en IT.
+
+============================================================
+ TESTS (solo entorno de desarrollo, NUNCA en el .exe)
+============================================================
+
+INSTALAR dependencias de testing (una sola vez):
+  pip install -r requirements-dev.txt
+
+EJECUTAR todos los tests + coverage:
+  pytest
+
+EJECUTAR tests rapidos (sin coverage):
+  pytest --no-cov -q
+
+EJECUTAR un modulo especifico:
+  pytest tests/test_resilience.py -v
+  pytest tests/test_schemas.py -v
+  pytest tests/test_database.py -v
+  pytest tests/test_api.py -v
+  pytest tests/test_logger.py -v
+
+VER reporte HTML de coverage:
+  start tests\coverage_html\index.html
+
+OBJETIVO: >= 80% de cobertura (forzado en pytest.ini con --cov-fail-under=80)

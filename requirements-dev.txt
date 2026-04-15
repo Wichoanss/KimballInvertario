@@ -1,0 +1,5 @@
+# Dependencias de desarrollo y testing
+# NO se incluyen en el .exe — son solo para el entorno de desarrollo
+pytest>=7.4
+pytest-cov>=4.1
+httpx>=0.27          # requerido por fastapi TestClient
