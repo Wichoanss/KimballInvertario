@@ -63,6 +63,26 @@ def init_db():
             created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
             expires_at  DATETIME NOT NULL
         );
+
+        CREATE TABLE IF NOT EXISTS api_users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            api_key TEXT UNIQUE NOT NULL,
+            is_active INTEGER DEFAULT 1,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            last_used DATETIME
+        );
+
+        CREATE TABLE IF NOT EXISTS extractions_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            endpoint TEXT NOT NULL,
+            api_key_partial TEXT NOT NULL,
+            success INTEGER NOT NULL,
+            error_message TEXT,
+            extraction_id TEXT,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
         """)
         
         # Migration for item_codes if needed
@@ -425,3 +445,89 @@ def cleanup_database(keep_logs_days: int = 30) -> None:
                 )
         except Exception as e:
             logger.error(f"Error en limpieza automatica de DB: {e}")
+
+# =========================================================================
+# Gestión de Usuarios y API Keys
+# =========================================================================
+import secrets
+
+def create_api_user(username: str) -> str:
+    """Crea usuario y retorna la API Key generada en texto plano."""
+    api_key = f"sr_{secrets.token_urlsafe(32)}"
+    with get_db_connection() as conn:
+        try:
+            conn.execute(
+                "INSERT INTO api_users (username, api_key) VALUES (?, ?)",
+                (username, api_key)
+            )
+            conn.commit()
+            return api_key
+        except sqlite3.IntegrityError:
+            raise ValueError(f"Usuario {username} ya existe")
+
+def get_api_users() -> list[dict]:
+    with get_db_connection() as conn:
+        rows = conn.execute(
+            "SELECT id, username, is_active, created_at, last_used FROM api_users WHERE is_active = 1"
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+def get_api_user_by_key(api_key: str) -> dict | None:
+    with get_db_connection() as conn:
+        row = conn.execute(
+            "SELECT * FROM api_users WHERE api_key = ? AND is_active = 1", (api_key,)
+        ).fetchone()
+        return dict(row) if row else None
+
+def update_user_last_used(username: str) -> None:
+    with get_db_connection() as conn:
+        conn.execute("UPDATE api_users SET last_used = CURRENT_TIMESTAMP WHERE username = ?", (username,))
+        conn.commit()
+
+def delete_api_user(username: str) -> None:
+    with get_db_connection() as conn:
+        conn.execute("UPDATE api_users SET is_active = 0 WHERE username = ?", (username,))
+        conn.commit()
+
+def regenerate_api_key(username: str) -> str | None:
+    api_key = f"sr_{secrets.token_urlsafe(32)}"
+    with get_db_connection() as conn:
+        cursor = conn.execute(
+            "UPDATE api_users SET api_key = ? WHERE username = ? AND is_active = 1",
+            (api_key, username)
+        )
+        if cursor.rowcount == 0:
+            return None
+        conn.commit()
+        return api_key
+
+# =========================================================================
+# Auditoría de Extracciones
+# =========================================================================
+def log_extraction_audit(username: str, endpoint: str, api_key: str, success: bool, error_message: str = None, extraction_id: str = None) -> None:
+    api_key_partial = f"{api_key[:8]}...{api_key[-4:]}" if api_key and len(api_key) > 12 else "***"
+    with get_db_connection() as conn:
+        conn.execute(
+            "INSERT INTO extractions_log (username, endpoint, api_key_partial, success, error_message, extraction_id) VALUES (?, ?, ?, ?, ?, ?)",
+            (username, endpoint, api_key_partial, 1 if success else 0, error_message, extraction_id)
+        )
+        conn.commit()
+
+def get_extractions_audit(limit: int = 50, username: str = None, from_date: str = None, to_date: str = None) -> list[dict]:
+    query = "SELECT * FROM extractions_log WHERE 1=1"
+    params = []
+    if username:
+        query += " AND username = ?"
+        params.append(username)
+    if from_date:
+        query += " AND created_at >= ?"
+        params.append(from_date)
+    if to_date:
+        query += " AND created_at <= ?"
+        params.append(to_date)
+    query += " ORDER BY created_at DESC LIMIT ?"
+    params.append(limit)
+
+    with get_db_connection() as conn:
+        rows = conn.execute(query, params).fetchall()
+        return [dict(r) for r in rows]

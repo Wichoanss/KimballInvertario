@@ -5,6 +5,20 @@
 
 ---
 
+## [1.5.0] - 2026-04-15
+### Added
+- **API Key Authentication**: Mandatory `X-API-Key` para extracciones mediante endpoints de línea.
+- **Administrative API**: Nuevos endpoints `/admin/users` y `/admin/audit`.
+- **Audit Logging**: Registro detallado de extracciones en la base de datos de producción con asociación inmediata del API user invocador.
+- **Production Guard (SAFE_MODE)**: Ahora el sistema se bloquea con error fatal si detecta credenciales por defecto (admin/admin1234) en entornos de producción protegidos.
+- **Integrated Admin UI**: Subpanel de Configuración visual para la emisión, rotación, y revocación de API keys, incluyendo un visor en directo del trazo de auditorías.
+
+### Changed
+- Migración y fortalecimiento de la suite local de testing (`130+` iteraciones validadas), cubriendo explícitamente escenarios de asilamiento y *deny-by-default*.
+- Aumento de cobertura base a +85% de forma consolidada, con mocking absoluto de background-threads para `pytests` sin IO locks.
+
+---
+
 ## Resumen Ejecutivo
 
 Durante esta sesión se realizaron **11 mejoras mayores** al sistema SmartRack, transformándolo de un prototipo funcional a un sistema robusto listo para producción industrial. El sistema ahora maneja fallos en cascada, evita duplicados, loggea de forma estructurada, y puede compilarse como `.exe` sin necesidad de Python en la máquina destino.

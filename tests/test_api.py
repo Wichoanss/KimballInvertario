@@ -159,48 +159,62 @@ class TestExtract:
         base.update(overrides)
         return base
 
-    def test_immediate_extraction_success(self, test_client):
-        with patch("poller.execute_extraction", return_value=(True, "Success")):
-            r = test_client.post("/api/extract", json=self._payload())
+    def test_immediate_extraction_success(self, test_client, api_user_key):
+        with patch("main.execute_extraction", return_value=(True, "Success")):
+            r = test_client.post("/api/extract", 
+                                 json=self._payload(),
+                                 headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert r.json()["status"] == "success"
 
-    def test_extraction_failure_returns_500(self, test_client):
+    def test_extraction_failure_returns_500(self, test_client, api_user_key):
         with patch("main.execute_extraction", return_value=(False, "API Error")):
-            r = test_client.post("/api/extract", json=self._payload())
+            r = test_client.post("/api/extract", 
+                                 json=self._payload(),
+                                 headers={"X-API-Key": api_user_key})
         assert r.status_code == 500
 
-    def test_idempotency_same_key_returns_cached(self, test_client):
+    def test_idempotency_same_key_returns_cached(self, test_client, api_user_key):
         key = "idem-test-key-001"
-        with patch("poller.execute_extraction", return_value=(True, "Success")):
-            r1 = test_client.post("/api/extract", json=self._payload(idempotency_key=key))
+        with patch("main.execute_extraction", return_value=(True, "Success")):
+            r1 = test_client.post("/api/extract", 
+                                  json=self._payload(idempotency_key=key),
+                                  headers={"X-API-Key": api_user_key})
         assert r1.status_code == 200
         # Segundo request con misma key → resultado cacheado, execute_extraction NO se llama
-        with patch("poller.execute_extraction", side_effect=Exception("NO DEBE LLAMARSE")) as mock_exec:
-            r2 = test_client.post("/api/extract", json=self._payload(idempotency_key=key))
+        with patch("main.execute_extraction", side_effect=Exception("NO DEBE LLAMARSE")) as mock_exec:
+            r2 = test_client.post("/api/extract", 
+                                  json=self._payload(idempotency_key=key),
+                                  headers={"X-API-Key": api_user_key})
         assert r2.status_code == 200
         assert r2.json()["status"] == "success"
         mock_exec.assert_not_called()
 
-    def test_empty_reel_codes_fails_validation(self, test_client):
-        r = test_client.post("/api/extract", json=self._payload(reel_codes=[]))
+    def test_empty_reel_codes_fails_validation(self, test_client, api_user_key):
+        r = test_client.post("/api/extract", 
+                             json=self._payload(reel_codes=[]),
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 422
 
-    def test_invalid_urgency_fails_validation(self, test_client):
-        r = test_client.post("/api/extract", json=self._payload(urgency=10))
+    def test_invalid_urgency_fails_validation(self, test_client, api_user_key):
+        r = test_client.post("/api/extract", 
+                             json=self._payload(urgency=10),
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 422
 
-    def test_juki_request_enqueued(self, test_client):
-        r = test_client.post("/api/extract", json=self._payload(
-            type="juki", container_id="C1"
-        ))
+    def test_juki_request_enqueued(self, test_client, api_user_key):
+        r = test_client.post("/api/extract", 
+                             json=self._payload(type="juki", container_id="C1"),
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
 
-    def test_scheduled_extraction(self, test_client):
+    def test_scheduled_extraction(self, test_client, api_user_key):
         with patch.object(
             __import__("main", fromlist=["scheduler"]).scheduler, "add_job"
         ):
-            r = test_client.post("/api/extract", json=self._payload(delay_minutes=5))
+            r = test_client.post("/api/extract", 
+                                 json=self._payload(delay_minutes=5),
+                                 headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
 
 

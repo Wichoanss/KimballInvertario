@@ -16,10 +16,19 @@ dist/
 *.spec
 *.exe
 
-# Base de Datos (Muy importante no subir esto a Git)
-smartrack.db
-smartrack.db-shm
-smartrack.db-wal
+# Base de Datos y Logs (No subir a Git)
+inventory.db
+inventory.db-shm
+inventory.db-wal
+smartrack.db*
+logs/
+*.log
+
+# Pruebas y Cobertura
+.pytest_cache/
+.coverage
+coverage.xml
+tests/coverage_html/
 
 # Variables de Entorno (Contraseñas)
 .env

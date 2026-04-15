@@ -1241,6 +1241,36 @@
                         <div id="lines-list"></div>
                     </div>
                 </div>
+
+                <div class="page-title" style="margin-top: 30px; border-top: 1px solid var(--border); padding-top: 20px;">Gestión de Usuarios y API Keys 🔒</div>
+                <div class="cfg-layout">
+                    <div class="cfg-form">
+                        <h3>Crear Nuevo Usuario</h3>
+                        <div class="field">
+                            <label>Nombre de Usuario</label>
+                            <input type="text" id="conf-user-name" placeholder="Ej. op_maquila_1" autocomplete="off" onkeydown="if(event.key==='Enter') createApiUser()">
+                        </div>
+                        <button class="btn btn-success btn-block" onclick="createApiUser()">Generar Llave API</button>
+                    </div>
+
+                    <div class="cfg-list">
+                        <h3>Usuarios Activos</h3>
+                        <div class="table-box">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Último Uso</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-tbody">
+                                    <tr><td colspan="3" style="text-align:center; color: var(--text-muted);">Cargando usuarios...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div><!-- /panels -->
@@ -1367,7 +1397,10 @@
                 invInterval = null;
             }
 
-            if (tabId === 'cfg') loadLines();
+            if (tabId === 'cfg') {
+                loadLines();
+                loadApiUsers();
+            }
             if (tabId === 'scheduled') loadScheduledData();
             if (tabId === 'op') {
                 loadLines();
@@ -2038,6 +2071,97 @@
                     console.error("Fallback Copy err: ", err);
                 }
                 textArea.remove();
+            }
+        }
+
+        // ===== API USERS MANAGEMENT =====
+        async function loadApiUsers() {
+            const token = sessionStorage.getItem('cfg_token');
+            if (!token) return;
+            try {
+                const res = await fetch('/admin/users', { headers: { 'X-Master-Key': token }});
+                if(!res.ok) throw new Error();
+                const users = await res.json();
+                const tbody = document.getElementById('users-tbody');
+                if(!users.length) {
+                    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; color: var(--text-muted);">No hay usuarios API configurados</td></tr>';
+                    return;
+                }
+                let html = '';
+                users.forEach(u => {
+                    html += `
+                        <tr>
+                            <td style="font-weight:600; color:var(--primary);">${u.username}</td>
+                            <td style="font-size:0.75rem; color:var(--text-muted);">${u.last_used ? u.last_used : 'Nunca'}</td>
+                            <td>
+                                <button class="btn btn-sm btn-ghost" onclick="regenerateApiKey('${u.username}')" title="Rotar Llave">🔄</button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteApiUser('${u.username}')" title="Eliminar">🗑️</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html;
+            } catch(e) {
+                console.error("Error loading API users", e);
+            }
+        }
+
+        async function createApiUser() {
+            const uInput = document.getElementById('conf-user-name');
+            const username = uInput.value.trim();
+            if(username.length < 3) return showToast('El usuario debe tener 3+ caracteres', 'error');
+            const token = sessionStorage.getItem('cfg_token');
+            try {
+                const res = await fetch('/admin/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Master-Key': token },
+                    body: JSON.stringify({ username: username })
+                });
+                if(!res.ok) {
+                    const err = await res.json();
+                    return showToast(err.detail || 'Error al crear usuario', 'error');
+                }
+                const data = await res.json();
+                uInput.value = '';
+                showToast('Usuario creado', 'success');
+                alert(`IMPORTANTE: Llave generada para ${data.username}.\nGuárdala, no se mostrará de nuevo:\n\n${data.api_key}`);
+                loadApiUsers();
+            } catch(e) {
+                showToast('Error de red al crear usuario', 'error');
+            }
+        }
+
+        async function deleteApiUser(username) {
+            if(!confirm(`¿Estás seguro de inhabilitar al usuario API '${username}'?`)) return;
+            const token = sessionStorage.getItem('cfg_token');
+            try {
+                const res = await fetch(`/admin/users/${username}`, {
+                    method: 'DELETE',
+                    headers: { 'X-Master-Key': token }
+                });
+                if(!res.ok) throw new Error();
+                showToast('Usuario eliminado', 'success');
+                loadApiUsers();
+            } catch(e) {
+                showToast('Error eliminando usuario', 'error');
+            }
+        }
+
+        async function regenerateApiKey(username) {
+            if(!confirm(`¿Rotar la llave API de '${username}'? La llave actual dejará de funcionar INMEDIATAMENTE.`)) return;
+            const token = sessionStorage.getItem('cfg_token');
+            try {
+                const res = await fetch(`/admin/users/${username}/regenerate`, {
+                    method: 'POST',
+                    headers: { 'X-Master-Key': token }
+                });
+                if(!res.ok) throw new Error();
+                const data = await res.json();
+                showToast('Llave rotada existosamente', 'success');
+                alert(`NUEVA llave para ${username}:\n\n${data.api_key}\n\nActualiza los clientes.`);
+                loadApiUsers();
+            } catch(e) {
+                showToast('Error rotando llave', 'error');
             }
         }
 

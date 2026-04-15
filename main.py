@@ -4,9 +4,11 @@ import uuid
 import uvicorn
 import csv
 import io
-from fastapi import FastAPI, HTTPException, Header, Request
+from fastapi import FastAPI, HTTPException, Header, Request, Depends, Security
+from fastapi.security.api_key import APIKeyHeader
 from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
 from fastapi.exceptions import RequestValidationError
+from pydantic import BaseModel
 from contextlib import asynccontextmanager
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.jobstores.base import JobLookupError
@@ -129,6 +131,31 @@ def _template_path(filename: str) -> str:
     base = sys._MEIPASS if (getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS')) \
            else os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base, "templates", filename)
+
+# ---------------------------------------------------------------------------
+# Dependencias de Autenticación
+# ---------------------------------------------------------------------------
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+def verify_api_key(api_key: str = Security(api_key_header)) -> dict:
+    if not api_key:
+        raise HTTPException(status_code=401, detail="Header X-API-Key requerido")
+    user = database.get_api_user_by_key(api_key)
+    if not user:
+        raise HTTPException(status_code=401, detail="API Key invalida, inactiva o revocada")
+    database.update_user_last_used(user["username"])
+    return {"username": user["username"], "api_key": api_key}
+
+def verify_master_key(master_key: str = Header(None, alias="X-Master-Key")) -> bool:
+    if not master_key:
+        raise HTTPException(status_code=401, detail="X-Master-Key header requerido")
+    now = datetime.now().timestamp()
+    expired = [t for t, ts in config_tokens.items() if now - ts > 1800]
+    for t in expired:
+        del config_tokens[t]
+    if master_key in config_tokens:
+        return True
+    raise HTTPException(status_code=401, detail="X-Master-Key invalido o expirado")
 
 
 # ---------------------------------------------------------------------------
@@ -259,8 +286,46 @@ def api_check_reel(req: CodeCheckRequest):
     return {"found": False, "message": "Rollo no está en ningún rack ni torre disponible"}
 
 
+# =========================================================================
+# Admin Users Endpoints (requieren X-Master-Key)
+# =========================================================================
+
+class UserCreateReq(BaseModel):
+    username: str
+
+@app.post("/admin/users", dependencies=[Depends(verify_master_key)])
+def api_create_user(req: UserCreateReq):
+    if not req.username or len(req.username.strip()) < 3:
+        raise HTTPException(status_code=400, detail="Username debe tener al menos 3 caracteres")
+    try:
+        api_key = database.create_api_user(req.username.strip())
+        return {"status": "success", "username": req.username.strip(), "api_key": api_key}
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/admin/users", dependencies=[Depends(verify_master_key)])
+def api_get_users():
+    return database.get_api_users()
+
+@app.delete("/admin/users/{username}", dependencies=[Depends(verify_master_key)])
+def api_delete_user(username: str):
+    database.delete_api_user(username)
+    return {"status": "success"}
+
+@app.post("/admin/users/{username}/regenerate", dependencies=[Depends(verify_master_key)])
+def api_regenerate_key(username: str):
+    new_key = database.regenerate_api_key(username)
+    if not new_key:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado o inactivo")
+    return {"status": "success", "api_key": new_key}
+
+@app.get("/admin/audit/extractions", dependencies=[Depends(verify_master_key)])
+def api_get_audit(limit: int = 50, username: str = None, from_date: str = None, to_date: str = None):
+    return database.get_extractions_audit(limit, username, from_date, to_date)
+
+
 @app.post("/api/extract")
-def api_extract(req: ExtractRequest):
+def api_extract(req: ExtractRequest, user: dict = Depends(verify_api_key)):
     # --- Idempotencia ---
     idem_key = req.idempotency_key or str(uuid.uuid4())  # auto si cliente no envía
     try:
@@ -286,6 +351,7 @@ def api_extract(req: ExtractRequest):
             )
             result = {"status": "success", "message": "Pedido encolado en el panel del operador JUKI p/ su extracción"}
             complete_idempotency(idem_key, result)
+            database.log_extraction_audit(user["username"], "/api/extract", user["api_key"], True, extraction_id=name)
             return result
 
         # --- Flujo SmartRack ---
@@ -311,6 +377,7 @@ def api_extract(req: ExtractRequest):
                 "message": f"Extracción de {len(req.reel_codes)} rollos programada para las {run_date.strftime('%H:%M:%S')}"
             }
             complete_idempotency(idem_key, result)
+            database.log_extraction_audit(user["username"], "/api/extract", user["api_key"], True, extraction_id=job_id)
             return result
 
         logger.info(
@@ -323,10 +390,12 @@ def api_extract(req: ExtractRequest):
             logger.info("Extraccion completada con exito", extra={"ext_name": name})
             result = {"status": "success", "message": "Extracción inmediata solicitada con éxito"}
             complete_idempotency(idem_key, result)
+            database.log_extraction_audit(user["username"], "/api/extract", user["api_key"], True, extraction_id=name)
             return result
 
         logger.error("Extraccion fallida", extra={"ext_name": name, "reason": message})
         complete_idempotency(idem_key, {"status": "error", "message": message}, success=False)
+        database.log_extraction_audit(user["username"], "/api/extract", user["api_key"], False, error_message=message)
         raise HTTPException(status_code=500, detail=message)
 
     except HTTPException:
@@ -334,6 +403,7 @@ def api_extract(req: ExtractRequest):
     except Exception as e:
         complete_idempotency(idem_key, {"status": "error", "message": str(e)}, success=False)
         logger.error(f"Error inesperado en /api/extract: {e}")
+        database.log_extraction_audit(user["username"], "/api/extract", user["api_key"], False, error_message=str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -364,7 +434,7 @@ def api_delete_scheduled(job_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/juki/extract")
-def api_juki_extract(req: JukiExtractRequest):
+def api_juki_extract(req: JukiExtractRequest, user: dict = Depends(verify_api_key)):
     # --- Idempotencia ---
     idem_key = req.idempotency_key or str(uuid.uuid4())
     try:
@@ -382,11 +452,15 @@ def api_juki_extract(req: JukiExtractRequest):
             metrics.inc_extractions(len(req.reel_codes))
             for log_id in req.log_ids:
                 database.update_movement_status(log_id, 'extracted')
-            result = {"status": "success"}
+            logger.info("Extraccion JUKI completada con exito", extra={"ext_name": req.name})
+            result = {"status": "success", "message": "Extracción JUKI solicitada con éxito"}
             complete_idempotency(idem_key, result)
+            database.log_extraction_audit(user["username"], "/api/juki/extract", user["api_key"], True, extraction_id=req.name)
             return result
 
+        logger.error("Extraccion JUKI fallida", extra={"ext_name": req.name, "reason": message})
         complete_idempotency(idem_key, {"status": "error", "message": message}, success=False)
+        database.log_extraction_audit(user["username"], "/api/juki/extract", user["api_key"], False, error_message=message)
         raise HTTPException(status_code=500, detail=message)
 
     except HTTPException:
@@ -394,6 +468,7 @@ def api_juki_extract(req: JukiExtractRequest):
     except Exception as e:
         complete_idempotency(idem_key, {"status": "error", "message": str(e)}, success=False)
         logger.error(f"Error inesperado en /api/juki/extract: {e}")
+        database.log_extraction_audit(user["username"], "/api/juki/extract", user["api_key"], False, error_message=str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/movements/pending")

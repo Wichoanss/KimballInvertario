@@ -49,6 +49,10 @@ def test_client(temp_db, monkeypatch):
     """
     from unittest.mock import MagicMock, patch
 
+    # Desactivar SAFE_MODE para tests para permitir credenciales de prueba/mock
+    import config
+    monkeypatch.setattr(config, "SAFE_MODE", False)
+
     # Parchear execute_extraction y fetch_and_update_reels antes de importar main
     with patch("poller.fetch_and_update_reels", return_value=None), \
          patch("poller.fetch_juki_reels",       return_value=None), \
@@ -65,3 +69,21 @@ def test_client(temp_db, monkeypatch):
 
             with TestClient(app_module.app, raise_server_exceptions=True) as client:
                 yield client
+
+@pytest.fixture()
+def api_user_key(test_client):
+    """Crea un usuario API de prueba y devuelve su llave."""
+    import main
+    import uuid
+    import datetime
+    
+    # Bypass master key login for fixture setup
+    token = "test_master_token_" + uuid.uuid4().hex
+    main.config_tokens[token] = datetime.datetime.now().timestamp() + 3600
+    
+    username = f"test_fixture_user_{uuid.uuid4().hex[:6]}"
+    res = test_client.post("/admin/users", 
+                           json={"username": username}, 
+                           headers={"X-Master-Key": token})
+    return res.json()["api_key"]
+
