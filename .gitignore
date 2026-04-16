@@ -1,42 +1,53 @@
-# Entornos Virtuales
-venv/
-.venv/
-env/
-env.bak/
-ENV/
-
-# Archivos de Python
+# --- Entorno de Python ---
 __pycache__/
 *.py[cod]
 *$py.class
+.venv/
+env/
+venv/
+bin/
+include/
+lib/
 
-# Compilados de PyInstaller
+# --- Base de Datos e Hilos (Auto-generado) ---
+*.db
+*.db-shm
+*.db-wal
+data/
+backups/
+
+# --- Logs y Temporales ---
+logs/
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+tests/coverage_html/
+
+# --- Secretos (¡IMPORTANTE!) ---
+.env
+
+# --- Compilación y Distribución ---
 build/
 dist/
 *.spec
-*.exe
+Generados/
 
-# Base de Datos y Logs (No subir a Git)
-inventory.db
-inventory.db-shm
-inventory.db-wal
-smartrack.db*
-logs/
-*.log
-
-# Pruebas y Cobertura
-.pytest_cache/
-.coverage
-coverage.xml
-tests/coverage_html/
-
-# Variables de Entorno (Contraseñas)
-.env
-
-# Configuración del Editor / SO
+# --- IDEs y Herramientas ---
 .vscode/
 .idea/
-.DS_Store
-Thumbs.db
-*.swp
-.gemini/
+*.pptx
+*.html
+!templates/*.html
+demo.html
+presentacion_cliente.html
+
+# --- Otros ---
+*.bak
+*.tmp
+debug_db_logic.py
+inspect_realdata.py
+verify_mock.py
+generate_pptx.py
+test_mock_server.py
+mock_smartrack_server.py

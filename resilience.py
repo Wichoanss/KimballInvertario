@@ -164,6 +164,15 @@ class CircuitBreaker:
                 f"— servicio recuperado ✓"
             )
 
+    def reset(self) -> None:
+        """Fuerza el cierre del circuito y resetea contadores (útil para tests)."""
+        with self._lock:
+            self._state = CBState.CLOSED
+            self._failure_count = 0
+            self._success_count = 0
+            self._opened_at = 0.0
+            logger.info(f"CIRCUIT BREAKER [{self.name}] reset manual a CLOSED.")
+
     # ------------------------------------------------------------------
     # Estado para monitoreo
     # ------------------------------------------------------------------

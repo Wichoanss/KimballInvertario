@@ -4,6 +4,7 @@ import uuid
 import uvicorn
 import csv
 import io
+import shutil
 from fastapi import FastAPI, HTTPException, Header, Request, Depends, Security
 from fastapi.security.api_key import APIKeyHeader
 from fastapi.responses import HTMLResponse, StreamingResponse, JSONResponse
@@ -52,6 +53,7 @@ async def lifespan(app: FastAPI):
     scheduler.add_job(fetch_and_update_reels, 'interval', seconds=config.POLL_INTERVAL_SECONDS, id='poller')
     scheduler.add_job(fetch_juki_reels, 'interval', seconds=config.POLL_INTERVAL_SECONDS, id='poller_juki')
     scheduler.add_job(database.cleanup_database, 'interval', hours=1, id='db_cleanup')
+    scheduler.add_job(database.backup_database, 'interval', hours=1, id='db_backup')
     scheduler.add_job(fetch_and_update_reels, id='poller_init')
     scheduler.add_job(fetch_juki_reels, id='poller_init_juki')
     scheduler.start()
@@ -163,11 +165,34 @@ def verify_master_key(master_key: str = Header(None, alias="X-Master-Key")) -> b
 # ---------------------------------------------------------------------------
 @app.get("/health")
 def health_check():
+    # 1. Base de datos
+    db_ok = database.check_connection()
+    
+    # 2. Espacio en disco (BASE_DIR)
+    total, used, free = shutil.disk_usage(config.BASE_DIR)
+    disk_ok = free > (1024 * 1024 * 1024)  # Al menos 1 GB libre
+    
+    # 3. SmartRack API (vía Circuit Breaker)
+    cb_status = smartrack_cb.status()
+    api_ok = cb_status["state"] != "OPEN"
+    
+    overall_status = "ok" if (db_ok and disk_ok and api_ok) else "degraded"
+    
     return {
-        "status": "ok",
+        "status": overall_status,
+        "version": config.SMARTRACK_VERSION,
         "timestamp": datetime.now().isoformat(),
-        "circuit_breaker": smartrack_cb.status(),
+        "checks": {
+            "database": "connected" if db_ok else "error",
+            "disk_space_gb": round(free / (1024**3), 2),
+            "disk_status": "ok" if disk_ok else "low_space",
+            "smartrack_api": cb_status["state"]
+        }
     }
+
+@app.get("/version")
+def get_version():
+    return {"version": config.SMARTRACK_VERSION, "env": "production"}
 
 
 @app.get("/metrics")
@@ -218,17 +243,17 @@ async def get_towers():
         return f.read()
 
 
-@app.get("/api/reels")
+@app.get("/api/reels", dependencies=[Depends(verify_api_key)])
 def api_get_reels():
     return database.get_all_reels()
 
-@app.get("/api/juki/reels")
+@app.get("/api/juki/reels", dependencies=[Depends(verify_api_key)])
 def api_get_juki_reels():
     reels = database.get_all_juki_reels()
     logger.debug(f"API JUKI: Solicitados reels. Enviando {len(reels)} registros.")
     return reels
 
-@app.get("/api/reels/export/csv")
+@app.get("/api/reels/export/csv", dependencies=[Depends(verify_api_key)])
 def export_reels_csv():
     reels = database.get_all_reels()
     
@@ -256,24 +281,24 @@ def export_reels_csv():
     )
 
 
-@app.get("/api/lines")
+@app.get("/api/lines", dependencies=[Depends(verify_api_key)])
 def api_get_lines():
     return database.get_all_lines()
 
 
-@app.post("/api/lines")
+@app.post("/api/lines", dependencies=[Depends(verify_api_key)])
 def api_create_line(req: CreateLineRequest):
     database.create_or_update_line(req.name, req.rack_ids)
     return {"status": "success"}
 
 
-@app.delete("/api/lines/{line_id}")
+@app.delete("/api/lines/{line_id}", dependencies=[Depends(verify_api_key)])
 def api_delete_line(line_id: int):
     database.delete_line(line_id)
     return {"status": "success"}
 
 
-@app.post("/api/check_reel")
+@app.post("/api/check_reel", dependencies=[Depends(verify_api_key)])
 def api_check_reel(req: CodeCheckRequest):
     result = database.check_itemcode_availability(req.itemcode, req.line_id, req.exclude_codes)
     status = result.get("status")
@@ -292,13 +317,14 @@ def api_check_reel(req: CodeCheckRequest):
 
 class UserCreateReq(BaseModel):
     username: str
+    api_key: str = None
 
 @app.post("/admin/users", dependencies=[Depends(verify_master_key)])
 def api_create_user(req: UserCreateReq):
     if not req.username or len(req.username.strip()) < 3:
         raise HTTPException(status_code=400, detail="Username debe tener al menos 3 caracteres")
     try:
-        api_key = database.create_api_user(req.username.strip())
+        api_key = database.create_api_user(req.username.strip(), req.api_key.strip() if req.api_key else None)
         return {"status": "success", "username": req.username.strip(), "api_key": api_key}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -322,6 +348,34 @@ def api_regenerate_key(username: str):
 @app.get("/admin/audit/extractions", dependencies=[Depends(verify_master_key)])
 def api_get_audit(limit: int = 50, username: str = None, from_date: str = None, to_date: str = None):
     return database.get_extractions_audit(limit, username, from_date, to_date)
+
+@app.get("/admin/audit/export", dependencies=[Depends(verify_master_key)])
+def api_export_audit(from_date: str = None, to_date: str = None):
+    """Exporta el log de auditoría completo a CSV."""
+    logs = database.get_extractions_audit(limit=5000, from_date=from_date, to_date=to_date)
+    
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['ID', 'Username', 'Endpoint', 'Key_Partial', 'Success', 'Error', 'Ext_ID', 'Date'])
+    
+    for l in logs:
+        writer.writerow([
+            l.get('id'),
+            l.get('username'),
+            l.get('endpoint'),
+            l.get('api_key_partial'),
+            l.get('success'),
+            l.get('error_message'),
+            l.get('extraction_id'),
+            l.get('created_at')
+        ])
+        
+    output.seek(0)
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": f'attachment; filename="auditoria_smartrack_{datetime.now().strftime("%Y%m%d")}.csv"'}
+    )
 
 
 @app.post("/api/extract")
@@ -407,7 +461,7 @@ def api_extract(req: ExtractRequest, user: dict = Depends(verify_api_key)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/scheduled")
+@app.get("/api/scheduled", dependencies=[Depends(verify_api_key)])
 def api_get_scheduled():
     return [
         {
@@ -421,7 +475,7 @@ def api_get_scheduled():
     ]
 
 
-@app.delete("/api/scheduled/{job_id}", response_model=None)
+@app.delete("/api/scheduled/{job_id}", dependencies=[Depends(verify_api_key)])
 def api_delete_scheduled(job_id: str):
     try:
         scheduler.remove_job(job_id)
@@ -471,13 +525,13 @@ def api_juki_extract(req: JukiExtractRequest, user: dict = Depends(verify_api_ke
         database.log_extraction_audit(user["username"], "/api/juki/extract", user["api_key"], False, error_message=str(e))
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/api/movements/pending")
+@app.get("/api/movements/pending", dependencies=[Depends(verify_api_key)])
 def api_get_pending_movements(type: str = None):
     moves = database.get_pending_movements(type)
     logger.debug(f"API MOVEMENTS: Solicitadas pendientes ({type}). Enviando {len(moves)} registros.")
     return moves
 
-@app.get("/api/movements/recent")
+@app.get("/api/movements/recent", dependencies=[Depends(verify_api_key)])
 def api_get_recent_movements():
     moves = database.get_recent_movements(25)
     return moves

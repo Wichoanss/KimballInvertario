@@ -9,19 +9,20 @@ def test_create_user_success(test_client):
     main.config_tokens[mtoken] = datetime.datetime.now().timestamp() + 3600
     
     username = f"new_op_{uuid.uuid4().hex[:6]}"
-    res = test_client.post("/admin/users", json={"username": username}, headers={"X-Master-Key": mtoken})
+    emp_num = "999888"
+    res = test_client.post("/admin/users", json={"username": username, "api_key": emp_num}, headers={"X-Master-Key": mtoken})
     assert res.status_code == 200
     data = res.json()
     assert data["status"] == "success"
     assert data["username"] == username
-    assert data["api_key"].startswith("sr_")
+    assert data["api_key"] == emp_num
 
 def test_create_user_short_name(test_client):
     import main
     mtoken = "m_" + uuid.uuid4().hex
     main.config_tokens[mtoken] = datetime.datetime.now().timestamp() + 3600
 
-    res = test_client.post("/admin/users", json={"username": "ab"}, headers={"X-Master-Key": mtoken})
+    res = test_client.post("/admin/users", json={"username": "ab", "api_key": "123"}, headers={"X-Master-Key": mtoken})
     assert res.status_code == 400
 
 def test_create_user_duplicate(test_client):
@@ -30,8 +31,8 @@ def test_create_user_duplicate(test_client):
     main.config_tokens[mtoken] = datetime.datetime.now().timestamp() + 3600
 
     username = "duplicate_user"
-    test_client.post("/admin/users", json={"username": username}, headers={"X-Master-Key": mtoken})
-    res = test_client.post("/admin/users", json={"username": username}, headers={"X-Master-Key": mtoken})
+    test_client.post("/admin/users", json={"username": username, "api_key": "123"}, headers={"X-Master-Key": mtoken})
+    res = test_client.post("/admin/users", json={"username": username, "api_key": "456"}, headers={"X-Master-Key": mtoken})
     assert res.status_code == 400
     assert "ya existe" in res.json()["detail"].lower()
 
@@ -54,7 +55,7 @@ def test_delete_user(test_client):
     main.config_tokens[mtoken] = datetime.datetime.now().timestamp() + 3600
     
     username = "to_delete"
-    test_client.post("/admin/users", json={"username": username}, headers={"X-Master-Key": mtoken})
+    test_client.post("/admin/users", json={"username": username, "api_key": "123"}, headers={"X-Master-Key": mtoken})
     res = test_client.delete(f"/admin/users/{username}", headers={"X-Master-Key": mtoken})
     assert res.status_code == 200
     
@@ -69,7 +70,7 @@ def test_regenerate_api_key(test_client):
     main.config_tokens[mtoken] = datetime.datetime.now().timestamp() + 3600
     
     username = "regen_user"
-    create_res = test_client.post("/admin/users", json={"username": username}, headers={"X-Master-Key": mtoken})
+    create_res = test_client.post("/admin/users", json={"username": username, "api_key": "old-key"}, headers={"X-Master-Key": mtoken})
     old_key = create_res.json()["api_key"]
     
     res = test_client.post(f"/admin/users/{username}/regenerate", headers={"X-Master-Key": mtoken})

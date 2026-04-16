@@ -17,7 +17,8 @@ class TestHealth:
         data = r.json()
         assert data["status"] == "ok"
         assert "timestamp" in data
-        assert "circuit_breaker" in data
+        assert "version" in data
+        assert "checks" in data
 
     def test_health_returns_request_id_header(self, test_client):
         r = test_client.get("/health")
@@ -76,17 +77,17 @@ class TestAuthConfig:
 # Reels
 # ===========================================================================
 class TestReels:
-    def test_get_all_reels_empty(self, test_client):
-        r = test_client.get("/api/reels")
+    def test_get_all_reels_empty(self, test_client, api_user_key):
+        r = test_client.get("/api/reels", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert isinstance(r.json(), list)
 
-    def test_get_juki_reels_empty(self, test_client):
-        r = test_client.get("/api/juki/reels")
+    def test_get_juki_reels_empty(self, test_client, api_user_key):
+        r = test_client.get("/api/juki/reels", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
 
-    def test_export_csv(self, test_client):
-        r = test_client.get("/api/reels/export/csv")
+    def test_export_csv(self, test_client, api_user_key):
+        r = test_client.get("/api/reels/export/csv", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert "text/csv" in r.headers["content-type"]
         assert "Rack" in r.text
@@ -96,30 +97,37 @@ class TestReels:
 # Lines
 # ===========================================================================
 class TestLines:
-    def test_get_lines(self, test_client):
-        r = test_client.get("/api/lines")
+    def test_get_lines(self, test_client, api_user_key):
+        r = test_client.get("/api/lines", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert isinstance(r.json(), list)
 
-    def test_create_line(self, test_client):
-        r = test_client.post("/api/lines", json={"name": "TEST-API", "rack_ids": "10,11"})
+    def test_create_line(self, test_client, api_user_key):
+        r = test_client.post("/api/lines", 
+                             json={"name": "TEST-API", "rack_ids": "10,11"},
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert r.json()["status"] == "success"
 
-    def test_create_line_invalid_rack_id(self, test_client):
-        r = test_client.post("/api/lines", json={"name": "BAD", "rack_ids": "abc,def"})
+    def test_create_line_invalid_rack_id(self, test_client, api_user_key):
+        r = test_client.post("/api/lines", 
+                             json={"name": "BAD", "rack_ids": "abc,def"},
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 422
 
-    def test_create_line_missing_fields(self, test_client):
-        r = test_client.post("/api/lines", json={"name": ""})
+    def test_create_line_missing_fields(self, test_client, api_user_key):
+        r = test_client.post("/api/lines", 
+                             json={"name": ""},
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 422
 
-    def test_delete_line(self, test_client):
+    def test_delete_line(self, test_client, api_user_key):
+        headers = {"X-API-Key": api_user_key}
         # Crear primero
-        test_client.post("/api/lines", json={"name": "DEL-TEST", "rack_ids": "99"})
-        lines = test_client.get("/api/lines").json()
+        test_client.post("/api/lines", json={"name": "DEL-TEST", "rack_ids": "99"}, headers=headers)
+        lines = test_client.get("/api/lines", headers=headers).json()
         line_id = next(l["id"] for l in lines if l["name"] == "DEL-TEST")
-        r = test_client.delete(f"/api/lines/{line_id}")
+        r = test_client.delete(f"/api/lines/{line_id}", headers=headers)
         assert r.status_code == 200
 
 
@@ -127,21 +135,22 @@ class TestLines:
 # Check Reel
 # ===========================================================================
 class TestCheckReel:
-    def test_reel_not_found(self, test_client):
-        lines = test_client.get("/api/lines").json()
+    def test_reel_not_found(self, test_client, api_user_key):
+        headers = {"X-API-Key": api_user_key}
+        lines = test_client.get("/api/lines", headers=headers).json()
         line_id = lines[0]["id"]
         r = test_client.post("/api/check_reel", json={
             "itemcode": "NONEXISTENT-PART",
             "line_id": line_id,
-        })
+        }, headers=headers)
         assert r.status_code == 200
         assert r.json()["found"] is False
 
-    def test_invalid_line_id_fails(self, test_client):
+    def test_invalid_line_id_fails(self, test_client, api_user_key):
         r = test_client.post("/api/check_reel", json={
             "itemcode": "ABC",
             "line_id": 0,  # inválido
-        })
+        }, headers={"X-API-Key": api_user_key})
         assert r.status_code == 422
 
 
@@ -222,13 +231,13 @@ class TestExtract:
 # Scheduled jobs
 # ===========================================================================
 class TestScheduled:
-    def test_get_scheduled_empty(self, test_client):
-        r = test_client.get("/api/scheduled")
+    def test_get_scheduled_empty(self, test_client, api_user_key):
+        r = test_client.get("/api/scheduled", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert isinstance(r.json(), list)
 
-    def test_delete_nonexistent_job(self, test_client):
-        r = test_client.delete("/api/scheduled/nonexistent-job-id")
+    def test_delete_nonexistent_job(self, test_client, api_user_key):
+        r = test_client.delete("/api/scheduled/nonexistent-job-id", headers={"X-API-Key": api_user_key})
         assert r.status_code == 404
 
 
@@ -236,17 +245,17 @@ class TestScheduled:
 # Movements
 # ===========================================================================
 class TestMovements:
-    def test_get_pending_movements(self, test_client):
-        r = test_client.get("/api/movements/pending")
+    def test_get_pending_movements(self, test_client, api_user_key):
+        r = test_client.get("/api/movements/pending", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
         assert isinstance(r.json(), list)
 
-    def test_get_recent_movements(self, test_client):
-        r = test_client.get("/api/movements/recent")
+    def test_get_recent_movements(self, test_client, api_user_key):
+        r = test_client.get("/api/movements/recent", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
 
-    def test_pending_filtered_by_type(self, test_client):
-        r = test_client.get("/api/movements/pending?type=juki")
+    def test_pending_filtered_by_type(self, test_client, api_user_key):
+        r = test_client.get("/api/movements/pending?type=juki", headers={"X-API-Key": api_user_key})
         assert r.status_code == 200
 
 
@@ -254,8 +263,10 @@ class TestMovements:
 # Global validation error handler
 # ===========================================================================
 class TestValidationErrorHandler:
-    def test_returns_structured_error(self, test_client):
-        r = test_client.post("/api/check_reel", json={"line_id": "not-a-number"})
+    def test_returns_structured_error(self, test_client, api_user_key):
+        r = test_client.post("/api/check_reel", 
+                             json={"line_id": "not-a-number"},
+                             headers={"X-API-Key": api_user_key})
         assert r.status_code == 422
         body = r.json()
         assert body["status"] == "error"

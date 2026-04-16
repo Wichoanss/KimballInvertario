@@ -54,6 +54,9 @@ _load_env(os.path.join(BASE_DIR, ".env"))
 # Configuracion — cada valor puede sobreescribirse en el .env
 # ---------------------------------------------------------------------------
 
+# Versión del sistema
+SMARTRACK_VERSION = "1.6.0"
+
 # URL del servidor SmartRack
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8081")
 

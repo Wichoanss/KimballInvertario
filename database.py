@@ -1,4 +1,6 @@
+import os
 import sqlite3
+import shutil
 import config
 from datetime import datetime, timedelta
 from logger_setup import setup_logger
@@ -13,6 +15,45 @@ def get_db_connection():
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA synchronous=NORMAL")
     return conn
+
+def check_connection() -> bool:
+    """Verifica si la base de datos es accesible."""
+    try:
+        with get_db_connection() as conn:
+            conn.execute("SELECT 1").fetchone()
+            return True
+    except Exception as e:
+        logger.error(f"Error de salud de DB: {e}")
+        return False
+
+def backup_database(limit_backups: int = 24):
+    """
+    Crea un backup rotativo de la base de datos usando VACUUM INTO (no bloqueante).
+    Mantiene hasta 'limit_backups' archivos basados en la hora del día.
+    """
+    backup_dir = os.path.join(config.DATA_DIR, "backups")
+    os.makedirs(backup_dir, exist_ok=True)
+    
+    # Usar la hora actual (00-23) para rotar los archivos
+    hour_suffix = datetime.now().strftime("%H")
+    backup_filename = f"inventory_{hour_suffix}.db"
+    backup_path = os.path.join(backup_dir, backup_filename)
+    
+    # Eliminar viejo si existe (VACUUM INTO requiere que el destino NO exista)
+    if os.path.exists(backup_path):
+        try:
+            os.remove(backup_path)
+        except Exception as e:
+            logger.error(f"No se pudo eliminar backup antiguo {backup_filename}: {e}")
+            return
+
+    try:
+        with get_db_connection() as conn:
+            # VACUUM INTO es la forma oficial y segura de hacer backup en caliente en SQLite
+            conn.execute(f"VACUUM INTO '{backup_path}'")
+        logger.info(f"BACKUP COMPLETADO: {backup_filename} en {backup_dir}")
+    except Exception as e:
+        logger.error(f"Error realizando backup de DB: {e}")
 
 def init_db():
     with get_db_connection() as conn:
@@ -426,8 +467,8 @@ def check_itemcode_availability(itemcode: str, line_id: int, exclude_codes: list
 
 def cleanup_database(keep_logs_days: int = 30) -> None:
     """Elimina registros expirados y logs antiguos para evitar crecimiento infinito."""
-    with get_db_connection() as conn:
-        try:
+    try:
+        with get_db_connection() as conn:
             # 1. Limpieza de idempotency_keys
             cursor = conn.execute("DELETE FROM idempotency_keys WHERE expires_at < CURRENT_TIMESTAMP")
             idem_deleted = cursor.rowcount
@@ -443,17 +484,19 @@ def cleanup_database(keep_logs_days: int = 30) -> None:
                     "Limpieza de DB completada",
                     extra={"idempotency_deleted": idem_deleted, "logs_deleted": logs_deleted}
                 )
-        except Exception as e:
-            logger.error(f"Error en limpieza automatica de DB: {e}")
+    except Exception as e:
+        logger.error(f"Error en limpieza automatica de DB: {e}")
 
 # =========================================================================
 # Gestión de Usuarios y API Keys
 # =========================================================================
 import secrets
 
-def create_api_user(username: str) -> str:
-    """Crea usuario y retorna la API Key generada en texto plano."""
-    api_key = f"sr_{secrets.token_urlsafe(32)}"
+def create_api_user(username: str, api_key: str = None) -> str:
+    """Crea usuario y retorna la API Key (proporcionada o generada)."""
+    if not api_key:
+        api_key = f"sr_{secrets.token_urlsafe(32)}"
+        
     with get_db_connection() as conn:
         try:
             conn.execute(

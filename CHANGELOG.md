@@ -5,6 +5,20 @@
 
 ---
 
+## [1.6.0] - 2026-04-15
+### Added
+- **Bulletproof Hardening**: Cobertura total de seguridad (`X-API-Key`) extendida a todos los endpoints de SmartRack y JUKI (Reels, Lines, Movements, Scheduled).
+- **90% Code Coverage**: Alcanzada la meta de cobertura del 90% en todo el sistema, con un 91% en el núcleo del servidor (`main.py`).
+- **Robustness Suite**: Nuevas pruebas de borde para `poller.py` cubriendo XML malformado de la API, estados de Circuit Breaker Abierto/Cerrado y fallos de red.
+- **State Isolation**: Fixture automatizado en `conftest.py` para reset de estado global (Tokens y Circuit Breakers) entre pruebas, eliminando colisiones de tests.
+- **UI Integrity Audit**: Verificación estática de elementos críticos en templates HTML para asegurar que el frontend no pierda conexión con el backend tras cambios de seguridad.
+
+### Fixed
+- Corregidas todas las regresiones (16+ fallos) en la suite de integración causadas por el endurecimiento de la seguridad del API.
+- Sincronización de lógica de borrado en el scheduler para manejar errores inesperados de la base de datos con HTTP 500.
+
+---
+
 ## [1.5.0] - 2026-04-15
 ### Added
 - **API Key Authentication**: Mandatory `X-API-Key` para extracciones mediante endpoints de línea.
